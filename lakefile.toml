@@ -1,0 +1,21 @@
+name = "gluelump-perimeter-law"
+version = "0.1.0"
+keywords = ["math", "formalization", "lattice-gauge-theory", "perimeter-law"]
+defaultTargets = ["GluelumpPerimeterLaw"]
+
+[leanOptions]
+autoImplicit = false
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "strong-coupling-lattice-yang-mills"
+git = "https://github.com/rn9801/strong-coupling-lattice-yang-mills.git"
+rev = "main"
+
+[[lean_lib]]
+name = "GluelumpPerimeterLaw"
+
+[[lean_lib]]
+name = "GluelumpPerimeterLawTests"

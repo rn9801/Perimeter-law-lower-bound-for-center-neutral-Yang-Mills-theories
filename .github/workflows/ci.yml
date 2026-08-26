@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Lean project
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: auto
+
+      - name: Verify current Strong-Coupling main
+        run: |
+          lake update strong-coupling-lattice-yang-mills
+          lake build GluelumpPerimeterLaw
+          lake build GluelumpPerimeterLawTests
+
+      - name: Check repository boundary
+        run: |
+          if rg --line-number '^import YangMills\.Gluelump' \
+              GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
+              GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
+            exit 1
+          fi
+          if rg --line-number '\bsorry\b|\badmit\b' \
+              GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
+              GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
+            exit 1
+          fi
+          if rg --line-number \
+              '^[[:space:]]*(axiom|unsafe)[[:space:]]' \
+              GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
+              GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
+            exit 1
+          fi

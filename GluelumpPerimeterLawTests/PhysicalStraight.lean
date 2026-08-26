@@ -1,0 +1,49 @@
+/-
+Copyright (c) 2026 The Strong-Coupling Lattice Yang--Mills Authors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Strong-Coupling Lattice Yang--Mills contributors
+-/
+
+import GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightLimit
+
+/-!
+# Regression checks for direct physical-length gluelump propagation
+
+These checks pin the one-bond seed identification, the parity-complete
+reflection log-convexity theorem, and the end-to-end uniform power lower bound
+for completed-free-boundary limits.
+-/
+
+open YangMills.Gluelump.Propagation
+
+#check conjSpanPhysicalStraightObservable_one_apply
+#check conjSpanSiteStraightMixed_succ_apply_eq_linkStraight
+#check conjSpanSiteStraight_succ_translate_apply_eq_linkMixed
+#check conjSpanPhysicalStraightExpectation_one_eq
+#check conjSpanPhysicalStraightExpectation_im_eq_zero
+#check conjSpanPhysicalStraightExpectation_nonneg
+#check conjSpanPhysicalStraightExpectation_reflectionLogConvex
+#check conjSpanPhysicalStraightExpectation_rate_power_le
+#check centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
+
+namespace YangMills.StrongCoupling.IsTranslationInvariantFreeBoundaryLimit
+
+#check conjSpanLinkReflectionData
+#check conjSpanPhysicalStraightExpectation_rate_power_le
+
+end YangMills.StrongCoupling.IsTranslationInvariantFreeBoundaryLimit
+
+#print axioms conjSpanPhysicalStraightObservable_one_apply
+#print axioms conjSpanSiteStraightMixed_succ_apply_eq_linkStraight
+#print axioms conjSpanSiteStraight_succ_translate_apply_eq_linkMixed
+#print axioms conjSpanPhysicalStraightExpectation_im_eq_zero
+#print axioms conjSpanPhysicalStraightExpectation_nonneg
+#print axioms conjSpanPhysicalStraightExpectation_reflectionLogConvex
+#print axioms conjSpanPhysicalStraightExpectation_rate_power_le
+#print axioms centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
+
+namespace YangMills.StrongCoupling.IsTranslationInvariantFreeBoundaryLimit
+
+#print axioms conjSpanPhysicalStraightExpectation_rate_power_le
+
+end YangMills.StrongCoupling.IsTranslationInvariantFreeBoundaryLimit

@@ -1,0 +1,9 @@
+Gluelump Perimeter Law
+Copyright 2026 The Gluelump Perimeter Law Authors
+
+The initial Lean source in this repository was extracted from
+strong-coupling-lattice-yang-mills
+(https://github.com/rn9801/strong-coupling-lattice-yang-mills), also licensed
+under Apache-2.0.  Extracted files retain their original copyright and author
+notices.  Module paths were renamed from YangMills.Gluelump.* to
+GluelumpPerimeterLaw.*; declaration namespaces were intentionally preserved.
