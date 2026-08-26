@@ -36,19 +36,21 @@ jobs:
         run: |
           test "$(find GluelumpPerimeterLaw/Upstream -name '*.lean' | wc -l | tr -d ' ')" = 28
           test "$(find GluelumpPerimeterLawTests -name '*.lean' | wc -l | tr -d ' ')" = 10
-          test "$(rg -c '^\[\[require\]\]$' lakefile.toml)" = 1
-          rg --quiet '^rev = "main"$' lakefile.toml
-          if rg --line-number '^import YangMills\.Gluelump' \
+          test "$(grep -c '^\[\[require\]\]$' lakefile.toml)" = 1
+          grep --quiet '^rev = "main"$' lakefile.toml
+          if grep --recursive --extended-regexp --line-number \
+              '^import YangMills\.Gluelump' \
               GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
               GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
             exit 1
           fi
-          if rg --line-number '\bsorry\b|\badmit\b|\bsorryAx\b' \
+          if grep --recursive --extended-regexp --line-number \
+              '(^|[^[:alnum:]_])(sorry|admit|sorryAx)([^[:alnum:]_]|$)' \
               GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
               GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
             exit 1
           fi
-          if rg --line-number \
+          if grep --recursive --extended-regexp --line-number \
               '^[[:space:]]*(axiom|unsafe)[[:space:]]' \
               GluelumpPerimeterLaw.lean GluelumpPerimeterLaw \
               GluelumpPerimeterLawTests.lean GluelumpPerimeterLawTests; then
