@@ -4,8 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import YangMills.StrongCoupling.ConcreteSiteReflectionPositivity
-import YangMills.Wilson.Loop
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteSiteReflectionPositivity
+import GluelumpPerimeterLaw.Upstream.Wilson.Loop
 import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!

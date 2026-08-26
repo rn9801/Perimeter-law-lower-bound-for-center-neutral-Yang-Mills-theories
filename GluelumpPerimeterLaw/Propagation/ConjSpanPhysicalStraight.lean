@@ -10,7 +10,7 @@ import GluelumpPerimeterLaw.Propagation.ReflectedLineMixedCore
 import GluelumpPerimeterLaw.Propagation.SiteReflectedLine
 import GluelumpPerimeterLaw.Propagation.StraightGeometryCore
 import GluelumpPerimeterLaw.Propagation.StraightLine
-import YangMills.Gauge.ReflectionPositiveState
+import GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState
 
 /-!
 # Direct conjugation-span straight lines indexed by physical length

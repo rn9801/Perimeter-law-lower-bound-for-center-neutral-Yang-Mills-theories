@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.OneLink.CenterNeutralLowerBound
 import GluelumpPerimeterLaw.OneLink.ExhaustionStrictPositivity
-import YangMills.StrongCoupling.FreeBoundaryInfiniteVolume
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume
 
 /-!
 # Direct one-link positivity in a free-boundary thermodynamic limit

@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.ReflectionSupport
-import YangMills.Gauge.LinkReflectionCrossingFamily
+import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossingFamily
 
 /-!
 # Gauge-fixed Gram certificates for split screened paths

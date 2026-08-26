@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.OneLink.CrossFeatureSplit
-import YangMills.Gauge.LinkReflectionCrossingFamily
+import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossingFamily
 
 /-!
 # Concrete endpoint/remote factorization of the link-reflection pairing

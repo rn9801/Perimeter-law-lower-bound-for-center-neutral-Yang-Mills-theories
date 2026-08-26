@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import YangMills.Gauge.AntiDiagonalReflection
+import GluelumpPerimeterLaw.Upstream.Gauge.AntiDiagonalReflection
 import GluelumpPerimeterLaw.Endpoint.Observable
 
 /-!

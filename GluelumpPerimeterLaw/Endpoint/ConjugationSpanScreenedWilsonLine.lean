@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Endpoint.ArmPath
 import GluelumpPerimeterLaw.Endpoint.ConjugationSpanField
-import YangMills.Gauge.FiniteVolume
+import GluelumpPerimeterLaw.Upstream.Gauge.FiniteVolume
 
 /-!
 # Screened Wilson lines from the direct conjugation-span endpoint

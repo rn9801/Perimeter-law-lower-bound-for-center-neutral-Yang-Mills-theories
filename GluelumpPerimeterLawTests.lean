@@ -12,6 +12,7 @@ import GluelumpPerimeterLawTests.OneLinkFreeBoundaryLimit
 import GluelumpPerimeterLawTests.PartitionNormalization
 import GluelumpPerimeterLawTests.PhysicalStraight
 import GluelumpPerimeterLawTests.RepresentationMilestones
+import GluelumpPerimeterLawTests.ReflectionPositiveState
 import GluelumpPerimeterLawTests.StrongCouplingPerimeterLaw
 
 /-! Comprehensive regression root for the standalone project. -/

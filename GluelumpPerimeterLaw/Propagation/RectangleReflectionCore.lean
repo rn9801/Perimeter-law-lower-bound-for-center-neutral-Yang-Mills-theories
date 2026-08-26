@@ -4,11 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import YangMills.Gauge.ReflectionPositiveState
+import GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState
 import GluelumpPerimeterLaw.Propagation.AntiDiagonalClosingCore
 import GluelumpPerimeterLaw.Propagation.ReflectedLineCore
 import GluelumpPerimeterLaw.Propagation.ReflectedLineMixedCore
-import YangMills.Wilson.Loop
+import GluelumpPerimeterLaw.Upstream.Wilson.Loop
 
 /-!
 # Measure-independent reflected Wilson caps

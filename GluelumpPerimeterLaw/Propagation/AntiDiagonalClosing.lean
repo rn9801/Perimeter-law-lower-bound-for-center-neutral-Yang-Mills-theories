@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Propagation.AntiDiagonalFamily
 import GluelumpPerimeterLaw.Propagation.AntiDiagonalClosingCore
-import YangMills.Wilson.Loop
+import GluelumpPerimeterLaw.Upstream.Wilson.Loop
 
 /-!
 # Matrix observable for the anti-diagonal closing step

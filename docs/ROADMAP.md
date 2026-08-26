@@ -57,9 +57,9 @@ architectural constraints guided every earlier task.
 ## Repository boundary
 
 This package is separate from the strong-coupling Yang--Mills repository. It
-uses that repository's `main` branch as its sole direct Lake dependency for
-the common lattice, gauge, Wilson, reflection, and thermodynamic-limit
-interfaces.
+uses that repository's unchanged `main` branch as its sole direct Lake
+dependency. The additive declarations developed for this theorem are carried
+in a downstream compatibility overlay rather than being pushed upstream.
 
 The resulting package dependency graph is
 
@@ -69,27 +69,30 @@ strong-coupling-lattice-yang-mills main -> gluelump-perimeter-law
 
 More explicitly:
 
-1. The upstream repository provides sites, links, paths, plaquettes, Haar
-   integration, finite specifications, Wilson actions, reflection boxes,
-   reflection-positive-state interfaces, and the constructed
-   thermodynamic-limit state.
-2. This repository contains conjugation-span representation theory, endpoint
-   fields, one-link positivity, measure-parametric propagation, the
-   conditional perimeter theorem, and the thin application to the upstream
-   thermodynamic-limit interface.
-3. The concrete strong-coupling corollary also lives downstream. This avoids
-   any reverse import from the upstream package and keeps the package graph
-   acyclic.
-4. The neutral gluelump critical path does not import `YangMills.Polymer`, the
+1. Upstream `main` provides the established sites, links, paths, plaquettes,
+   Haar integration, finite specifications, Wilson actions, reflection
+   boxes, and strong-coupling construction on which the proof builds.
+2. This repository owns 28 additive compatibility modules under
+   `GluelumpPerimeterLaw.Upstream.*`: 19 extend modules present on `main`, and
+   nine supply new reflection and thermodynamic-limit modules. They preserve
+   the original `YangMills.*` declaration namespaces without claiming an
+   upstream module path.
+3. This repository also contains conjugation-span representation theory,
+   endpoint fields, one-link positivity, measure-parametric propagation, the
+   conditional perimeter theorem, and the completed-limit adapter.
+4. The concrete strong-coupling corollary lives downstream. There is no
+   reverse import from the upstream package, so the package graph is acyclic.
+5. The neutral gluelump critical path does not import `YangMills.Polymer`, the
    cluster expansion, `latticeStrongCouplingRadius`, or
    `centeredInfiniteVolumeMeasure`.
-5. Mathematically neutral reflection APIs live upstream and are imported, not
-   copied. Historical declarations still located below upstream
-   `StrongCoupling` are consumed only in the named downstream adapter layer.
 6. Endpoint and propagation core modules do not import strong-coupling or
    polymer implementation modules.
 7. A regression computes the transitive import closure of the neutral roots
    and rejects any `StrongCoupling` or `Polymer` dependency.
+8. If future upstream `main` acquires an overlaid declaration, its downstream
+   extension is removed and imports are retargeted in the same compatibility
+   update. Keeping both would intentionally fail with a duplicate declaration
+   rather than silently shadowing upstream code.
 
 The standalone module paths use `GluelumpPerimeterLaw.*`, while declaration
 names remain `YangMills.Gluelump.*`. This avoids overlapping Lake's upstream
@@ -188,9 +191,9 @@ hypothesis. A regression checks its axiom footprint and its narrow build.
 
 **Status:** Complete (2026-08-25). The neutral measure certificate and the
 arbitrary completed-free-boundary-limit adapter are proved and axiom-audited.
-The limit and eventual crossing-certificate declarations still physically
-reside below `StrongCoupling`; moving those declarations without changing
-their mathematics remains extraction hygiene rather than a theorem gap.
+Their historical `YangMills.StrongCoupling` declaration namespaces are
+preserved, but their module implementations now live in the standalone
+compatibility overlay; no upstream repository change is required.
 
 **Purpose.** Give the propagation engine only the properties of the measure
 that it uses, without mentioning cluster expansions or a strong-coupling
@@ -230,7 +233,7 @@ radius.
 - `YangMills/Gauge/ReflectionPositiveState.lean`;
 - `YangMills/Gauge/CompletedReflectionBoxes.lean`;
 - `GluelumpPerimeterLaw/Interface/ThermodynamicLimit.lean`;
-- `YangMills/StrongCoupling/GluelumpLimitAdapter.lean`.
+- `GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryReflectionPositiveState.lean`.
 
 The final locations may differ after the required source audit, but the
 dependency direction must not.
@@ -465,8 +468,9 @@ integrated tree.
 
 1. Split mixed generic/strong-coupling files where necessary and remove
    unused strong-coupling imports before extraction.
-2. Keep neutral incidence and reflection-box APIs in the upstream `Lattice`
-   or `Gauge` layers while preserving provenance and avoiding copied forks.
+2. Keep neutral incidence and reflection-box APIs in `Lattice` or `Gauge`
+   declaration namespaces while placing additive compatibility source under
+   downstream-owned module paths and preserving provenance.
 3. Add focused tests for each task, including exact theorem-type checks and
    `#print axioms` for the new public declarations.
 4. Add an import regression for the standalone neutral gluelump core.
@@ -500,25 +504,29 @@ modules.
 - The critical source scan contains no `sorry`, `admit`, `sorryAx`, custom
   `axiom`, or `unsafe` declaration, and `git diff --check` is clean.
 - Both headline sources pass with `-DautoImplicit=false`.
-- `lake build GluelumpPerimeterLaw` succeeds with 8,678 jobs against the
-  prepared upstream prerequisite branch; and
-- `lake build GluelumpPerimeterLawTests` succeeds with 8,687 jobs and checks
-  all nine shipped regression modules.
+- Before the repository-boundary migration, `lake build
+  GluelumpPerimeterLaw` succeeded with 8,678 jobs against the staged
+  prerequisite tree; and
+- the corresponding regression build succeeded with 8,687 jobs. The final
+  downstream-overlay suite contains 10 focused regression modules and is
+  rechecked directly against unchanged upstream `main` in Task 7.
 
-The definitions of the completed-free-boundary limit and a few neutral
-finite-box helpers still occupy historical directories below upstream
-`StrongCoupling`. They are used only by named one-way adapters and are not in
-the audited neutral theorem closure.
+The declarations for the completed-free-boundary limit and a few neutral
+finite-box helpers retain historical `YangMills.StrongCoupling` namespaces.
+Their source modules now live downstream under
+`GluelumpPerimeterLaw.Upstream.StrongCoupling`; they are used only by named
+one-way adapters and are not in the audited neutral theorem closure.
 
 ## 7. Post-theorem extraction into a separate repository
 
-**Status:** Implementation complete locally (2026-08-25); remote publication
-awaits the upstream prerequisite merge and refreshed GitHub authentication.
+**Status:** Complete (2026-08-25). The standalone repository is published
+privately at `rn9801/gluelump-perimeter-law`; the Strong-Coupling repository
+was not modified.
 
 **Completed work.**
 
 1. The exact theorem closure was recomputed from the neutral and public
-   headline roots. The standalone production tree contains 110 modules:
+   headline roots. The standalone theorem tree contains 110 modules:
    19 endpoint, 2 Lie, 32 one-link, 37 propagation, 17 representation-theory,
    and 3 top-level headline modules.
 2. Twenty-three obsolete or noncritical torus, axial, and old propagation
@@ -526,23 +534,37 @@ awaits the upstream prerequisite merge and refreshed GitHub authentication.
 3. Module imports were renamed mechanically from `YangMills.Gluelump.*` to
    `GluelumpPerimeterLaw.*`; declaration namespaces were deliberately left
    unchanged.
-4. The 28 generic lattice/gauge/strong-coupling prerequisites were separated
-   into an upstream-only commit. They contain no import back into this
-   package.
+4. The 28 generic lattice/gauge/strong-coupling prerequisites are carried
+   directly in this repository under `GluelumpPerimeterLaw.Upstream.*`:
+   19 additive extensions of modules on current `main` and nine new modules.
+   The upstream Strong-Coupling repository remains unchanged.
 5. The standalone package has one direct Lake requirement, the Git URL of
    `strong-coupling-lattice-yang-mills` with `rev = "main"`.
-6. Nine focused regression modules, an aggregate test root, a neutral import
-   audit, provenance notice, and scheduled compatibility CI were added.
-7. Every one of the 110 production modules is reachable from the public
-   roots; all 267 production import statements resolve; no duplicate module
-   ownership or reverse package edge remains.
-8. Production and regression builds pass against the locally staged upstream
-   prerequisite commit, and the headline axiom audits contain only standard
-   Lean foundations.
+6. Ten focused regression modules, an aggregate test root, a neutral import
+   audit, provenance notice, and scheduled compatibility CI are included.
+7. The 110 theorem modules plus 28 compatibility modules use only downstream
+   `GluelumpPerimeterLaw.*` module paths; declaration namespaces are preserved
+   for API compatibility. No reverse package edge or module-ownership overlap
+   is introduced.
+8. The original staged-prerequisite production and regression builds pass,
+   and the headline axiom audits contain only standard Lean foundations. The
+   final verification rebuilds the same declarations as a downstream overlay
+   on a clean checkout of current upstream `main`.
+9. The committed Lake manifest resolves unchanged upstream `main` to
+   `bc7383d023f0c58a16312764a32422248aa42ebe`. The clean combined build of the
+   production aggregate and all ten regression modules succeeded with 8,708
+   jobs.
+10. The private GitHub repository was created and the standalone `main`
+    branch published without a commit, branch, or pull request to the
+    Strong-Coupling repository.
 
-**Publication gate.** The generic prerequisite commit must first be merged
-into the upstream `main` branch. The downstream Lake manifest is then
-regenerated from that remote branch, followed by a fresh-clone build and the
-initial push of this repository. This ordering ensures the published package
-really references upstream `main`, never a temporary path or circular
-adapter.
+**Publication result.** No upstream merge was required. The repository uses
+the git `rev = "main"` dependency, carries a git-based Lake manifest, and has
+passed the production and all-ten-regressions build against the resolved
+upstream commit above.
+
+**Future-main rule.** Scheduled CI updates the dependency to the latest
+upstream `main`. If upstream incorporates an overlaid declaration, remove the
+corresponding compatibility extension and retarget its imports in the same
+change. This explicit handoff prevents duplicate declarations and keeps the
+overlay temporary without coupling publication to an upstream modification.

@@ -7,7 +7,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 import GluelumpPerimeterLaw.OneLink.FreeBoundaryLimitLowerBound
 import GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightCrossing
 import GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightExpectation
-import YangMills.StrongCoupling.GluelumpLimitAdapter
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositiveState
 
 /-!
 # Physical straight-line propagation in a free-boundary limit

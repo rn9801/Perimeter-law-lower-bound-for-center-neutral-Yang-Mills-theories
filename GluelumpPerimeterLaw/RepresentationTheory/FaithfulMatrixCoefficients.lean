@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import YangMills.Wilson.Representation
+import GluelumpPerimeterLaw.Upstream.Wilson.Representation
 import YangMills.Gauge.ProductHaar
 import Mathlib.Topology.ContinuousMap.StoneWeierstrass
 

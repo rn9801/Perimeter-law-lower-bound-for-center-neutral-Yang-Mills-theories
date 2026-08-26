@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Propagation.ReflectedLineCore
-import YangMills.StrongCoupling.InfiniteVolumeLinkCrossing
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeLinkCrossing
 
 /-!
 # Completed-box certificates for reflected screened lines

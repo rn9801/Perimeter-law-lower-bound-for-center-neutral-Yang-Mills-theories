@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.Geometry
-import YangMills.Gauge.Holonomy
+import GluelumpPerimeterLaw.Upstream.Gauge.Holonomy
 
 /-! # The distinguished one-bond Wilson-arm path -/
 

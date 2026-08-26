@@ -64,8 +64,10 @@ of boxes.
 
 This limit condition is a hypothesis of the general infinite-volume theorem,
 not a uniqueness claim for all Gibbs states. In the positive strong-coupling
-interval it is discharged by the upstream theorem
-`wilsonStrongCoupling_isTranslationInvariantFreeBoundaryLimit`.
+interval it is discharged by the downstream compatibility theorem
+`wilsonStrongCoupling_isTranslationInvariantFreeBoundaryLimit`, which is
+proved from the thermodynamic-limit infrastructure on unchanged upstream
+`main`.
 
 ## 4. Model-neutral propagation theorem
 
@@ -95,9 +97,9 @@ them remains an unproved assumption in the public theorem.
 
 ## 5. Strong-coupling specialization
 
-The concrete theorem
+The concrete downstream theorem
 `YangMills.Gluelump.InfiniteVolume.centeredInfiniteVolume_centerNeutralPerimeterLaw`
-adds the upstream small-coupling condition
+adds the small-coupling condition supplied by the upstream construction
 
 ```text
 ‖(beta : ℂ)‖ < latticeStrongCouplingRadius d sigma.wilsonPotential.bound.
@@ -158,9 +160,15 @@ theorems and report only Lean's standard
 - `Classical.choice`; and
 - `Quot.sound`.
 
-Both the 110-module production closure and all nine regression modules build
-successfully against the prepared upstream prerequisite branch. The public
-package is configured to depend only on the `main` branch of
-`strong-coupling-lattice-yang-mills`; the final remote-main compatibility
-build and manifest refresh are publication steps performed after those
-generic prerequisites are merged upstream.
+The standalone source consists of 110 gluelump theorem modules, 28 additive
+compatibility modules, and 10 regression modules. The package is configured
+to depend only on the unchanged `main` branch of
+`strong-coupling-lattice-yang-mills`; the compatibility modules live under
+downstream-owned `GluelumpPerimeterLaw.Upstream.*` paths. The final clean-main
+build and manifest refresh passed against upstream commit
+`bc7383d023f0c58a16312764a32422248aa42ebe`; they required no upstream merge.
+
+If a future upstream `main` incorporates one of the overlaid declarations,
+the corresponding downstream extension must be removed and its imports
+retargeted in the same update. This is a source-maintenance obligation, not a
+new mathematical assumption of the theorem.

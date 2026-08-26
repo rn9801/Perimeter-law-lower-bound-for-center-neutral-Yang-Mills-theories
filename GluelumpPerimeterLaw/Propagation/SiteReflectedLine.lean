@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.Reflection
-import YangMills.Gauge.ReflectionPositiveState
+import GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState
 
 /-!
 # Site-reflected screened lines

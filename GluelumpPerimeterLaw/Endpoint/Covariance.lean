@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.LocalField
-import YangMills.Wilson.Representation
+import GluelumpPerimeterLaw.Upstream.Wilson.Representation
 import Mathlib.Analysis.InnerProductSpace.PiL2
 
 /-!

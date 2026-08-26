@@ -6,8 +6,8 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.RepresentationTheory.CenterScreening
 import YangMills.Lattice.Plaquette
-import YangMills.StrongCoupling.FreeBoundaryInfiniteVolume
-import YangMills.Wilson.Loop
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume
+import GluelumpPerimeterLaw.Upstream.Wilson.Loop
 
 /-!
 # Target statement: center-neutral perimeter law in a thermodynamic limit

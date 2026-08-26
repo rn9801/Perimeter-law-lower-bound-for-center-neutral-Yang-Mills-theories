@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.OneLink.BoundarySplit
 import GluelumpPerimeterLaw.RepresentationTheory.FaithfulMatrixCoefficients
-import YangMills.Gauge.LinkReflectionBridge
+import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionBridge
 
 /-!
 # Splitting coordinate crossing features

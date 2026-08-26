@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectation
 import GluelumpPerimeterLaw.Propagation.RectangleReflection
-import YangMills.StrongCoupling.GluelumpLimitAdapter
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositiveState
 
 /-!
 # Completed-free-boundary adapter for canonical rectangle expectations

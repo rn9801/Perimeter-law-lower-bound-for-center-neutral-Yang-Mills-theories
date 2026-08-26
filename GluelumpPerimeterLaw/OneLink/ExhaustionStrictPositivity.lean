@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.OneLink.StrictPositivity
-import YangMills.StrongCoupling.ConcreteLinkReflectionPositivity
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteLinkReflectionPositivity
 
 /-!
 # Strict one-link positivity along the completed exhaustion

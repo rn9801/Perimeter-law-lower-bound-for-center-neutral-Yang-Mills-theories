@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.RankOne
-import YangMills.StrongCoupling.ConcreteAntiDiagonalReflectionPositivity
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteAntiDiagonalReflectionPositivity
 import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!

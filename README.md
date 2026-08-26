@@ -4,10 +4,16 @@ This Lean 4 project proves a center-neutral gluelump perimeter-law lower bound
 for lattice Yang--Mills theory.  It is the standalone downstream companion to
 [`strong-coupling-lattice-yang-mills`](https://github.com/rn9801/strong-coupling-lattice-yang-mills).
 
-The package has exactly one direct Lake dependency: the `main` branch of that
-repository.  Mathlib, the lattice/gauge foundations, reflection positivity,
-and the strong-coupling thermodynamic-limit construction arrive transitively
-through it.
+The package has exactly one direct Lake dependency: the unchanged `main`
+branch of that repository. Mathlib and the established lattice, gauge,
+Wilson, and strong-coupling foundations arrive transitively through it.
+
+The 28 additive prerequisite modules developed with the gluelump proof live
+in this repository under `GluelumpPerimeterLaw.Upstream.*`: 19 extend existing
+upstream modules, and nine supply new reflection/limit modules. Their module
+paths are downstream-owned, while their declarations intentionally remain in
+the existing `YangMills.*` namespaces. No corresponding commit or branch is
+required in the Strong-Coupling repository.
 
 ## Headline theorems
 
@@ -45,12 +51,24 @@ Module paths use the `GluelumpPerimeterLaw.*` prefix so Lake can distinguish
 this package from the upstream `YangMills` library.  Existing declaration
 namespaces remain `YangMills.Gluelump.*`.
 
+## Upstream compatibility overlay
+
+`GluelumpPerimeterLaw/Upstream` is an additive compatibility overlay on the
+current upstream `main`; it does not replace or modify files in the dependency
+checkout. When upstream `main` eventually acquires one of these declarations,
+the corresponding downstream extension must be removed (and its imports
+retargeted) in the same compatibility update, otherwise Lean will correctly
+report a duplicate declaration. Scheduled CI updates the dependency to the
+latest `main` so that transition is detected immediately.
+
+The GitHub repository is private for now.
+
 See [the roadmap](docs/ROADMAP.md), [the mathematical assumptions](docs/MATHEMATICAL_ASSUMPTIONS.md),
 and [the status ledger](STATUS.md).
 
 ## License and provenance
 
-The project is released under Apache-2.0.  The initial standalone source was
-extracted from the gluelump development in
+The project is released under Apache-2.0. The initial standalone source and
+its 28 compatibility modules were extracted from the gluelump development in
 `strong-coupling-lattice-yang-mills`; individual Lean files retain their
-original copyright and contributor notices.  See [NOTICE](NOTICE).
+original copyright and contributor notices. See [NOTICE](NOTICE).

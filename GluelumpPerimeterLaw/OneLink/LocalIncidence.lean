@@ -6,7 +6,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.OneLink.FiniteEnergy
 import YangMills.StrongCoupling.Counting
-import YangMills.Gauge.LinkReflectionBridge
+import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionBridge
 
 /-!
 # Volume-independent collar incidence bounds

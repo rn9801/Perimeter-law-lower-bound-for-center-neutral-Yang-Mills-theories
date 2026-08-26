@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.TransverseLoops
-import YangMills.Gauge.LinkReflectionBridge
+import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionBridge
 
 /-!
 # One-link prisms over transverse endpoint loops

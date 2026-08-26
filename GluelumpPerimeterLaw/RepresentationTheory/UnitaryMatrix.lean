@@ -5,7 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.RepresentationTheory.TensorPower
-import YangMills.Wilson.Representation
+import GluelumpPerimeterLaw.Upstream.Wilson.Representation
 
 /-!
 # Algebraic representation underlying fixed unitary matrices

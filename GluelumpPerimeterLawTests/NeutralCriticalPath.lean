@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import YangMills.Gauge.ReflectionPositiveState
+import GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState
 import GluelumpPerimeterLaw.Propagation.AxisTransport
 import GluelumpPerimeterLaw.Propagation.CanonicalCofinalPerimeterLaw
 import GluelumpPerimeterLaw.Propagation.CanonicalCofinalRectangle
@@ -42,7 +42,7 @@ root: it is a one-way adapter from `StrongCoupling` into this audited core.
 open Lean Meta Elab Command
 
 private def neutralCriticalPathRoots : Array Name := #[
-  `YangMills.Gauge.ReflectionPositiveState,
+  `GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState,
   `GluelumpPerimeterLaw.Propagation.AxisTransport,
   `GluelumpPerimeterLaw.Propagation.CanonicalCofinalPerimeterLaw,
   `GluelumpPerimeterLaw.Propagation.CanonicalCofinalRectangle,
@@ -61,6 +61,7 @@ private def neutralCriticalPathRoots : Array Name := #[
 
 private def forbiddenNeutralImport (moduleName : Name) : Bool :=
   (`YangMills.StrongCoupling).isPrefixOf moduleName ||
+    (`GluelumpPerimeterLaw.Upstream.StrongCoupling).isPrefixOf moduleName ||
     (`YangMills.Polymer).isPrefixOf moduleName
 
 run_cmd do
