@@ -63,6 +63,12 @@ model-neutral one-link-to-perimeter propagation theorem.  It also records the
 full-sequence nature of the current thermodynamic-limit hypothesis and the
 uniform dependencies of the perimeter rate.
 
+The same headline section now expands the exact definitions of center
+neutrality, the translation-invariant completed free-boundary limit, and the
+complex and real rectangle expectations.  It also documents the reflection,
+crossing-link, and coordinate-swap interfaces used by the model-neutral
+propagation theorem.
+
 ## Repository publication
 
 The standalone repository is published privately at
