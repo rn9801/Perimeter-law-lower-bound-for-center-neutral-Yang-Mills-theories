@@ -84,16 +84,16 @@ theorem generalizedAxialTensorField_apply
   rfl
 
 /-- The unnormalized generalized axial field transforms as a Higgs field in
-the dual Wilson representation. -/
+the Wilson representation. -/
 theorem generalizedAxialTensorField_covariant
     (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
     (hcompat : AxialAdjointCompatible D adj) {x : Site d}
     (q : Fin m → Lattice.Cubic.Path x x)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual) :
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho)) :
     GaugeCovariantAt rho x
       (generalizedAxialTensorField D q
-        (continuousScreeningMultilinearForm adj rho T)) := by
+        (continuousRepresentationScreeningMultilinearForm adj rho T)) := by
   intro g Q
   rw [generalizedAxialTensorField_apply,
     generalizedAxialTensorField_apply]
@@ -105,7 +105,7 @@ theorem generalizedAxialTensorField_covariant
     funext i
     rw [holonomy_loop_gaugeTransform, Lie.generalizedAxial_conj,
       hcompat]
-  rw [hpoint, continuousScreeningMultilinearForm_equivariant]
+  rw [hpoint, continuousRepresentationScreeningMultilinearForm_equivariant]
 
 /-! ## Spanning and detection -/
 
@@ -127,10 +127,10 @@ theorem screeningIntertwiner_detects_generalizedAxial
     (D : Lie.FaithfulActionAxialData G A N)
     (H : Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) :
     ∃ u : Fin m → G,
-      continuousScreeningMultilinearForm adj rho T
+      continuousRepresentationScreeningMultilinearForm adj rho T
         (fun i ↦ Lie.generalizedAxial D (u i)) ≠ 0 := by
   have hspanC : Submodule.span ℂ
       (Set.range (Lie.generalizedAxial D)) = ⊤ :=
@@ -145,42 +145,39 @@ theorem screeningIntertwiner_detects_generalizedAxial
   obtain ⟨u, hu⟩ := Lie.nonzero_on_pure_tensor_of_spans
     (a := Lie.generalizedAxial D) T.toLinearMap hTlin hspanC
   refine ⟨u, ?_⟩
-  rw [continuousScreeningMultilinearForm_apply]
-  intro hzero
-  apply hu
-  apply (dualCoordinates n).injective
-  simpa using hzero
+  rw [continuousRepresentationScreeningMultilinearForm_apply]
+  exact hu
 
 /-! ## The normalized comb endpoint `phi` -/
 
 /-- The canonical normalized general gluelump endpoint.  It is built from
-pure gauge holonomies and transforms exactly as a Higgs field in the dual
-Wilson representation. -/
+pure gauge holonomies and transforms exactly as a Higgs field in the Wilson
+representation. -/
 def phi
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) : LocalField d G (Fin n → ℂ) :=
   normalizedEndpoint
     (generalizedAxialTensorField D (combLoops (m := m) hd x)
-      (continuousScreeningMultilinearForm adj rho T))
+      (continuousRepresentationScreeningMultilinearForm adj rho T))
 
 @[simp]
 theorem phi_support
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) :
     (phi hd D adj rho T x).support =
       basedLoopSupport (combLoops (m := m) hd x) :=
   rfl
 
-/-- The normalized field obeys the exact Higgs/dual-Wilson gauge law. -/
+/-- The normalized field obeys the exact Higgs/Wilson gauge law. -/
 theorem phi_gauge_covariant
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
     (hcompat : AxialAdjointCompatible D adj)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) : GaugeCovariantAt rho x (phi hd D adj rho T x) :=
   (generalizedAxialTensorField_covariant D adj rho hcompat
     (combLoops (m := m) hd x) T).normalizedEndpoint rho x
@@ -189,7 +186,7 @@ theorem phi_gauge_covariant
 theorem phi_l2Norm_le_one
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (Q : Configuration d G) :
     endpointL2Norm (phi hd D adj rho T x Q) ≤ 1 :=
   normalizedEndpoint_l2Norm_le_one _ Q
@@ -201,7 +198,7 @@ theorem phi_not_identically_zero
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (H : Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     ∃ Q : Configuration d G, phi hd D adj rho T x Q ≠ 0 := by
   obtain ⟨u, hu⟩ :=
@@ -209,7 +206,7 @@ theorem phi_not_identically_zero
   let Q : Configuration d G := combLoopConfiguration hd x u
   have hraw : generalizedAxialTensorField D
       (combLoops (m := m) hd x)
-      (continuousScreeningMultilinearForm adj rho T) Q ≠ 0 := by
+      (continuousRepresentationScreeningMultilinearForm adj rho T) Q ≠ 0 := by
     rw [generalizedAxialTensorField_apply]
     have hargs :
         (fun i : Fin m ↦ Lie.generalizedAxial D
@@ -226,7 +223,7 @@ perpendicular to the Wilson arm. -/
 theorem phi_supportedInLinkPositiveHalf
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) :
     (phi hd D adj rho T x).SupportedInLinkPositiveHalf
       (Geometry.armAxis hd) (x (Geometry.armAxis hd) - 1) := by
@@ -240,7 +237,7 @@ boundary contains the endpoint basepoint. -/
 theorem phi_supportedInSitePositiveHalf
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) :
     (phi hd D adj rho T x).SupportedInSitePositiveHalf
       (Geometry.armAxis hd) (x (Geometry.armAxis hd)) := by
@@ -254,7 +251,7 @@ used by straight-line and reflected endpoint families. -/
 def phiTranslated
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (v x : Site d) : LocalField d G (Fin n → ℂ) :=
   (phi hd D adj rho T x).translatePullback v
 
@@ -262,7 +259,7 @@ def phiTranslated
 theorem phiTranslated_apply
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (v x : Site d) (Q : Configuration d G) :
     phiTranslated hd D adj rho T v x Q =
       phi hd D adj rho T x
@@ -274,7 +271,7 @@ theorem phiTranslated_gauge_covariant
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
     (hcompat : AxialAdjointCompatible D adj)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (v x : Site d) :
     GaugeCovariantAt rho (Lattice.Cubic.translate v x)
       (phiTranslated hd D adj rho T v x) :=
@@ -286,7 +283,7 @@ reflection positivity. -/
 def phiLinkReflected
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (axis : Fin d) (cut : ℤ) :
     LocalField d G (Fin n → ℂ) :=
   (phi hd D adj rho T x).linkPullback axis cut
@@ -296,7 +293,7 @@ theorem phiLinkReflected_gauge_covariant
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
     (hcompat : AxialAdjointCompatible D adj)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (axis : Fin d) (cut : ℤ) :
     GaugeCovariantAt rho (linkReflection axis cut x)
       (phiLinkReflected hd D adj rho T x axis cut) :=
@@ -307,7 +304,7 @@ theorem phiLinkReflected_gauge_covariant
 def phiDiagonalReflected
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (axis₁ axis₂ : Fin d) (cut : ℤ) :
     LocalField d G (Fin n → ℂ) :=
   (phi hd D adj rho T x).diagonalPullback axis₁ axis₂ cut
@@ -318,7 +315,7 @@ theorem phiDiagonalReflected_gauge_covariant
     (hd : 3 ≤ d) (D : Lie.FaithfulActionAxialData G A N)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
     (hcompat : AxialAdjointCompatible D adj)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) {axis₁ axis₂ : Fin d} (haxes : axis₁ ≠ axis₂)
     (cut : ℤ) :
     GaugeCovariantAt rho (diagonalReflection axis₁ axis₂ cut x)

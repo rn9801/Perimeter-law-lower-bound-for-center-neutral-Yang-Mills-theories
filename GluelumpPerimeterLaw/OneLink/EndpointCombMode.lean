@@ -537,7 +537,7 @@ endpoint. -/
 def combPhiCollarCoordinate {m r : ℕ} (hd : 3 ≤ d)
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A n)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (i : Fin r) : C(combEndpointCollar (m := m) hd x → G, ℂ) :=
   collarRestriction (combEndpointCollar (m := m) hd x)
     ((phi hd D adj rho T x).component i).toContinuousMap
@@ -549,7 +549,7 @@ noncomputable def combPhiCollarCoordinate_homogeneous
     {m r : ℕ} (hd : 3 ≤ d)
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A n)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d) (i : Fin r) :
     HomogeneousFeatureExpansion (matrixFeature D.sigma)
       (combEndpointDegree (m := m) hd x)
@@ -558,7 +558,7 @@ noncomputable def combPhiCollarCoordinate_homogeneous
   let q := combLoops (m := m) hd x
   let F : ContinuousMultilinearMap ℂ (fun _ : Fin m ↦ A) ℂ :=
     (ContinuousLinearMap.proj i).compContinuousMultilinearMap
-      (continuousScreeningMultilinearForm adj rho T)
+      (continuousRepresentationScreeningMultilinearForm adj rho T)
   have hq (j : Fin m) : (q j).edgeSupport ⊆ S := by
     intro e he
     change e ∈ basedLoopSupport q
@@ -569,7 +569,7 @@ noncomputable def combPhiCollarCoordinate_homogeneous
   let hscaled := HomogeneousFeatureExpansion.smul
     (endpointNormalizationScale
       (generalizedAxialTensorField D q
-        (continuousScreeningMultilinearForm adj rho T)) : ℂ) hraw
+        (continuousRepresentationScreeningMultilinearForm adj rho T)) : ℂ) hraw
   refine hscaled.congr ?_
   ext U
   simp only [ContinuousMap.smul_apply,
@@ -591,7 +591,7 @@ theorem exists_combPhiCollarCoordinate_ne_zero
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A n)
     (H : YangMills.Gluelump.Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     ∃ i : Fin r, combPhiCollarCoordinate hd D adj rho T x i ≠ 0 := by
   obtain ⟨Q, hQ⟩ := phi_not_identically_zero hd D H adj rho T hT x
@@ -619,7 +619,7 @@ noncomputable def combEndpointConjugateMode
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A n)
     (H : YangMills.Gluelump.Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     EndpointConjugateMode (matrixFeature D.sigma)
       (fun i ↦ combPhiCollarCoordinate hd D adj rho T x i)

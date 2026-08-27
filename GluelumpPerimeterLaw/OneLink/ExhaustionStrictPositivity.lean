@@ -78,7 +78,7 @@ theorem eventually_transverseOneLink_linkSymmetric_finite_strict
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hendpoint : ∃ u : Fin m → G,
       T (fun j => Lie.axialMatrix eta (u j)) ≠ 0) :

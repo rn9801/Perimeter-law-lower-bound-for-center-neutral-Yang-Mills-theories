@@ -102,7 +102,7 @@ theorem transverseOneLinkHalfFamily_fixedSlice_eq_endpoint
   have hhol : holonomy (Λ.linkEvaluateSide tau 0 hΛ U) q = 1 := rfl
   rw [hconfig]
   rw [outgoingHalfComponent_apply]
-  rw [hhol, dualAction_one]
+  rw [hhol, representationAction_one]
 
 set_option maxHeartbeats 800000 in
 -- The finite Stone--Weierstrass detector expands several nested matrix sums;
@@ -238,7 +238,7 @@ theorem transverseOneLink_isGaugeFixedLinkFamilyNormSquare
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges) :
@@ -293,7 +293,7 @@ theorem transverseOneLink_finite_strict_of_detected
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)
@@ -330,7 +330,7 @@ theorem transverseOneLink_finite_selectedWord_lowerBound
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)
@@ -372,7 +372,7 @@ theorem eventually_transverseOneLink_finite_strict_of_amplitude_zero_ne
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)
@@ -415,7 +415,7 @@ theorem eventually_transverseOneLink_finite_strict
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)
@@ -458,7 +458,7 @@ theorem eventually_transverseOneLink_finite_strict_of_crossPlaquettes_active
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)

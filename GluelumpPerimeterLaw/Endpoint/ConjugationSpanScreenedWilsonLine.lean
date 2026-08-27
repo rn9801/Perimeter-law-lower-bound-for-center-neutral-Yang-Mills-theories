@@ -34,7 +34,7 @@ def conjSpanScreenedWilsonLine
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y) :
     LocalObservable d G :=
   screenedObservable rho (conjSpanPhi hd sigma rho T x)
@@ -45,12 +45,12 @@ theorem conjSpanScreenedWilsonLine_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     (Q : Configuration d G) :
     conjSpanScreenedWilsonLine hd sigma rho T gamma Q =
       hermitianPairing (conjSpanPhi hd sigma rho T x Q)
-        (dualAction rho (holonomy Q gamma)
+        (representationAction rho (holonomy Q gamma)
           (conjSpanPhi hd sigma rho T y Q)) :=
   rfl
 
@@ -59,7 +59,7 @@ theorem conjSpanScreenedWilsonLine_support
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y) :
     (conjSpanScreenedWilsonLine hd sigma rho T gamma).support =
       basedLoopSupport (combLoops (m := m) hd x) ∪
@@ -71,7 +71,7 @@ theorem conjSpanScreenedWilsonLine_gaugeInvariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y) :
     IsGaugeInvariant (conjSpanScreenedWilsonLine hd sigma rho T gamma) :=
   screenedObservable_gaugeInvariant rho _ _ gamma
@@ -82,7 +82,7 @@ theorem norm_conjSpanScreenedWilsonLine_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     (Q : Configuration d G) :
     ‖conjSpanScreenedWilsonLine hd sigma rho T gamma Q‖ ≤ 1 :=
@@ -97,7 +97,7 @@ def conjSpanScreenedWilsonLineTranslated
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (v : Site d) {x y : Site d} (gamma : Lattice.Cubic.Path x y) :
     LocalObservable d G :=
   screenedObservable rho
@@ -112,7 +112,7 @@ theorem conjSpanScreenedWilsonLineTranslated_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (v : Site d) {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     (Q : Configuration d G) :
     conjSpanScreenedWilsonLineTranslated hd sigma rho T v gamma Q =
@@ -130,7 +130,7 @@ theorem conjSpanScreenedWilsonLine_reverse_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     (Q : Configuration d G) :
     conjSpanScreenedWilsonLine hd sigma rho T gamma.reverse Q =
@@ -144,7 +144,7 @@ theorem linkTheta_conjSpanScreenedWilsonLine_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     (axis : Fin d) (cut : ℤ) (Q : Configuration d G) :
     (conjSpanScreenedWilsonLine hd sigma rho T gamma).linkTheta axis cut Q =
@@ -162,7 +162,7 @@ theorem diagonalTheta_conjSpanScreenedWilsonLine_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     {x y : Site d} (gamma : Lattice.Cubic.Path x y)
     {axis₁ axis₂ : Fin d} (haxes : axis₁ ≠ axis₂)
     (cut : ℤ) (Q : Configuration d G) :
@@ -183,7 +183,7 @@ def conjSpanScreenedOneLink
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) : LocalObservable d G :=
   conjSpanScreenedWilsonLine hd sigma rho T (armBondPath hd x)
 
@@ -191,7 +191,7 @@ theorem conjSpanScreenedOneLink_gaugeInvariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) :
     IsGaugeInvariant (conjSpanScreenedOneLink hd sigma rho T x) :=
   conjSpanScreenedWilsonLine_gaugeInvariant hd sigma rho T
@@ -201,7 +201,7 @@ theorem norm_conjSpanScreenedOneLink_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (Q : Configuration d G) :
     ‖conjSpanScreenedOneLink hd sigma rho T x Q‖ ≤ 1 :=
   norm_conjSpanScreenedWilsonLine_le_one hd sigma rho T
@@ -212,7 +212,7 @@ def conjSpanScreenedOneLinkCorrelation
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (mu : Measure (Configuration d G)) : ℂ :=
   ∫ Q, conjSpanScreenedOneLink hd sigma rho T x Q ∂mu
 
@@ -222,7 +222,7 @@ def finiteConjSpanScreenedOneLinkCorrelation
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (Lambda : FiniteSpecification d G)
     (potential : RealPlaquettePotential G) (beta : ℝ) : ℂ :=
   ∫ U, conjSpanScreenedOneLink hd sigma rho T x (Lambda.evaluate U)

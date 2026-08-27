@@ -65,7 +65,7 @@ def linkCombPhiFamily
     (hd : 3 ≤ d)
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A nsigma)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k) (i : Fin r) :
@@ -85,7 +85,7 @@ noncomputable def linkCombCollarMode
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A nsigma)
     (H : YangMills.Gluelump.Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k) :
@@ -109,7 +109,7 @@ noncomputable def linkCombEndpointCrossMode
     (D : YangMills.Gluelump.Lie.FaithfulActionAxialData G A nsigma)
     (H : YangMills.Gluelump.Lie.AxialFirstOrderData D)
     (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G r)
-    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)

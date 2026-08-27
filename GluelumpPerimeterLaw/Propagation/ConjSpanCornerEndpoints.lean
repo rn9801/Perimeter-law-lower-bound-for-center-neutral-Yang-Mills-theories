@@ -42,7 +42,7 @@ def conjSpanCornerFarEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (t : ℕ) : LocalField d G (Fin r → ℂ) :=
   (conjSpanStraightBaseEndpoint hd sigma rho T (0 : Site d)).translatePullback
     (((t : ℤ) - 1) • unitVector (Geometry.armAxis hd))
@@ -52,7 +52,7 @@ def conjSpanEvenCornerOriginEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) : LocalField d G (Fin r → ℂ) :=
   (conjSpanCornerFarEndpoint hd sigma rho T l).sitePullback
     (Geometry.armAxis hd) 0
@@ -62,7 +62,7 @@ def conjSpanOddCornerOriginEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) : LocalField d G (Fin r → ℂ) :=
   (conjSpanCornerFarEndpoint hd sigma rho T (l + 1)).linkPullback
     (Geometry.armAxis hd) 0
@@ -72,7 +72,7 @@ def conjSpanEvenCornerComparisonEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) : LocalField d G (Fin r → ℂ) :=
   (conjSpanEvenCornerOriginEndpoint hd sigma rho T l).diagonalPullback
     (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) (-(l : ℤ))
@@ -82,7 +82,7 @@ def conjSpanOddCornerComparisonEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) : LocalField d G (Fin r → ℂ) :=
   (conjSpanOddCornerOriginEndpoint hd sigma rho T l).diagonalPullback
     (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) (-(l : ℤ))
@@ -95,7 +95,7 @@ theorem conjSpanCornerFarEndpoint_support_coordinates
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (t : ℕ) {e : PositiveEdge d}
     (he : e ∈ (conjSpanCornerFarEndpoint hd sigma rho T t).support) :
     e.source (Geometry.armAxis hd) = t ∧
@@ -128,7 +128,7 @@ theorem conjSpanCornerFarEndpoint_supportedInDiagonalPositiveHalf
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (s t : ℕ) (hm : m ≤ s + t) :
     (conjSpanCornerFarEndpoint hd sigma rho T t).SupportedInDiagonalPositiveHalf
         (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) (-(s : ℤ)) := by
@@ -158,7 +158,7 @@ theorem conjSpanCornerFarEndpoint_supportedInAntiDiagonalPositiveHalf
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (t : ℕ) :
     (conjSpanCornerFarEndpoint hd sigma rho T t).SupportedInAntiDiagonalPositiveHalf
         (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) t := by
@@ -188,7 +188,7 @@ theorem conjSpanCornerFarEndpoint_diagonalPullback_supportedInAntiDiagonalPositi
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (s t : ℕ) :
     Endpoint.LocalField.SupportedInAntiDiagonalPositiveHalf
       (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) t
@@ -226,7 +226,7 @@ theorem conjSpanOddCornerComparisonEndpoint_supportedInDiagonalPositiveHalf
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) :
     (conjSpanOddCornerComparisonEndpoint hd sigma rho T l).SupportedInDiagonalPositiveHalf
         (Geometry.armAxis hd) (Geometry.transverseAxis₁ hd) (-(l : ℤ)) := by
@@ -369,7 +369,7 @@ theorem conjSpanEvenCornerFarEndpoint_apply_eq_siteEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (A : Configuration d G) :
     conjSpanCornerFarEndpoint hd sigma rho T l A =
       conjSpanSiteStraightEndpoint hd sigma rho T (0 : Site d) l A := rfl
@@ -378,7 +378,7 @@ theorem conjSpanOddCornerFarEndpoint_apply_eq_linkEndpoint
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (A : Configuration d G) :
     conjSpanCornerFarEndpoint hd sigma rho T (l + 1) A =
       conjSpanLinkStraightEndpoint hd sigma rho T (0 : Site d) l A := by
@@ -397,7 +397,7 @@ theorem conjSpanOddCornerStraight_reverse_apply_eq_physical
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (A : Configuration d G) :
     screenedObservable rho
         (conjSpanOddCornerOriginEndpoint hd sigma rho T l)
@@ -418,7 +418,7 @@ theorem conjSpanCornerFarEndpoint_l2Norm_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (t : ℕ) (A : Configuration d G) :
     endpointL2Norm (conjSpanCornerFarEndpoint hd sigma rho T t A) ≤ 1 := by
   change endpointL2Norm (conjSpanPhi hd sigma rho T _ _) ≤ 1
@@ -428,7 +428,7 @@ theorem conjSpanEvenCornerComparisonEndpoint_l2Norm_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (A : Configuration d G) :
     endpointL2Norm
       (conjSpanEvenCornerComparisonEndpoint hd sigma rho T l A) ≤ 1 := by
@@ -439,7 +439,7 @@ theorem conjSpanOddCornerComparisonEndpoint_l2Norm_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (A : Configuration d G) :
     endpointL2Norm
       (conjSpanOddCornerComparisonEndpoint hd sigma rho T l A) ≤ 1 := by

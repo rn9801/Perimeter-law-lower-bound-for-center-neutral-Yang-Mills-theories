@@ -60,18 +60,18 @@ theorem diagonalIncoming_endpoint_familyProduct_apply
         (diagonalReflectedPathToFixed hts k p hz) A := by
   rw [screenedObservable_apply]
   unfold screenedValue
-  have hpair := dualAction_pairing rho
+  have hpair := representationAction_pairing rho
     (holonomy A (diagonalReflectedPathToFixed hts k p hz))
-    (dualAction rho
+    (representationAction rho
       (holonomy A (diagonalReflectedPathToFixed hts k p hz))⁻¹
       (Phi.diagonalPullback tau sigma k A)) (Xi A)
   have hcancel :
-      dualAction rho (holonomy A (diagonalReflectedPathToFixed hts k p hz))
-        (dualAction rho
+      representationAction rho (holonomy A (diagonalReflectedPathToFixed hts k p hz))
+        (representationAction rho
           (holonomy A (diagonalReflectedPathToFixed hts k p hz))⁻¹
           (Phi.diagonalPullback tau sigma k A)) =
         Phi.diagonalPullback tau sigma k A := by
-    rw [← dualAction_mul]
+    rw [← representationAction_mul]
     simp
   rw [hcancel] at hpair
   simp only [LocalObservable.diagonalReflectionProduct_apply,

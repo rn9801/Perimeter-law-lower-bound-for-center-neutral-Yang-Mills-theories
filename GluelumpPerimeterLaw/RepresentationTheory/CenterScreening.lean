@@ -4,8 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import GluelumpPerimeterLaw.RepresentationTheory.DualIrreducible
-import GluelumpPerimeterLaw.RepresentationTheory.DualUnitary
+import GluelumpPerimeterLaw.RepresentationTheory.CenterQuotientUnitary
 import GluelumpPerimeterLaw.RepresentationTheory.TensorGeneration
 import Mathlib.Topology.Algebra.ProperAction.Basic
 
@@ -25,15 +24,18 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   {n p : ℕ}
 
 /-- Center neutrality produces the operational nonzero map from a tensor
-power of the literal conjugation span to the algebraic dual Wilson
-representation. -/
+power of the literal conjugation span directly to the Wilson representation.
+
+The target orientation is the one used by the Higgs-like endpoint field:
+the field takes values in `V_tau` and transforms by the ordinary `tau`
+action. -/
 theorem centerNeutral_exists_conjSpanIntertwiner
     (sigma : ContinuousUnitaryRepData G n)
     (hsigma : Function.Injective sigma.ρ)
     (tau : ContinuousUnitaryRepData G p)
     (hcenter : CenterNeutral (asRepresentation tau)) :
     ∃ m : ℕ, ∃ T : IntertwiningMap
-      (tensorPower (conjSpanRep sigma) m) (asRepresentation tau).dual,
+      (tensorPower (conjSpanRep sigma) m) (asRepresentation tau),
       T ≠ 0 := by
   let Q := G ⧸ Subgroup.center G
   letI : IsClosed (Subgroup.center G : Set G) := isClosed_center
@@ -41,17 +43,13 @@ theorem centerNeutral_exists_conjSpanIntertwiner
   letI : BorelSpace Q := ⟨rfl⟩
   letI : GaugeHaarProbability Q := GaugeHaarProbability.ofCompact Q
   let source := conjSpanCenterQuotientUnitaryRepData sigma hsigma
-  let dualTau := dualUnitaryRepData tau
-  have hdualTau : CenterNeutral (asRepresentation dualTau) :=
-    (representationEquiv_centerNeutral_iff
-      (dualUnitaryRepEquiv tau)).mpr hcenter.dual
-  let target := centerQuotientUnitaryRepData dualTau hdualTau
+  let target := centerQuotientUnitaryRepData tau hcenter
   obtain ⟨m, Tq, hTq⟩ := faithful_selfDual_tensorPower_mapsTo_rep
     source (conjSpanCenterQuotientUnitaryRepData_injective sigma hsigma)
       (conjSpanCenterQuotientSelfDual sigma hsigma) target
   let Tcoord : IntertwiningMap
       (tensorPower (asRepresentation (hilbertConjSpanUnitaryRepData sigma)) m)
-      (asRepresentation dualTau) := {
+      (asRepresentation tau) := {
     toLinearMap := Tq.toLinearMap
     isIntertwining' g := by
       apply LinearMap.ext
@@ -59,15 +57,13 @@ theorem centerNeutral_exists_conjSpanIntertwiner
       have h := IntertwiningMap.isIntertwining
         (tensorPower (asRepresentation source) m)
         (asRepresentation target) Tq g x
-      simpa [source, target, dualTau, tensorPower_apply,
+      simpa [source, target, tensorPower_apply,
         centerQuotientUnitaryRepData_coe] using h }
   let sourceEquiv := tensorPowerEquiv
     (hilbertConjSpanCoordinateEquiv sigma).symm m
-  let targetEquiv := dualUnitaryRepEquiv tau
   let T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation tau).dual :=
-    targetEquiv.toIntertwiningMap.comp
-      (Tcoord.comp sourceEquiv.toIntertwiningMap)
+      (asRepresentation tau) :=
+    Tcoord.comp sourceEquiv.toIntertwiningMap
   refine ⟨m, T, ?_⟩
   intro hT
   apply hTq
@@ -77,9 +73,8 @@ theorem centerNeutral_exists_conjSpanIntertwiner
   obtain ⟨y, rfl⟩ := sourceEquiv.toLinearEquiv.surjective x
   have happ := congrArg
     (fun S : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation tau).dual => S y) hT
-  apply targetEquiv.toLinearEquiv.injective
-  simpa [T, Tcoord, sourceEquiv, targetEquiv] using happ
+      (asRepresentation tau) => S y) hT
+  simpa [T, Tcoord, sourceEquiv] using happ
 
 /-- For an irreducible positive-dimensional Wilson representation, center
 neutrality is exactly the existence of the operational conjugation-span
@@ -91,17 +86,14 @@ theorem centerNeutral_iff_exists_conjSpanIntertwiner
     (htau : (asRepresentation tau).IsIrreducible) :
     CenterNeutral (asRepresentation tau) ↔
       ∃ m : ℕ, ∃ T : IntertwiningMap
-        (tensorPower (conjSpanRep sigma) m) (asRepresentation tau).dual,
+        (tensorPower (conjSpanRep sigma) m) (asRepresentation tau),
         T ≠ 0 := by
   constructor
   · exact centerNeutral_exists_conjSpanIntertwiner sigma hsigma tau
   · intro hscreen
     letI : Nonempty (Fin p) := Fin.pos_iff_nonempty.mp tau.dimension_pos
     letI : (asRepresentation tau).IsIrreducible := htau
-    letI : (asRepresentation tau).dual.IsIrreducible :=
-      isIrreducible_dual (asRepresentation tau)
     obtain ⟨m, T, hT⟩ := hscreen
-    apply centerNeutral_of_dual
     exact centerNeutral_of_nonzero_intertwiner_to_irreducible T hT
       ((conjSpanRep_kernelIsCenter sigma hsigma).centerNeutral.tensorPower m)
 

@@ -5,6 +5,7 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
 import GluelumpPerimeterLaw.Endpoint.Covariance
+import GluelumpPerimeterLaw.RepresentationTheory.DualUnitary
 import GluelumpPerimeterLaw.RepresentationTheory.Screening
 import Mathlib.Analysis.Normed.Module.Multilinear.Curry
 import Mathlib.LinearAlgebra.Dual.Basis
@@ -15,8 +16,9 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 
 This file contains the representation-independent analytic bridge used by
 both endpoint constructions.  An algebraic tensor-power intertwiner becomes
-a continuous multilinear map in finite dimension, expressed in the fixed
-coordinates of the Wilson dual.
+a continuous multilinear map in finite dimension.  The operational API maps
+directly to the Wilson representation; the older dual-coordinate bridge is
+retained for comparison and compatibility.
 -/
 
 namespace YangMills.Gluelump.Endpoint
@@ -30,7 +32,7 @@ noncomputable section
 universe u v w
 
 variable {G : Type u} {A : Type w} {m n : ℕ}
-  [Group G] [TopologicalSpace G]
+  [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [NormedAddCommGroup A] [NormedSpace ℂ A] [FiniteDimensional ℂ A]
 
 /-! ## Algebraic-to-continuous finite-dimensional bridge -/
@@ -146,26 +148,17 @@ theorem dualCoordinates_apply
     dualCoordinates n f i = f (Pi.single i 1) := by
   simp [dualCoordinates]
 
-/-- In standard coordinates, Mathlib's algebraic dual representation is the
-transpose-inverse action used by the endpoint observable API. -/
+/-- In standard coordinates, Mathlib's algebraic dual representation agrees
+with the ordinary action of its explicit unitary contragredient model.  This
+legacy comparison is not used by the primal endpoint observable API. -/
 theorem dualCoordinates_dual_action
     (rho : ContinuousUnitaryRepData G n) (g : G)
     (f : Module.Dual ℂ (Fin n → ℂ)) :
     dualCoordinates n ((asRepresentation rho).dual g f) =
-      dualAction rho g (dualCoordinates n f) := by
-  ext i
-  simp only [dualCoordinates_apply, Representation.dual_apply,
-    Module.Dual.transpose_apply, LinearMap.comp_apply,
-    asRepresentation_apply, dualAction, Matrix.mulVec, Matrix.transpose_apply,
-    dotProduct]
-  let v₀ : Fin n → ℂ :=
-    (rho.ρ g⁻¹ : Matrix (Fin n) (Fin n) ℂ).mulVec (Pi.single i 1)
-  have hvec : v₀ = ∑ j, v₀ j • Pi.single j 1 := by
-    ext k
-    simp [Pi.single_apply]
-  change f v₀ = ∑ x, (rho.ρ g⁻¹) x i * f (Pi.single x 1)
-  rw [hvec, map_sum]
-  simp [v₀, Matrix.mulVec, dotProduct, Pi.single_apply, map_smul, mul_comm]
+      representationAction (dualUnitaryRepData rho) g
+        (dualCoordinates n f) := by
+  simpa [dualCoordinates, standardDualCoordinates, representationAction,
+    asRepresentation_apply] using standardDualCoordinates_action rho g f
 
 /-! ## The screening multilinear form -/
 
@@ -216,10 +209,68 @@ theorem continuousScreeningMultilinearForm_equivariant
     (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho).dual)
     (g : G) (v : Fin m → A) :
     continuousScreeningMultilinearForm adj rho T (fun i ↦ adj g (v i)) =
-      dualAction rho g (continuousScreeningMultilinearForm adj rho T v) := by
+      representationAction (dualUnitaryRepData rho) g
+        (continuousScreeningMultilinearForm adj rho T v) := by
   rw [continuousScreeningMultilinearForm_apply,
     continuousScreeningMultilinearForm_apply, ← tensorPower_tprod,
     T.isIntertwining, dualCoordinates_dual_action]
+
+/-! ## Primal Wilson coordinates -/
+
+/-- Evaluate a tensor-power screening intertwiner whose target is the Wilson
+representation itself.  Unlike the legacy dual-coordinate construction
+above, the output already is the desired coordinate vector. -/
+noncomputable def representationScreeningMultilinearForm
+    (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho)) :
+    MultilinearMap ℂ (fun _ : Fin m ↦ A) (Fin n → ℂ) :=
+  T.toLinearMap.compMultilinearMap (PiTensorProduct.tprod ℂ)
+
+@[simp]
+theorem representationScreeningMultilinearForm_apply
+    (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
+    (v : Fin m → A) :
+    representationScreeningMultilinearForm adj rho T v =
+      T (PiTensorProduct.tprod ℂ v) :=
+  rfl
+
+/-- The primal screening form, regarded as a continuous multilinear map.
+Finite dimensionality supplies continuity exactly as in the legacy bridge. -/
+noncomputable def continuousRepresentationScreeningMultilinearForm
+    (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho)) :
+    ContinuousMultilinearMap ℂ (fun _ : Fin m ↦ A) (Fin n → ℂ) :=
+  (continuousMultilinearOfFiniteDimensional m :
+      MultilinearMap ℂ (fun _ : Fin m ↦ A) (Fin n → ℂ) →ₗ[ℂ]
+        ContinuousMultilinearMap ℂ (fun _ : Fin m ↦ A) (Fin n → ℂ))
+    (representationScreeningMultilinearForm adj rho T)
+
+@[simp]
+theorem continuousRepresentationScreeningMultilinearForm_apply
+    (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
+    (v : Fin m → A) :
+    continuousRepresentationScreeningMultilinearForm adj rho T v =
+      T (PiTensorProduct.tprod ℂ v) := by
+  rw [continuousRepresentationScreeningMultilinearForm,
+    continuousMultilinearOfFiniteDimensional_apply]
+  rfl
+
+/-- The primal continuous form intertwines the diagonal source action with
+the ordinary Wilson representation action. -/
+theorem continuousRepresentationScreeningMultilinearForm_equivariant
+    (adj : Representation ℂ G A) (rho : ContinuousUnitaryRepData G n)
+    (T : IntertwiningMap (tensorPower adj m) (asRepresentation rho))
+    (g : G) (v : Fin m → A) :
+    continuousRepresentationScreeningMultilinearForm adj rho T
+        (fun i ↦ adj g (v i)) =
+      representationAction rho g
+        (continuousRepresentationScreeningMultilinearForm adj rho T v) := by
+  rw [continuousRepresentationScreeningMultilinearForm_apply,
+    continuousRepresentationScreeningMultilinearForm_apply,
+    ← tensorPower_tprod, T.isIntertwining]
+  rfl
 
 /-! ## Pure-tensor detection from a spanning family -/
 

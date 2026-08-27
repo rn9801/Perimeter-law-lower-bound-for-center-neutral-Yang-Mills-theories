@@ -1,6 +1,6 @@
 # Center-neutral gluelump perimeter law: implementation record
 
-Updated: 2026-08-25
+Updated: 2026-08-27
 
 This is the numbered implementation and extraction record for
 `CenterNeutralInfiniteVolumePerimeterLaw`. Completed tasks remain in the file
@@ -18,7 +18,7 @@ limiting measure, basepoint, coordinate plane, and rectangle side lengths.
 The following difficult inputs are already formalized:
 
 - center neutrality and faithfulness produce a nonzero conjugation-span
-  screening intertwiner;
+  screening intertwiner directly into the Wilson representation;
 - the normalized Higgs-like endpoint `conjSpanPhi` is finite-range,
   gauge-covariant, nonzero, and pointwise bounded by one;
 - the direct reflected one-bond observable has an exact gauge-fixed finite
@@ -568,3 +568,35 @@ upstream `main`. If upstream incorporates an overlaid declaration, remove the
 corresponding compatibility extension and retarget its imports in the same
 change. This explicit handoff prevents duplicate declarations and keeps the
 overlay temporary without coupling publication to an upstream modification.
+
+## 8. Direct primal screening endpoint
+
+**Status:** Complete (2026-08-27), subject to the verification record in
+`STATUS.md`.
+
+The operational screening construction now uses the intertwiner in its
+shortest orientation:
+
+```text
+T : (ConjSpan sigma)^⊗m → rho.
+```
+
+`centerNeutral_exists_conjSpanIntertwiner` applies
+`faithful_selfDual_tensorPower_mapsTo_rep` directly to the center-quotient
+form of `rho`; it no longer constructs a map into `rho.dual` and transports it
+back through a dual equivalence.  The resulting `conjSpanPhi` is a
+`rho`-valued Higgs-like field transforming by the ordinary `rho(g)` action,
+and the screened line transports its target endpoint by `rho` of the path
+holonomy.
+
+The link, site, and diagonal Gram decompositions are representation-generic
+and retain their public theorem interfaces.  In the anti-diagonal closing
+step, pointwise-conjugated holonomy matrix components match the primal action.
+Their self-pairing produces the reversed Wilson loop; `wilsonLoop_reverse`
+and conjugation of the integral identify its real part with the original
+orientation, leaving the perimeter bound unchanged.
+
+The older dual-coordinate helper declarations remain isolated in
+`Endpoint/ScreeningForm.lean` for comparison and compatibility.  They are not
+used by `conjSpanPhi`, the one-link lower bound, the propagation certificate,
+or either headline perimeter theorem.

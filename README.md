@@ -33,6 +33,12 @@ loop expectation is real and gives an exponential lower bound in the loop
 perimeter.  The rate is chosen before the limiting measure and rectangle
 data.
 
+The screening map is constructed directly as
+`(ConjSpan sigma)^⊗m → rho`.  Accordingly, the normalized Higgs-like
+endpoint is `rho`-valued and transforms by the ordinary Wilson
+representation action; the active construction does not pass through the
+algebraic dual of `rho`.
+
 ## Build
 
 ```bash

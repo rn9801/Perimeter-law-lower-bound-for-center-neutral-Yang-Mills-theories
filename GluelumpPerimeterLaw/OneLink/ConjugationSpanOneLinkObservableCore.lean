@@ -32,7 +32,7 @@ def conjSpanReflectedOneLinkObservable
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) :
     LocalObservable d G :=
   reflectedEndpointOneLinkObservable rho

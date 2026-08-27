@@ -43,7 +43,7 @@ theorem transverseOneLink_finite_selectedWord_power_lowerBound
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (transverseStraightArmObservable hd rho eta T z hz 0).support ⊆
       Λ.dynamicEdges)

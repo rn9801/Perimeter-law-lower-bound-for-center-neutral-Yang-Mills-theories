@@ -156,7 +156,7 @@ def conjSpanCombScalarMass
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) : ℝ :=
   let mode := conjSpanCombEndpointConjugateMode hd sigma rho T hT x
   scalarEndpointMass
@@ -168,7 +168,7 @@ theorem conjSpanCombScalarMass_pos
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     0 < conjSpanCombScalarMass hd sigma rho T hT x := by
   letI : Measure.IsOpenPosMeasure
@@ -187,7 +187,7 @@ def conjSpanCombExtractionBound
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) : ℝ :=
   let mode := conjSpanCombEndpointConjugateMode hd sigma rho T hT x
   let labelBound :=
@@ -201,7 +201,7 @@ theorem conjSpanCombExtractionBound_pos
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     0 < conjSpanCombExtractionBound hd sigma rho T hT x := by
   let mode := conjSpanCombEndpointConjugateMode hd sigma rho T hT x
@@ -299,7 +299,7 @@ def uniformLinkConjSpanEndpointCrossMode
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)
@@ -333,7 +333,7 @@ theorem uniformLinkConjSpanEndpointCrossMode_extractionCost_le
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)
@@ -461,7 +461,7 @@ theorem uniformLinkConjSpanEndpointCrossMode_scalarMass_eq
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)
@@ -518,7 +518,7 @@ def conjSpanOneLinkLowerConstant
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) : ℝ :=
   allCouplingLowerConstant (beta / (2 * n))
     (combEndpointDegree (m := m) hd x)
@@ -533,7 +533,7 @@ theorem conjSpanOneLinkLowerConstant_pos
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     0 < conjSpanOneLinkLowerConstant beta hd sigma rho T hT x := by
   apply allCouplingLowerConstant_pos
@@ -587,7 +587,7 @@ theorem conjSpanOneLinkLowerConstant_le_splitNumerator_div_partitionFunction
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)
@@ -730,7 +730,7 @@ theorem conjSpanOneLinkLowerConstant_le_gibbsExpectation
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (z : Site d)
     (hz : z (Geometry.armAxis hd) = 0)
     (hcollar : combEndpointCollar (m := m) hd

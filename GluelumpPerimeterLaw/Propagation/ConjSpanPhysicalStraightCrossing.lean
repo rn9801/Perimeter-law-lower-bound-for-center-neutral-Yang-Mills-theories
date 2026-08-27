@@ -35,7 +35,7 @@ theorem conjSpanLinkStraight_eventuallyFamilyNormSquare
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l : ℕ) :
     StrongCoupling.EventuallyLinkCrossingFamilyNormSquare (ι := Fin r)
       (Geometry.armAxis hd)
@@ -53,7 +53,7 @@ theorem conjSpanLinkStraight_eventuallyFamilyCauchySchwarz
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l s : ℕ) :
     StrongCoupling.EventuallyLinkCrossingFamilyCauchySchwarz (ι := Fin r)
       (Geometry.armAxis hd)

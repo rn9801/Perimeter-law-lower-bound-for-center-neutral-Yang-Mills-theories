@@ -60,6 +60,44 @@ theorem holonomyMatrixFlattenedComponent_apply
         (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2 :=
   rfl
 
+/-- A pointwise-conjugated matrix coefficient of the represented holonomy.
+
+For the primal endpoint action, this is the family used in the anti-diagonal
+closing step: reflection positivity conjugates the reflected member once
+more, leaving the ordinary holonomy coefficient required by the screened
+observable. -/
+def conjugateHolonomyMatrixFlattenedComponent
+    (rho : ContinuousUnitaryRepData G n) {x y : Site d}
+    (p : Lattice.Cubic.Path x y) (a : Fin (n * n)) :
+    LocalObservable d G where
+  toContinuousMap :=
+    ⟨fun A =>
+        let ij := finProdFinEquiv.symm a
+        star ((rho.ρ (holonomy A p) : Matrix (Fin n) (Fin n) ℂ) ij.1 ij.2),
+      continuous_star.comp
+        ((continuous_apply (finProdFinEquiv.symm a).2).comp
+          ((continuous_apply (finProdFinEquiv.symm a).1).comp
+            (continuous_subtype_val.comp
+              (rho.continuous_ρ.comp (continuous_holonomy p)))))⟩
+  support := p.edgeSupport
+  dependsOn_support := by
+    intro A B hAB
+    change star ((rho.ρ (holonomy A p) : Matrix (Fin n) (Fin n) ℂ)
+          (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2) =
+      star ((rho.ρ (holonomy B p) : Matrix (Fin n) (Fin n) ℂ)
+          (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2)
+    rw [holonomy_eq_of_eqOn_edgeSupport p hAB]
+
+@[simp]
+theorem conjugateHolonomyMatrixFlattenedComponent_apply
+    (rho : ContinuousUnitaryRepData G n) {x y : Site d}
+    (p : Lattice.Cubic.Path x y) (a : Fin (n * n))
+    (A : Configuration d G) :
+    conjugateHolonomyMatrixFlattenedComponent rho p a A =
+      star ((rho.ρ (holonomy A p) : Matrix (Fin n) (Fin n) ℂ)
+        (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2) :=
+  rfl
+
 omit [IsTopologicalGroup G] in
 /-- Frobenius contraction of two represented group elements is the character
 of their relative product. -/
@@ -104,9 +142,10 @@ theorem holonomy_antiDiagonalReflectedPathFixed
   rw [holonomy_castTarget, holonomy_castSource,
     holonomy_antiDiagonalReflectConfiguration_path hts]
 
-/-- The matrix-family self-pairing closes the path into a Wilson loop, with
-the unnormalized trace contributing exactly the representation dimension. -/
-theorem holonomyMatrix_antiDiagonalFamilySelfProduct_apply
+/-- The conjugated matrix-family self-pairing closes the path into the
+orientation-reversed Wilson loop, with the unnormalized trace contributing
+exactly the representation dimension. -/
+theorem conjugateHolonomyMatrix_antiDiagonalFamilySelfProduct_apply
     (rho : ContinuousUnitaryRepData G n)
     {tau sigma : Fin d} (hts : tau ≠ sigma) (k : ℤ)
     {x y : Site d} (p : Lattice.Cubic.Path x y)
@@ -114,23 +153,39 @@ theorem holonomyMatrix_antiDiagonalFamilySelfProduct_apply
     (hy : antiDiagonalReflection tau sigma k y = y)
     (A : Configuration d G) :
     (∑ a : Fin (n * n),
-      (holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
-        tau sigma k (holonomyMatrixFlattenedComponent rho p a) A) =
+      (conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+        tau sigma k
+        (conjugateHolonomyMatrixFlattenedComponent rho p a) A) =
       (n : ℂ) * rho.wilsonLoop
-        ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A := by
+        ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p).reverse
+        A := by
   simp only [LocalObservable.antiDiagonalReflectionProduct_apply,
-    holonomyMatrixFlattenedComponent_apply]
-  rw [sum_star_representationMatrix_mul_eq_character]
+    conjugateHolonomyMatrixFlattenedComponent_apply, star_star]
+  rw [show (∑ a : Fin (n * n),
+      (rho.ρ (holonomy (antiDiagonalReflectConfiguration tau sigma k A) p) :
+        Matrix (Fin n) (Fin n) ℂ)
+          (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2 *
+        star ((rho.ρ (holonomy A p) : Matrix (Fin n) (Fin n) ℂ)
+          (finProdFinEquiv.symm a).1 (finProdFinEquiv.symm a).2)) =
+      rho.character ((holonomy A p)⁻¹ *
+        holonomy (antiDiagonalReflectConfiguration tau sigma k A) p) by
+    simpa only [mul_comm] using
+      sum_star_representationMatrix_mul_eq_character rho (holonomy A p)
+        (holonomy (antiDiagonalReflectConfiguration tau sigma k A) p)]
+  rw [rho.wilsonLoop_reverse]
   simp only [ContinuousUnitaryRepData.wilsonLoop_apply, holonomy_comp,
     holonomy_reverse]
   rw [holonomy_antiDiagonalReflectedPathFixed]
+  rw [← rho.normalizedCharacter_inv]
+  simp only [mul_inv_rev, inv_inv]
   unfold ContinuousUnitaryRepData.normalizedCharacter
   have hn : (n : ℂ) ≠ 0 := by exact_mod_cast rho.dimension_pos.ne'
   field_simp
 
-/-- Pairing the reflected transport matrix with the endpoint rank-one matrix
-is exactly the screened observable along the reflected path. -/
-theorem holonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
+/-- Pairing the reflected conjugated transport matrix with the endpoint
+rank-one matrix is exactly the primal screened observable along the reflected
+path. -/
+theorem conjugateHolonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
     (rho : ContinuousUnitaryRepData G n)
     (Phi Psi : Endpoint.LocalField d G (Fin n → ℂ))
     {tau sigma : Fin d} (hts : tau ≠ sigma) (k : ℤ)
@@ -139,18 +194,19 @@ theorem holonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
     (hy : antiDiagonalReflection tau sigma k y = y)
     (A : Configuration d G) :
     (∑ a : Fin (n * n),
-      (holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
-        tau sigma k ((Endpoint.rankOneFlattened Phi Psi).component a) A) =
+      (conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+        tau sigma k
+        ((Endpoint.rankOneFlattened Phi Psi).component a) A) =
       Endpoint.screenedObservable rho Phi Psi
         (antiDiagonalReflectedPathFixed hts k p hx hy) A := by
   rw [Endpoint.screenedObservable_apply]
-  unfold Endpoint.screenedValue Endpoint.dualAction Matrix.mulVec dotProduct
+  unfold Endpoint.screenedValue Endpoint.representationAction Matrix.mulVec
+    dotProduct
   rw [← (finProdFinEquiv (m := n) (n := n)).sum_comp]
   simp only [LocalObservable.antiDiagonalReflectionProduct_apply,
-    holonomyMatrixFlattenedComponent_apply,
+    conjugateHolonomyMatrixFlattenedComponent_apply, star_star,
     Endpoint.LocalField.component_apply, Endpoint.rankOneFlattened_apply,
-    Equiv.symm_apply_apply, map_inv, Matrix.UnitaryGroup.inv_val,
-    Matrix.transpose_apply, Matrix.star_apply,
+    Equiv.symm_apply_apply,
     holonomy_antiDiagonalReflectedPathFixed, Fintype.sum_prod_type]
   apply Fintype.sum_congr
   intro i
@@ -159,15 +215,15 @@ theorem holonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
   intro j
   ring
 
-/-- Path support gives componentwise support of the full matrix family. -/
-theorem holonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
+/-- Path support gives componentwise support of the conjugated matrix family. -/
+theorem conjugateHolonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
     (rho : ContinuousUnitaryRepData G n) {x y : Site d}
     (p : Lattice.Cubic.Path x y) (tau sigma : Fin d) (k : ℤ)
     (hp : Endpoint.Path.SupportedInAntiDiagonalPositiveHalf tau sigma k p)
     (a : Fin (n * n)) :
     LocalObservable.SupportedInAntiDiagonalPositiveHalf tau sigma k
-      (holonomyMatrixFlattenedComponent rho p a) :=
-  hp
+      (conjugateHolonomyMatrixFlattenedComponent rho p a) :=
+  by simpa [conjugateHolonomyMatrixFlattenedComponent] using hp
 
 end
 

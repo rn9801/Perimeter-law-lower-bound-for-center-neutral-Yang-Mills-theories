@@ -33,7 +33,7 @@ variable [MeasurableSpace G] [BorelSpace G] [SecondCountableTopology G]
 
 omit [T2Space G] [GaugeHaarProbability G] in
 /-- Integrated mixed matrix/rank-one identity. -/
-theorem antiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
+theorem antiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_rankOne_eq
     (μ : ProbabilityMeasure (Configuration d G))
     (rho : ContinuousUnitaryRepData G n)
     (Phi Psi : Endpoint.LocalField d G (Fin n → ℂ))
@@ -42,7 +42,7 @@ theorem antiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
     (hx : antiDiagonalReflection τ σ k x = x)
     (hy : antiDiagonalReflection τ σ k y = y) :
     antiDiagonalReflectionFamilyPairing (μ : Measure (Configuration d G))
-        τ σ k (fun a => holonomyMatrixFlattenedComponent rho p a)
+        τ σ k (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
         (fun a => (Endpoint.rankOneFlattened Phi Psi).component a) =
       ∫ A, Endpoint.screenedObservable rho Phi Psi
         (antiDiagonalReflectedPathFixed hτσ k p hx hy) A ∂μ := by
@@ -50,18 +50,18 @@ theorem antiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
   rw [← integral_finsetSum]
   · apply integral_congr_ae
     exact ae_of_all _ fun A =>
-      holonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
+      conjugateHolonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
         rho Phi Psi hτσ k p hx hy A
   · intro a _ha
     exact integrable_localObservable μ
-      ((holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+      ((conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
         τ σ k
           ((Endpoint.rankOneFlattened Phi Psi).component a))
 
 omit [T2Space G] [GaugeHaarProbability G] in
 /-- Integrated matrix self-pairing/Wilson-loop identity, including the exact
 dimension factor from the unnormalized trace. -/
-theorem antiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
+theorem antiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_self_eq
     (μ : ProbabilityMeasure (Configuration d G))
     (rho : ContinuousUnitaryRepData G n)
     {τ σ : Fin d} (hτσ : τ ≠ σ) (k : ℤ)
@@ -69,22 +69,23 @@ theorem antiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
     (hx : antiDiagonalReflection τ σ k x = x)
     (hy : antiDiagonalReflection τ σ k y = y) :
     antiDiagonalReflectionFamilyPairing (μ : Measure (Configuration d G))
-        τ σ k (fun a => holonomyMatrixFlattenedComponent rho p a)
-        (fun a => holonomyMatrixFlattenedComponent rho p a) =
+        τ σ k (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
+        (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a) =
       (n : ℂ) * ∫ A, rho.wilsonLoop
-        ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A ∂μ := by
+        ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p).reverse
+        A ∂μ := by
   unfold antiDiagonalReflectionFamilyPairing antiDiagonalReflectionPairing
   rw [← integral_finsetSum]
   · rw [← integral_const_mul]
     apply integral_congr_ae
     exact ae_of_all _ fun A =>
-      holonomyMatrix_antiDiagonalFamilySelfProduct_apply
+      conjugateHolonomyMatrix_antiDiagonalFamilySelfProduct_apply
         rho hτσ k p hx hy A
   · intro a _ha
     exact integrable_localObservable μ
-      ((holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+      ((conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
         τ σ k
-          (holonomyMatrixFlattenedComponent rho p a))
+          (conjugateHolonomyMatrixFlattenedComponent rho p a))
 
 /-- The paper's second corner Cauchy--Schwarz inequality for an arbitrary path
 whose endpoints lie on the anti-diagonal plane.  The left side is the screened
@@ -118,45 +119,69 @@ theorem centeredInfiniteVolume_antiDiagonal_matrixClosing
     eta rhoYM.wilsonPotential beta hbeta
   have hmatrixSupport : ∀ a,
       LocalObservable.SupportedInAntiDiagonalPositiveHalf τ σ k
-        (holonomyMatrixFlattenedComponent rho p a) := fun a =>
-    holonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
+        (conjugateHolonomyMatrixFlattenedComponent rho p a) := fun a =>
+    conjugateHolonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
       rho p τ σ k hp a
   have hcs :=
     centeredInfiniteVolume_antiDiagonalReflectionFamily_rankOneComparison
       eta rhoYM beta hbeta0 hbeta hτσ k
-      (fun a => holonomyMatrixFlattenedComponent rho p a)
+      (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
       Phi Psi hmatrixSupport hPhiSupport hPsiSupport hPhiNorm hPsiNorm
   have hmixed :=
-    antiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
+    antiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_rankOne_eq
       μp rho Phi Psi hτσ k p hx hy
   have hself :=
-    antiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
+    antiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_self_eq
       μp rho hτσ k p hx hy
   rw [show (μp : Measure (Configuration d G)) =
       centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta by
         rfl] at hmixed hself
+  have hreverseIntegral :
+      (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p).reverse
+          A
+        ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta) =
+        star (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A
+        ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta) := by
+    calc
+      _ = ∫ A, star (rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A)
+        ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta := by
+          apply integral_congr_ae
+          exact ae_of_all _ fun A =>
+            rho.wilsonLoop_reverse
+              ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A
+      _ = _ := integral_conj
   rw [← hmixed]
   calc
     Complex.normSq (antiDiagonalReflectionFamilyPairing
         (centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta)
-        τ σ k (fun a => holonomyMatrixFlattenedComponent rho p a)
+        τ σ k (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
         (fun a => (Endpoint.rankOneFlattened Phi Psi).component a)) ≤
         ∑ a, Complex.re (antiDiagonalReflectionPairing
           (centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta)
-          τ σ k (holonomyMatrixFlattenedComponent rho p a)
-          (holonomyMatrixFlattenedComponent rho p a)) := hcs
+          τ σ k (conjugateHolonomyMatrixFlattenedComponent rho p a)
+          (conjugateHolonomyMatrixFlattenedComponent rho p a)) := hcs
     _ = Complex.re (antiDiagonalReflectionFamilyPairing
           (centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta)
-          τ σ k (fun a => holonomyMatrixFlattenedComponent rho p a)
-          (fun a => holonomyMatrixFlattenedComponent rho p a)) := by
+          τ σ k (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
+          (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)) := by
       simp [antiDiagonalReflectionFamilyPairing]
     _ = Complex.re ((n : ℂ) * ∫ A, rho.wilsonLoop
-          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A
+          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p).reverse
+          A
         ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta) :=
       congrArg Complex.re hself
     _ = (n : ℝ) * Complex.re (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p).reverse
+          A
+        ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta) := by
+      simp
+    _ = (n : ℝ) * Complex.re (∫ A, rho.wilsonLoop
           ((antiDiagonalReflectedPathFixed hτσ k p hx hy).reverse.comp p) A
         ∂centeredInfiniteVolumeMeasure eta rhoYM.wilsonPotential beta hbeta) := by
+      rw [hreverseIntegral]
       simp
 
 end

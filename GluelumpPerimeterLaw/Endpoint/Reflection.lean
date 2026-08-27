@@ -10,8 +10,8 @@ import GluelumpPerimeterLaw.Endpoint.ReflectionSupport
 # Reflected endpoint fields and screened observables
 
 Vector-valued endpoint fields pull back along the concrete link and diagonal
-configuration reflections.  Hermitian symmetry, unitarity of the dual
-action, and path-holonomy covariance then identify the reflected screened
+configuration reflections.  Hermitian symmetry, unitarity of the ordinary
+representation action, and path-holonomy covariance then identify the reflected screened
 observable with the same construction having its endpoints exchanged and
 its reflected path reversed.
 -/
@@ -36,7 +36,7 @@ theorem screenedObservable_reverse_apply
   rw [screenedObservable_apply, screenedObservable_apply,
     screenedValue_eq_hermitianPairing,
     screenedValue_eq_hermitianPairing, holonomy_reverse]
-  exact (star_hermitianPairing_dualAction rho (holonomy A gamma)
+  exact (star_hermitianPairing_representationAction rho (holonomy A gamma)
     (Phi A) (Psi A)).symm
 
 /-- Pull an endpoint field back through an integer coordinate reflection.
@@ -167,7 +167,7 @@ theorem linkTheta_screenedObservable_apply
     screenedValue_eq_hermitianPairing,
     LocalField.linkPullback_apply, LocalField.linkPullback_apply,
     holonomy_reverse, ← holonomy_linkReflectConfiguration]
-  exact star_hermitianPairing_dualAction rho
+  exact star_hermitianPairing_representationAction rho
     (holonomy (linkReflectConfiguration τ k A) gamma) _ _
 
 /-- Diagonal reflection exchanges the two screened endpoints and reverses the
@@ -187,7 +187,7 @@ theorem diagonalTheta_screenedObservable_apply
     screenedValue_eq_hermitianPairing,
     LocalField.diagonalPullback_apply, LocalField.diagonalPullback_apply,
     holonomy_reverse, ← holonomy_diagonalReflectConfiguration_path hτσ]
-  exact star_hermitianPairing_dualAction rho
+  exact star_hermitianPairing_representationAction rho
     (holonomy (diagonalReflectConfiguration τ σ k A) gamma) _ _
 
 end

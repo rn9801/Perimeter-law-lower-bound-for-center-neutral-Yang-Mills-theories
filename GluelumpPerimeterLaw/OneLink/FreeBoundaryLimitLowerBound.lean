@@ -43,7 +43,7 @@ theorem eventually_conjSpanOneLinkAdmissible_linkSymmetricSpecification
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) :
     ∀ᶠ boxRadius in atTop,
       ConjSpanOneLinkAdmissible
@@ -101,7 +101,7 @@ theorem ConjSpanOneLinkAdmissible.gibbsExpectation_im_eq_zero
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hLambda : ConjSpanOneLinkAdmissible Lambda hd sigma rho T z hz)
     {beta : ℝ} (hbeta : 0 ≤ beta) :
@@ -141,7 +141,7 @@ theorem centerNeutral_exists_uniform_conjSpanOneLink_freeBoundaryLimit_lowerBoun
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 < beta) :
     ∃ m : ℕ, ∃ T : IntertwiningMap
-        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho).dual,
+        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho),
       T ≠ 0 ∧ ∃ q : ℝ, 0 < q ∧
         ∀ mu : ProbabilityMeasure (Configuration d G),
           IsTranslationInvariantFreeBoundaryLimit
@@ -210,7 +210,7 @@ theorem centerNeutral_exists_uniform_translatedConjSpanOneLink_freeBoundaryLimit
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 < beta) :
     ∃ m : ℕ, ∃ T : IntertwiningMap
-        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho).dual,
+        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho),
       T ≠ 0 ∧ ∃ q : ℝ, 0 < q ∧
         ∀ mu : ProbabilityMeasure (Configuration d G),
           IsTranslationInvariantFreeBoundaryLimit

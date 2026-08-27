@@ -121,7 +121,7 @@ theorem normalizedEndpoint_ne_at
   exact smul_ne_zero (by
     exact_mod_cast (endpointNormalizationScale_pos Phi).ne') hPhi
 
-/-- Canonical normalization preserves dual endpoint covariance. -/
+/-- Canonical normalization preserves endpoint covariance. -/
 theorem GaugeCovariantAt.normalizedEndpoint
     (rho : ContinuousUnitaryRepData G n) (x : Site d)
     (Phi : LocalField d G (Fin n → ℂ))
@@ -129,7 +129,7 @@ theorem GaugeCovariantAt.normalizedEndpoint
     GaugeCovariantAt rho x (normalizedEndpoint Phi) := by
   intro g A
   rw [normalizedEndpoint_apply, normalizedEndpoint_apply, hPhi g A]
-  unfold dualAction
+  unfold representationAction
   rw [Matrix.mulVec_smul]
 
 end

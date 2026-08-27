@@ -84,14 +84,14 @@ theorem screenedEndpointOfSource_apply
 
 omit [IsTopologicalGroup G] in
 /-- An equivariant screening map turns source covariance into the endpoint
-dual covariance used by screened Wilson lines. -/
+covariance used by screened Wilson lines. -/
 theorem screenedEndpointOfSource_covariant
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (rho : ContinuousUnitaryRepData G n) (act : G → E → E)
     (x : Site d) (Xi : LocalField d G E)
     (hXi : SourceCovariantAt act x Xi)
     (T : E →L[ℂ] (Fin n → ℂ))
-    (hT : ∀ g v, T (act g v) = dualAction rho g (T v)) :
+    (hT : ∀ g v, T (act g v) = representationAction rho g (T v)) :
     GaugeCovariantAt rho x (screenedEndpointOfSource Xi T) := by
   intro g A
   rw [screenedEndpointOfSource_apply, screenedEndpointOfSource_apply,
@@ -151,8 +151,8 @@ theorem axialTensorEndpoint_apply
       T (fun i => Lie.axialMatrix eta (holonomy A (q i))) :=
   rfl
 
-/-- Equivariance of the multilinear screening form gives exactly the dual
-endpoint covariance required by the screened observable. -/
+/-- Equivariance of the multilinear screening form gives exactly the endpoint
+covariance required by the screened observable. -/
 theorem axialTensorEndpoint_covariant
     (rho : ContinuousUnitaryRepData G n)
     (eta : ContinuousUnitaryRepData G N) {x : Site d}
@@ -162,7 +162,7 @@ theorem axialTensorEndpoint_covariant
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v)) :
+      representationAction rho h (T v)) :
     GaugeCovariantAt rho x (axialTensorEndpoint eta q T) := by
   intro g A
   rw [axialTensorEndpoint_apply, axialTensorEndpoint_apply]

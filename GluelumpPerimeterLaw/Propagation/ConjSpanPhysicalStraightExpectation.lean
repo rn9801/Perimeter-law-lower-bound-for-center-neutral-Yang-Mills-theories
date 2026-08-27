@@ -42,7 +42,7 @@ def conjSpanPhysicalStraightExpectation
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (length : ℕ) : ℝ :=
   Complex.re (∫ A, conjSpanPhysicalStraightObservable
     hd sigma rho T z hz length A
@@ -55,7 +55,7 @@ theorem conjSpanPhysicalStraightExpectation_one_eq
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) :
     conjSpanPhysicalStraightExpectation mu hd sigma rho T z hz 1 =
       Complex.re (∫ A, conjSpanReflectedOneLinkObservable
@@ -77,7 +77,7 @@ structure ConjSpanLinkReflectionData
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) : Prop where
   positive : ∀ l : ℕ,
     Complex.im (∫ A, conjSpanLinkStraightObservable
@@ -99,7 +99,7 @@ theorem conjSpanSiteStraightIntegral_positive
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l : ℕ) :
     Complex.im (∫ A, conjSpanSiteStraightObservable
       hd sigma rho T z hz l A ∂(mu : Measure (Configuration d G))) = 0 ∧
@@ -121,7 +121,7 @@ theorem integral_conjSpanSiteStraightMixed_succ_eq_linkStraight
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l : ℕ) :
     (∫ A, conjSpanSiteStraightMixedObservable
       hd sigma rho T z hz l (l + 1) A
@@ -141,7 +141,7 @@ theorem integral_conjSpanLinkStraightMixed_succ_eq_siteStraight
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l : ℕ) :
     (∫ A, conjSpanLinkStraightMixedObservable
       hd sigma rho T z hz l (l + 1) A
@@ -169,7 +169,7 @@ theorem conjSpanSiteStraightMixed_succ_cauchySchwarz
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (l : ℕ) :
     Complex.normSq (∫ A, conjSpanSiteStraightMixedObservable
       hd sigma rho T z hz l (l + 1) A
@@ -201,7 +201,7 @@ theorem conjSpanPhysicalStraightExpectation_im_eq_zero
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz)
     (length : ℕ) :
@@ -221,7 +221,7 @@ theorem conjSpanPhysicalStraightExpectation_nonneg
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz) :
     ∀ length : ℕ,
@@ -242,7 +242,7 @@ theorem conjSpanPhysicalStraightExpectation_reflectionLogConvex
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz) :
     ReflectionLogConvex
@@ -279,7 +279,7 @@ theorem conjSpanPhysicalStraightExpectation_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (length : ℕ) :
     conjSpanPhysicalStraightExpectation
       mu hd sigma rho T z hz length ≤ 1 := by
@@ -307,7 +307,7 @@ theorem conjSpanPhysicalStraightExpectation_pos
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz)
     (hone : 0 < conjSpanPhysicalStraightExpectation
@@ -330,7 +330,7 @@ theorem conjSpanPhysicalStraightExpectation_first_power_le
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz)
     (hone : 0 < conjSpanPhysicalStraightExpectation
@@ -356,7 +356,7 @@ theorem conjSpanPhysicalStraightExpectation_rate_power_le
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hlink : ConjSpanLinkReflectionData mu hd sigma rho T z hz)
     {q : ℝ} (hq : 0 < q)

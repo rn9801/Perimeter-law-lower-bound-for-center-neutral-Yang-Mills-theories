@@ -39,7 +39,7 @@ theorem transverseStraightArm_eventuallyLinkCrossingFamilyNormSquare
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (length : ℕ) :
     EventuallyLinkCrossingFamilyNormSquare (ι := Fin n)
       (Geometry.armAxis hd)
@@ -83,7 +83,7 @@ theorem transverseStraightArms_eventuallyLinkCrossingFamilyCauchySchwarz
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (a b : ℕ) :
     EventuallyLinkCrossingFamilyCauchySchwarz (ι := Fin n)
@@ -153,7 +153,7 @@ theorem transverseStraightArmObservable_eventuallyFamilyNormSquare
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (length : ℕ) :
     EventuallyLinkCrossingFamilyNormSquare (ι := Fin n)
       (Geometry.armAxis hd)
@@ -172,7 +172,7 @@ theorem transverseStraightArmsMixedObservable_eventuallyFamilyCauchySchwarz
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) (a b : ℕ) :
     EventuallyLinkCrossingFamilyCauchySchwarz (ι := Fin n)
       (Geometry.armAxis hd)
@@ -196,7 +196,7 @@ theorem centeredInfiniteVolume_transverseStraightArmsMixed_cauchySchwarz
     (hT : ∀ h v,
       T (fun i => (etaRep.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (etaRep.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v))
+      representationAction rho h (T v))
     (exterior : ℕ → Configuration d G) (beta : ℝ) (hbeta0 : 0 ≤ beta)
     (hbeta : ‖(beta : ℂ)‖ <
       latticeStrongCouplingRadius d rho.wilsonPotential.bound)

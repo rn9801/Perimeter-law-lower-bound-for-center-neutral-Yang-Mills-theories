@@ -45,7 +45,7 @@ theorem transverseAxialEndpoint_support
   rfl
 
 /-- An equivariant screening form makes the concrete transverse endpoint
-dual-covariant at its base site. -/
+covariant at its base site. -/
 theorem transverseAxialEndpoint_covariant
     (hd : 3 ≤ d) (rho : ContinuousUnitaryRepData G n)
     (eta : ContinuousUnitaryRepData G N) (x : Site d)
@@ -54,7 +54,7 @@ theorem transverseAxialEndpoint_covariant
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v)) :
+      representationAction rho h (T v)) :
     GaugeCovariantAt rho x (transverseAxialEndpoint hd eta x T) :=
   normalizedAxialTensorEndpoint_covariant rho eta
     (transverseLoop (m := m) hd x) T hT

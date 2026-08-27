@@ -274,7 +274,7 @@ def conjSpanCombPhiCollarCoordinate {m : ℕ} (hd : 3 ≤ d)
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (i : Fin p) : C(combEndpointCollar (m := m) hd x → G, ℂ) :=
   collarRestriction (combEndpointCollar (m := m) hd x)
     ((conjSpanPhi hd sigma rho T x).component i).toContinuousMap
@@ -286,7 +286,7 @@ noncomputable opaque conjSpanCombPhiCollarCoordinate_homogeneous
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (i : Fin p) :
     HomogeneousFeatureExpansion (matrixFeature sigma)
       (combEndpointDegree (m := m) hd x)
@@ -324,7 +324,7 @@ theorem exists_conjSpanCombPhiCollarCoordinate_ne_zero
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     ∃ i : Fin p, conjSpanCombPhiCollarCoordinate hd sigma rho T x i ≠ 0 := by
   obtain ⟨Q, hQ⟩ := conjSpanPhi_not_identically_zero hd sigma rho T hT x
@@ -355,7 +355,7 @@ noncomputable opaque conjSpanCombEndpointConjugateMode
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     EndpointConjugateMode (matrixFeature sigma)
       (fun i ↦ conjSpanCombPhiCollarCoordinate hd sigma rho T x i)

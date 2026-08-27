@@ -108,9 +108,9 @@ def hilbertConjSpanScreeningIntertwiner
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual) :
+      (asRepresentation rho)) :
     IntertwiningMap (tensorPower (hilbertConjSpanRep sigma) m)
-      (asRepresentation rho).dual :=
+      (asRepresentation rho) :=
   T.comp (Representation.Equiv.toIntertwiningMap
     (tensorPowerEquiv (conjSpanHilbertRepEquiv sigma) m).symm)
 
@@ -120,10 +120,11 @@ def conjSpanScreeningForm
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual) :
+      (asRepresentation rho)) :
     ContinuousMultilinearMap ℂ
       (fun _ : Fin m ↦ HilbertConjSpan sigma) (Fin p → ℂ) :=
-  continuousScreeningMultilinearForm (hilbertConjSpanRep sigma) rho
+  continuousRepresentationScreeningMultilinearForm
+    (hilbertConjSpanRep sigma) rho
     (hilbertConjSpanScreeningIntertwiner sigma rho T)
 
 @[simp]
@@ -131,11 +132,11 @@ theorem conjSpanScreeningForm_apply
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual) (v : Fin m → HilbertConjSpan sigma) :
+      (asRepresentation rho)) (v : Fin m → HilbertConjSpan sigma) :
     conjSpanScreeningForm sigma rho T v =
-      dualCoordinates p ((hilbertConjSpanScreeningIntertwiner sigma rho T)
-        (PiTensorProduct.tprod ℂ v)) :=
-  continuousScreeningMultilinearForm_apply
+      (hilbertConjSpanScreeningIntertwiner sigma rho T)
+        (PiTensorProduct.tprod ℂ v) :=
+  continuousRepresentationScreeningMultilinearForm_apply
     (hilbertConjSpanRep sigma) rho
       (hilbertConjSpanScreeningIntertwiner sigma rho T) v
 
@@ -143,12 +144,12 @@ theorem conjSpanScreeningForm_equivariant
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual) (g : G)
+      (asRepresentation rho)) (g : G)
     (v : Fin m → HilbertConjSpan sigma) :
     conjSpanScreeningForm sigma rho T
         (fun i ↦ hilbertConjSpanRep sigma g (v i)) =
-      dualAction rho g (conjSpanScreeningForm sigma rho T v) :=
-  continuousScreeningMultilinearForm_equivariant
+      representationAction rho g (conjSpanScreeningForm sigma rho T v) :=
+  continuousRepresentationScreeningMultilinearForm_equivariant
     (hilbertConjSpanRep sigma) rho
       (hilbertConjSpanScreeningIntertwiner sigma rho T) g v
 
@@ -193,13 +194,13 @@ theorem conjSpanTensorField_apply
       F (fun i ↦ sigmaInHilbertConjSpan sigma (holonomy Q (q i))) :=
   rfl
 
-/-- The direct unnormalized field obeys the exact dual-Wilson gauge law. -/
+/-- The direct unnormalized field obeys the ordinary Wilson gauge law. -/
 theorem conjSpanTensorField_covariant
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p) {x : Site d}
     (q : Fin m → Lattice.Cubic.Path x x)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual) :
+      (asRepresentation rho)) :
     GaugeCovariantAt rho x
       (conjSpanTensorField sigma q
         (conjSpanScreeningForm sigma rho T)) := by
@@ -222,7 +223,7 @@ theorem screeningIntertwiner_detects_sigmaInConjSpan
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) :
     ∃ u : Fin m → G,
       conjSpanScreeningForm sigma rho T
@@ -234,7 +235,7 @@ theorem screeningIntertwiner_detects_sigmaInConjSpan
     exact hzero
   obtain ⟨u, hu⟩ := nonzero_on_pure_tensor_of_spans
     (K := ℂ) (V := ConjSpan sigma)
-    (W := Module.Dual ℂ (Fin p → ℂ)) (I := G) (r := m)
+    (W := Fin p → ℂ) (I := G) (r := m)
     (a := sigmaInConjSpan sigma) T.toLinearMap hTlin
       (span_range_sigmaInConjSpan_eq_top sigma)
   refine ⟨u, ?_⟩
@@ -252,14 +253,12 @@ theorem screeningIntertwiner_detects_sigmaInConjSpan
           (fun i ↦ sigmaInHilbertConjSpan sigma (u i))) = _
     rw [PiTensorProduct.congr_symm_tprod]
     simp [sigmaInHilbertConjSpan]
-  change dualCoordinates p
-      (T ((tensorPowerEquiv
+  change T ((tensorPowerEquiv
         (conjSpanHilbertRepEquiv sigma) m).symm.toLinearEquiv
           (PiTensorProduct.tprod ℂ
-            (fun i ↦ sigmaInHilbertConjSpan sigma (u i))))) = 0 at hzero
+            (fun i ↦ sigmaInHilbertConjSpan sigma (u i)))) = 0 at hzero
   rw [htransport] at hzero
-  apply (dualCoordinates p).injective
-  simpa using hzero
+  exact hzero
 
 /-! ## The normalized comb endpoint -/
 
@@ -269,7 +268,7 @@ def conjSpanPhi
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) : LocalField d G (Fin p → ℂ) :=
   normalizedEndpoint
     (conjSpanTensorField sigma (combLoops (m := m) hd x)
@@ -280,19 +279,18 @@ theorem conjSpanPhi_support
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) :
     (conjSpanPhi hd sigma rho T x).support =
       basedLoopSupport (combLoops (m := m) hd x) :=
   rfl
 
-/-- The normalized direct endpoint obeys the exact Higgs/dual-Wilson gauge
-law. -/
+/-- The normalized direct endpoint obeys the exact Higgs/Wilson gauge law. -/
 theorem conjSpanPhi_gauge_covariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) : GaugeCovariantAt rho x (conjSpanPhi hd sigma rho T x) :=
   (conjSpanTensorField_covariant sigma rho
     (combLoops (m := m) hd x) T).normalizedEndpoint rho x
@@ -302,7 +300,7 @@ theorem conjSpanPhi_l2Norm_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (Q : Configuration d G) :
     endpointL2Norm (conjSpanPhi hd sigma rho T x Q) ≤ 1 :=
   normalizedEndpoint_l2Norm_le_one _ Q
@@ -313,7 +311,7 @@ theorem conjSpanPhi_not_identically_zero
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d) :
     ∃ Q : Configuration d G, conjSpanPhi hd sigma rho T x Q ≠ 0 := by
   obtain ⟨u, hu⟩ :=
@@ -341,7 +339,7 @@ theorem conjSpanPhi_supportedInLinkPositiveHalf
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) :
     (conjSpanPhi hd sigma rho T x).SupportedInLinkPositiveHalf
       (Geometry.armAxis hd) (x (Geometry.armAxis hd) - 1) := by
@@ -356,7 +354,7 @@ theorem conjSpanPhi_supportedInSitePositiveHalf
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) :
     (conjSpanPhi hd sigma rho T x).SupportedInSitePositiveHalf
       (Geometry.armAxis hd) (x (Geometry.armAxis hd)) := by
@@ -370,7 +368,7 @@ def conjSpanPhiTranslated
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (v x : Site d) : LocalField d G (Fin p → ℂ) :=
   (conjSpanPhi hd sigma rho T x).translatePullback v
 
@@ -379,7 +377,7 @@ theorem conjSpanPhiTranslated_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (v x : Site d) (Q : Configuration d G) :
     conjSpanPhiTranslated hd sigma rho T v x Q =
       conjSpanPhi hd sigma rho T x
@@ -390,7 +388,7 @@ theorem conjSpanPhiTranslated_gauge_covariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (v x : Site d) :
     GaugeCovariantAt rho (Lattice.Cubic.translate v x)
       (conjSpanPhiTranslated hd sigma rho T v x) :=
@@ -402,7 +400,7 @@ def conjSpanPhiLinkReflected
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (axis : Fin d) (cut : ℤ) :
     LocalField d G (Fin p → ℂ) :=
   (conjSpanPhi hd sigma rho T x).linkPullback axis cut
@@ -411,7 +409,7 @@ theorem conjSpanPhiLinkReflected_gauge_covariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (axis : Fin d) (cut : ℤ) :
     GaugeCovariantAt rho (linkReflection axis cut x)
       (conjSpanPhiLinkReflected hd sigma rho T x axis cut) :=
@@ -423,7 +421,7 @@ def conjSpanPhiDiagonalReflected
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) (axis₁ axis₂ : Fin d) (cut : ℤ) :
     LocalField d G (Fin p → ℂ) :=
   (conjSpanPhi hd sigma rho T x).diagonalPullback axis₁ axis₂ cut
@@ -432,7 +430,7 @@ theorem conjSpanPhiDiagonalReflected_gauge_covariant
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G p)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d) {axis₁ axis₂ : Fin d} (haxes : axis₁ ≠ axis₂)
     (cut : ℤ) :
     GaugeCovariantAt rho (diagonalReflection axis₁ axis₂ cut x)

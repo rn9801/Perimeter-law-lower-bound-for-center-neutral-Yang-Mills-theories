@@ -224,7 +224,7 @@ theorem outgoingHalfComponent_crossingThenPath_eq_of_crossing_one
   rw [outgoingHalfComponent_apply, outgoingHalfComponent_apply]
   unfold crossingThenPath
   rw [holonomy_comp, holonomy_toPath]
-  change dualAction rho (A (crossingPositiveEdge z τ) * holonomy A q)
+  change representationAction rho (A (crossingPositiveEdge z τ) * holonomy A q)
       (Psi A) i = _
   rw [hcross, one_mul]
 

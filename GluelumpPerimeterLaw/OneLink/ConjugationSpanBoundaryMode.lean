@@ -38,7 +38,7 @@ def linkConjSpanPhiFamily
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k) (i : Fin r) :
@@ -61,7 +61,7 @@ theorem linkConjSpanPhiFamily_splitSide_eq
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)
@@ -100,7 +100,7 @@ noncomputable def linkConjSpanCollarMode
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k) :
@@ -123,7 +123,7 @@ noncomputable def linkConjSpanEndpointCrossMode
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (x : Site d)
     (hcollar : combEndpointCollar (m := m) hd x ⊆
       Lambda.linkPositiveEdges tau k)

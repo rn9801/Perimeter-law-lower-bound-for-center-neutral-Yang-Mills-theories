@@ -40,7 +40,7 @@ def conjSpanCornerBentObservable
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (s t : ℕ) : LocalObservable d G :=
   let a := Geometry.armAxis hd
   let b := Geometry.transverseAxis₁ hd
@@ -57,7 +57,7 @@ def conjSpanCornerBentExpectation
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (length : ℕ) : ℝ :=
   let s := length / 2
   let t := length - s
@@ -122,7 +122,7 @@ theorem conjSpanCornerBentExpectation_odd
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) :
     conjSpanCornerBentExpectation mu hd sigma rho T (2 * l + 1) =
       Complex.re (∫ A, conjSpanCornerBentObservable
@@ -154,7 +154,7 @@ theorem screenedObservable_conjSpanCornerLowerLPath_apply
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (s t : ℕ) (A : Configuration d G) :
     conjSpanCornerBentObservable hd sigma rho T s t A =
       let a := Geometry.armAxis hd
@@ -178,7 +178,7 @@ theorem conjSpanPhysicalStraightExpectation_sq_le_cornerBent_odd
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) (hm : m ≤ 2 * l + 1) :
     conjSpanPhysicalStraightExpectation mu hd sigma rho T (0 : Site d)
         (conjSpanCornerZeroArm hd) (2 * l + 1) ^ 2 ≤
@@ -276,7 +276,7 @@ theorem conjSpanCornerBent_sq_div_dimension_le_square_odd
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (l : ℕ) :
     conjSpanCornerBentExpectation mu hd sigma rho T (2 * l + 1) ^ 2 /
         (r : ℝ) ≤
@@ -418,7 +418,7 @@ theorem conjSpanCofinalRectangleReflectionCertificate
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hrect : CanonicalRectangleExpectationCertificate mu rho
       (Geometry.armAxis_ne_transverseAxis₁ hd)) :
     CofinalRectangleReflectionCertificate m (r : ℝ)

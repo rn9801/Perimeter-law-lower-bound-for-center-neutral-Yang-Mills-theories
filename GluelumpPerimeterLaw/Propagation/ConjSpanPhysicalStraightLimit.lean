@@ -42,7 +42,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.conjSpanLinkReflectionData
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 ≤ beta)
     {mu : ProbabilityMeasure (Configuration d G)}
@@ -71,7 +71,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.conjSpanPhysicalStraightExpectat
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 ≤ beta)
     {mu : ProbabilityMeasure (Configuration d G)}
@@ -109,7 +109,7 @@ theorem centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 < beta) :
     ∃ m : ℕ, ∃ T : IntertwiningMap
-        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho).dual,
+        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho),
       T ≠ 0 ∧ ∃ q : ℝ, 0 < q ∧
         ∀ mu : ProbabilityMeasure (Configuration d G),
           IsTranslationInvariantFreeBoundaryLimit

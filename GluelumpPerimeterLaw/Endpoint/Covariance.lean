@@ -9,12 +9,11 @@ import GluelumpPerimeterLaw.Upstream.Wilson.Representation
 import Mathlib.Analysis.InnerProductSpace.PiL2
 
 /-!
-# Dual endpoint covariance
+# Endpoint covariance
 
-The roadmap places a gluelump endpoint in the algebraic dual of the Wilson
-representation. In fixed matrix coordinates, a covector column transforms by
-the transpose of the inverse representation matrix. This file fixes that
-convention before endpoint constructions depend on it.
+This file fixes the ordinary unitary representation action used by primal
+gluelump endpoint fields.  An endpoint based at `x` transforms by the Wilson
+representation matrix evaluated at the gauge transformation at `x`.
 -/
 
 namespace YangMills.Gluelump.Endpoint
@@ -45,33 +44,34 @@ theorem norm_hermitianPairing_le (v w : Fin n → ℂ) :
   rw [hermitianPairing_eq_inner]
   exact norm_inner_le_norm _ _
 
-/-- The contragredient action in the fixed coordinates used by
+/-- The ordinary representation action in the fixed coordinates used by
 `ContinuousUnitaryRepData`. -/
-def dualAction (rho : ContinuousUnitaryRepData G n) (g : G)
+def representationAction (rho : ContinuousUnitaryRepData G n) (g : G)
     (v : Fin n → ℂ) : Fin n → ℂ :=
-  ((rho.ρ g⁻¹ : Matrix (Fin n) (Fin n) ℂ)ᵀ) *ᵥ v
+  (rho.ρ g : Matrix (Fin n) (Fin n) ℂ) *ᵥ v
 
 @[simp]
-theorem dualAction_one (rho : ContinuousUnitaryRepData G n)
+theorem representationAction_one (rho : ContinuousUnitaryRepData G n)
     (v : Fin n → ℂ) :
-    dualAction rho 1 v = v := by
-  simp [dualAction]
+    representationAction rho 1 v = v := by
+  simp [representationAction]
 
-/-- The fixed-coordinate contragredient formula is a left group action. -/
-theorem dualAction_mul (rho : ContinuousUnitaryRepData G n)
+/-- The fixed-coordinate representation formula is a left group action. -/
+theorem representationAction_mul (rho : ContinuousUnitaryRepData G n)
     (g h : G) (v : Fin n → ℂ) :
-    dualAction rho (g * h) v = dualAction rho g (dualAction rho h v) := by
-  simp only [dualAction, mul_inv_rev, map_mul, Matrix.UnitaryGroup.mul_val,
-    Matrix.transpose_mul, Matrix.mulVec_mulVec]
+    representationAction rho (g * h) v =
+      representationAction rho g (representationAction rho h v) := by
+  simp only [representationAction, map_mul, Matrix.UnitaryGroup.mul_val,
+    Matrix.mulVec_mulVec]
 
-/-- The contragredient action preserves the standard Hermitian contraction
+/-- The representation action preserves the standard Hermitian contraction
 used by screened endpoint observables. -/
-theorem dualAction_pairing (rho : ContinuousUnitaryRepData G n)
+theorem representationAction_pairing (rho : ContinuousUnitaryRepData G n)
     (g : G) (v w : Fin n → ℂ) :
-    (∑ i, star (dualAction rho g v i) * dualAction rho g w i) =
+    (∑ i, star (representationAction rho g v i) *
+      representationAction rho g w i) =
       ∑ i, star (v i) * w i := by
-  let U : Matrix.unitaryGroup (Fin n) ℂ :=
-    Matrix.UnitaryGroup.transpose (rho.ρ g⁻¹)
+  let U : Matrix.unitaryGroup (Fin n) ℂ := rho.ρ g
   change star ((U : Matrix (Fin n) (Fin n) ℂ) *ᵥ v) ⬝ᵥ
       ((U : Matrix (Fin n) (Fin n) ℂ) *ᵥ w) = star v ⬝ᵥ w
   rw [Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul,
@@ -86,33 +86,35 @@ theorem star_hermitianPairing (v w : Fin n → ℂ) :
   exact Finset.sum_congr rfl fun i _ => by ring
 
 /-- Conjugating a transported endpoint pairing reverses the transport. -/
-theorem star_hermitianPairing_dualAction
+theorem star_hermitianPairing_representationAction
     (rho : ContinuousUnitaryRepData G n) (g : G) (v w : Fin n → ℂ) :
-    star (hermitianPairing v (dualAction rho g w)) =
-      hermitianPairing w (dualAction rho g⁻¹ v) := by
+    star (hermitianPairing v (representationAction rho g w)) =
+      hermitianPairing w (representationAction rho g⁻¹ v) := by
   rw [star_hermitianPairing]
-  have hcancel : dualAction rho g⁻¹ (dualAction rho g w) = w := by
-    rw [← dualAction_mul]
+  have hcancel : representationAction rho g⁻¹
+      (representationAction rho g w) = w := by
+    rw [← representationAction_mul]
     simp
-  have hpair := dualAction_pairing rho g⁻¹ (dualAction rho g w) v
+  have hpair := representationAction_pairing rho g⁻¹
+    (representationAction rho g w) v
   rw [hcancel] at hpair
   exact hpair.symm
 
-/-- The contragredient unitary action preserves the endpoint Euclidean norm. -/
-theorem dualAction_l2Norm (rho : ContinuousUnitaryRepData G n)
+/-- The unitary representation action preserves the endpoint Euclidean norm. -/
+theorem representationAction_l2Norm (rho : ContinuousUnitaryRepData G n)
     (g : G) (v : Fin n → ℂ) :
-    endpointL2Norm (dualAction rho g v) = endpointL2Norm v := by
+    endpointL2Norm (representationAction rho g v) = endpointL2Norm v := by
   unfold endpointL2Norm
   apply (sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _)).mp
   rw [@norm_sq_eq_re_inner ℂ, @norm_sq_eq_re_inner ℂ]
   rw [← hermitianPairing_eq_inner, ← hermitianPairing_eq_inner]
-  exact congrArg Complex.re (dualAction_pairing rho g v v)
+  exact congrArg Complex.re (representationAction_pairing rho g v v)
 
-/-- Gauge covariance of a local dual endpoint based at `x`. -/
+/-- Gauge covariance of a local endpoint based at `x`. -/
 def GaugeCovariantAt (rho : ContinuousUnitaryRepData G n) (x : Site d)
     (Phi : LocalField d G (Fin n → ℂ)) : Prop :=
   ∀ g : GaugeTransformation d G, ∀ A : Configuration d G,
-    Phi (gaugeTransform g A) = dualAction rho (g x) (Phi A)
+    Phi (gaugeTransform g A) = representationAction rho (g x) (Phi A)
 
 /-- Gauge covariance is unchanged when only the recorded support is enlarged. -/
 theorem GaugeCovariantAt.enlarge
@@ -171,7 +173,8 @@ theorem GaugeCovariantAt.postcompLinear
     (Phi : LocalField d G (Fin n → ℂ))
     (hPhi : GaugeCovariantAt rho x Phi)
     (T : (Fin n → ℂ) →L[ℂ] (Fin m → ℂ))
-    (hT : ∀ g v, T (dualAction rho g v) = dualAction tau g (T v)) :
+    (hT : ∀ g v, T (representationAction rho g v) =
+      representationAction tau g (T v)) :
     GaugeCovariantAt tau x (Phi.postcompLinear T) := by
   intro g A
   rw [LocalField.postcompLinear_apply, LocalField.postcompLinear_apply,

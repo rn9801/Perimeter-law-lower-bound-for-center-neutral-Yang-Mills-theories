@@ -69,7 +69,7 @@ theorem normalizedAxialTensorEndpoint_covariant
     (hT : ∀ h v,
       T (fun i => (eta.ρ h : Matrix (Fin N) (Fin N) ℂ) * v i *
         (eta.ρ h⁻¹ : Matrix (Fin N) (Fin N) ℂ)) =
-      dualAction rho h (T v)) :
+      representationAction rho h (T v)) :
     GaugeCovariantAt rho x (normalizedAxialTensorEndpoint eta q T) :=
   (axialTensorEndpoint_covariant rho eta q T hT).normalizedEndpoint rho x
 

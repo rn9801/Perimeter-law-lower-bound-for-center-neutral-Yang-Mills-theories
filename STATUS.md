@@ -1,12 +1,26 @@
 # Status
 
-Updated: 2026-08-25
+Updated: 2026-08-27
 
 The center-neutral infinite-volume gluelump perimeter-law lower bound is
 proved.  The standalone package contains the direct conjugation-span endpoint,
 uniform one-link positivity, physical-length reflection propagation,
 collar-aware corner closure, arbitrary rectangle transport, the public
 completed-limit theorem, and the concrete strong-coupling corollary.
+
+The operational endpoint has now been simplified to use a primal screening
+map
+
+```text
+(ConjSpan sigma)^⊗m → rho
+```
+
+directly.  `conjSpanPhi` is `rho`-valued and transforms by the ordinary
+representation action.  No active endpoint, one-link, propagation, or
+headline declaration uses the former dual-target construction.  The
+anti-diagonal closure uses conjugated holonomy matrix components and an exact
+Wilson-loop reversal/conjugation identity, so the public real lower bound and
+all theorem statements are unchanged.
 
 ## Verified theorem boundary
 
@@ -28,6 +42,22 @@ The standalone tree has 110 gluelump theorem modules, 28 compatibility
 modules, and 10 focused regression modules.
 
 ## Current milestone
+
+The primal-screening migration passes:
+
+- focused narrow builds through the endpoint, one-link, straight, corner,
+  public infinite-volume, and strong-coupling layers;
+- `-DautoImplicit=false` checks on the critical representation, endpoint,
+  propagation, and both headline sources;
+- the production-plus-regression aggregate build (8,707 jobs);
+- the default `lake build` (8,695 jobs); and
+- focused axiom audits, including the primal target-type guard and the two
+  anti-diagonal identities.
+
+All three headline declarations still report exactly `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+## Repository publication
 
 The standalone repository is published privately at
 `rn9801/gluelump-perimeter-law`. Its committed Lake manifest resolves the

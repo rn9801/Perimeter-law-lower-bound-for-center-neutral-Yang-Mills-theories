@@ -43,7 +43,7 @@ theorem conjSpanPerimeterLaw_of_positiveOneLink
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hlineLink : ConjSpanLinkReflectionData mu hd sigma rho T
       (0 : Site d) (conjSpanCornerZeroArm hd))
     (hrectangleLink : CanonicalRectangleLinkReflectionData mu rho

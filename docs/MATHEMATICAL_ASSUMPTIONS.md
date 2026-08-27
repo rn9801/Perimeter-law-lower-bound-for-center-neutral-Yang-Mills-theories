@@ -1,6 +1,6 @@
 # Mathematical assumptions and proof boundary
 
-Updated: 2026-08-25
+Updated: 2026-08-27
 
 This document records the exact assumptions of the proved gluelump
 perimeter-law lower bound. It distinguishes the model-neutral propagation
@@ -37,13 +37,17 @@ theorem `centerNeutral_exists_conjSpanIntertwiner` constructs a tensor degree
 `m` and a nonzero equivariant map
 
 ```text
-(ConjSpan sigma)^⊗m → rho.dual
+(ConjSpan sigma)^⊗m → rho
 ```
 
-from faithfulness of `sigma` and center neutrality of `rho`. Irreducibility
-is retained in the human-facing theorem and is used by the converse
-screening characterization; the forward construction needed for the lower
-bound does not require it.
+from faithfulness of `sigma` and center neutrality of `rho`.  The construction
+uses `faithful_selfDual_tensorPower_mapsTo_rep` directly with `rho` as its
+target.  Consequently the Higgs-like endpoint takes values in `rho` and
+transforms by the ordinary `rho(g)` action; the operational proof no longer
+passes through `rho.dual` or a fixed-coordinate duality conversion.
+Irreducibility is retained in the human-facing theorem and is used by the
+converse screening characterization; the forward construction needed for the
+lower bound does not require it.
 
 ## 3. Coupling and thermodynamic-limit hypothesis
 

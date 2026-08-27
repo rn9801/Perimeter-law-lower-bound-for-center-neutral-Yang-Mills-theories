@@ -281,7 +281,7 @@ theorem Gauge.ReflectionPositiveState.diagonalBentIntegral_eq_star_reverse
 
 /-- Integrated mixed matrix/rank-one identity for the neutral measure
 pairing. -/
-theorem measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
+theorem measureAntiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_rankOne_eq
     (mu : ProbabilityMeasure (Configuration d G))
     (rho : ContinuousUnitaryRepData G n)
     (Phi Psi : LocalField d G (Fin n → ℂ))
@@ -291,7 +291,7 @@ theorem measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
     (hy : antiDiagonalReflection tau sigma k y = y) :
     measureAntiDiagonalReflectionFamilyPairing
         (mu : Measure (Configuration d G)) tau sigma k
-        (fun a => holonomyMatrixFlattenedComponent rho p a)
+        (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
         (fun a => (rankOneFlattened Phi Psi).component a) =
       ∫ A, screenedObservable rho Phi Psi
         (antiDiagonalReflectedPathFixed hts k p hx hy) A ∂mu := by
@@ -300,16 +300,17 @@ theorem measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
   rw [← integral_finsetSum]
   · apply integral_congr_ae
     exact ae_of_all _ fun A =>
-      holonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
+      conjugateHolonomyMatrix_rankOne_antiDiagonalFamilyProduct_apply
         rho Phi Psi hts k p hx hy A
   · intro a _ha
     exact integrableLocalObservable mu
-      ((holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
-        tau sigma k ((rankOneFlattened Phi Psi).component a))
+      ((conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+        tau sigma k
+          ((rankOneFlattened Phi Psi).component a))
 
 /-- Integrated matrix self-pairing/Wilson-loop identity, including the exact
 dimension factor from the unnormalized character. -/
-theorem measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
+theorem measureAntiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_self_eq
     (mu : ProbabilityMeasure (Configuration d G))
     (rho : ContinuousUnitaryRepData G n)
     {tau sigma : Fin d} (hts : tau ≠ sigma) (k : ℤ)
@@ -318,23 +319,24 @@ theorem measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
     (hy : antiDiagonalReflection tau sigma k y = y) :
     measureAntiDiagonalReflectionFamilyPairing
         (mu : Measure (Configuration d G)) tau sigma k
-        (fun a => holonomyMatrixFlattenedComponent rho p a)
-        (fun a => holonomyMatrixFlattenedComponent rho p a) =
+        (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a)
+        (fun a => conjugateHolonomyMatrixFlattenedComponent rho p a) =
       (n : ℂ) * ∫ A, rho.wilsonLoop
-        ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
-        ∂mu := by
+        ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p).reverse
+        A ∂mu := by
   unfold measureAntiDiagonalReflectionFamilyPairing
     measureAntiDiagonalReflectionPairing
   rw [← integral_finsetSum]
   · rw [← integral_const_mul]
     apply integral_congr_ae
     exact ae_of_all _ fun A =>
-      holonomyMatrix_antiDiagonalFamilySelfProduct_apply
+      conjugateHolonomyMatrix_antiDiagonalFamilySelfProduct_apply
         rho hts k p hx hy A
   · intro a _ha
     exact integrableLocalObservable mu
-      ((holonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
-        tau sigma k (holonomyMatrixFlattenedComponent rho p a))
+      ((conjugateHolonomyMatrixFlattenedComponent rho p a).antiDiagonalReflectionProduct
+        tau sigma k
+          (conjugateHolonomyMatrixFlattenedComponent rho p a))
 
 /-- The anti-diagonal reflection norm of a pointwise normalized endpoint
 coordinate family is at most one. -/
@@ -414,12 +416,13 @@ theorem Gauge.ReflectionPositiveState.antiDiagonalMatrixClosing
         ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
         ∂mu) := by
   let F : Fin (n * n) → LocalObservable d G := fun a =>
-    holonomyMatrixFlattenedComponent rho p a
+    conjugateHolonomyMatrixFlattenedComponent rho p a
   let H : Fin (n * n) → LocalObservable d G := fun a =>
     (rankOneFlattened Phi Psi).component a
   have hF : ∀ a, (F a).SupportedInAntiDiagonalPositiveHalf tau sigma k :=
-    fun a => holonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
-      rho p tau sigma k hp a
+    fun a =>
+      conjugateHolonomyMatrixFlattenedComponent_supportedInAntiDiagonalPositiveHalf
+        rho p tau sigma k hp a
   have hH : ∀ a, (H a).SupportedInAntiDiagonalPositiveHalf tau sigma k :=
     fun a => rankOneFlattened_component_supportedInAntiDiagonalPositiveHalf
       Phi Psi tau sigma k hPhiSupport hPsiSupport a
@@ -442,11 +445,27 @@ theorem Gauge.ReflectionPositiveState.antiDiagonalMatrixClosing
     · simpa [measureAntiDiagonalReflectionFamilyPairing] using hFnonneg
     · simpa [measureAntiDiagonalReflectionFamilyPairing] using hHone
   have hmixed :=
-    measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_rankOne_eq
+    measureAntiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_rankOne_eq
       mu rho Phi Psi hts k p hx hy
   have hself :=
-    measureAntiDiagonalReflectionFamilyPairing_holonomyMatrix_self_eq
+    measureAntiDiagonalReflectionFamilyPairing_conjugateHolonomyMatrix_self_eq
       mu rho hts k p hx hy
+  have hreverseIntegral :
+      (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p).reverse
+          A ∂mu) =
+        star (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
+          ∂mu) := by
+    calc
+      _ = ∫ A, star (rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A)
+          ∂mu := by
+        apply integral_congr_ae
+        exact ae_of_all _ fun A =>
+          rho.wilsonLoop_reverse
+            ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
+      _ = _ := integral_conj
   rw [← hmixed]
   calc
     Complex.normSq (measureAntiDiagonalReflectionFamilyPairing
@@ -458,11 +477,15 @@ theorem Gauge.ReflectionPositiveState.antiDiagonalMatrixClosing
           (mu : Measure (Configuration d G)) tau sigma k F F) := by
       simp [measureAntiDiagonalReflectionFamilyPairing]
     _ = Complex.re ((n : ℂ) * ∫ A, rho.wilsonLoop
-          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
+          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p).reverse
+          A
           ∂mu) := congrArg Complex.re hself
     _ = (n : ℝ) * Complex.re (∫ A, rho.wilsonLoop
+          ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p).reverse
+          A ∂mu) := by simp
+    _ = (n : ℝ) * Complex.re (∫ A, rho.wilsonLoop
           ((antiDiagonalReflectedPathFixed hts k p hx hy).reverse.comp p) A
-          ∂mu) := by simp
+          ∂mu) := by rw [hreverseIntegral]; simp
 
 end
 

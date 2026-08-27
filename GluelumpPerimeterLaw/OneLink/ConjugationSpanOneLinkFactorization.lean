@@ -42,7 +42,7 @@ theorem conjSpanReflectedOneLinkHalfFamily_fixedSlice_eq_splitEndpoint
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hcollar : combEndpointCollar (m := m) hd
         (step z (.forward (Geometry.armAxis hd))) ⊆
@@ -87,7 +87,7 @@ theorem conjSpanReflectedOneLink_familyPairing_eq_numerator
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hcollar : combEndpointCollar (m := m) hd
         (step z (.forward (Geometry.armAxis hd))) ⊆

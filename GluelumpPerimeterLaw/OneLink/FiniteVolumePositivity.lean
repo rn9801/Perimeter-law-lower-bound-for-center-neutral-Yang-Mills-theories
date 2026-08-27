@@ -92,7 +92,7 @@ theorem reflectedEndpointOneLinkHalfFamily_fixedSlice_eq_endpoint
   have hhol : holonomy (Lambda.linkEvaluateSide tau 0 hLambda U) q = 1 := rfl
   rw [hconfig]
   rw [outgoingHalfComponent_apply]
-  rw [hhol, dualAction_one]
+  rw [hhol, representationAction_one]
 
 set_option maxHeartbeats 800000 in
 -- The detector elaborates nested finite matrix sums and a Stone--Weierstrass
@@ -354,7 +354,7 @@ theorem exists_generalPhi_reflectedOneLink_finite_power_lowerBound
     (hcompat : AxialAdjointCompatible D adj)
     (T : Representation.IntertwiningMap
       (RepresentationTheory.tensorPower adj m)
-      (RepresentationTheory.asRepresentation rho).dual)
+      (RepresentationTheory.asRepresentation rho))
     (hT : T ≠ 0)
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     (hdyn : (reflectedEndpointOneLinkObservable rho

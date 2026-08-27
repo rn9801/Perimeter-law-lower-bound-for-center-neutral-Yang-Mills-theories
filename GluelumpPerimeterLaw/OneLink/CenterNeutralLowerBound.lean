@@ -39,7 +39,7 @@ structure ConjSpanOneLinkAdmissible
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0) : Prop where
   linkSymmetric : Lambda.LinkSymmetric (Geometry.armAxis hd) 0
   plaquetteClosed : Lambda.PlaquetteClosed
@@ -60,7 +60,7 @@ theorem ConjSpanOneLinkAdmissible.lowerBound
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
     (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
-      (asRepresentation rho).dual)
+      (asRepresentation rho))
     (hT : T ≠ 0) (z : Site d)
     (hz : z (Geometry.armAxis hd) = 0)
     (hLambda : ConjSpanOneLinkAdmissible Lambda hd sigma rho T z hz)
@@ -87,7 +87,7 @@ theorem centerNeutral_exists_uniform_conjSpanOneLink_lowerBound
     (z : Site d) (hz : z (Geometry.armAxis hd) = 0)
     {beta : ℝ} (hbeta : 0 < beta) :
     ∃ m : ℕ, ∃ T : IntertwiningMap
-        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho).dual,
+        (tensorPower (conjSpanRep sigma) m) (asRepresentation rho),
       T ≠ 0 ∧ ∃ q : ℝ, 0 < q ∧
         ∀ (Lambda : FiniteSpecification d G),
           ConjSpanOneLinkAdmissible Lambda hd sigma rho T z hz →
