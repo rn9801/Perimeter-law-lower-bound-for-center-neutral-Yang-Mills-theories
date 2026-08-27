@@ -57,6 +57,12 @@ The primal-screening migration passes:
 All three headline declarations still report exactly `propext`,
 `Classical.choice`, and `Quot.sound`.
 
+The README now presents the exact Lean signatures of the main
+completed-limit theorem, its concrete strong-coupling corollary, and the
+model-neutral one-link-to-perimeter propagation theorem.  It also records the
+full-sequence nature of the current thermodynamic-limit hypothesis and the
+uniform dependencies of the perimeter rate.
+
 ## Repository publication
 
 The standalone repository is published privately at
