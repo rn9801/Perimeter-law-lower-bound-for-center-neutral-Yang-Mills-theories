@@ -50,7 +50,6 @@ def CenterNeutralInfiniteVolumePerimeterLaw
     (rho : ContinuousUnitaryRepData G r) : Prop :=
   3 ≤ d →
   Function.Injective sigma.ρ →
-  (asRepresentation rho).IsIrreducible →
   CenterNeutral (asRepresentation rho) →
   ∀ beta : ℝ, 0 < beta →
     ∃ rate : ℝ, 0 < rate ∧
@@ -81,8 +80,8 @@ def CenterNeutral (rho : Representation k G V) : Prop :=
 Thus `CenterNeutral rho` says that every element of the center of `G` acts
 as the identity on every vector. It does **not** say that `rho` is the trivial
 representation: noncentral elements may act nontrivially. The definition
-itself also does not require irreducibility; irreducibility is a separate
-hypothesis of the headline theorem.
+itself does not require irreducibility, and neither headline theorem assumes
+that `rho` is irreducible.
 
 ##### Translation-invariant completed free-boundary limit
 
@@ -174,7 +173,7 @@ number coerced back to `ℂ`, after which the lower bound is genuinely a bound
 on the expectation itself.
 
 Thus, in dimension at least three, a faithful action representation `sigma`
-and an irreducible center-neutral Wilson representation `rho` give a uniform
+and a center-neutral Wilson representation `rho` give a uniform
 perimeter-law lower bound at every positive coupling, conditional on the
 stated thermodynamic limit.
 
@@ -200,7 +199,6 @@ theorem centeredInfiniteVolume_centerNeutralPerimeterLaw
     (rho : ContinuousUnitaryRepData G r)
     (hd : 3 ≤ d)
     (hsigma : Function.Injective sigma.ρ)
-    (hirreducible : (asRepresentation rho).IsIrreducible)
     (hcenter : CenterNeutral (asRepresentation rho))
     (beta : ℝ) (hbetaPos : 0 < beta) :
     ∃ rate : ℝ, 0 < rate ∧

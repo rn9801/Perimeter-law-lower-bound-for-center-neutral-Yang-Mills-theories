@@ -10,8 +10,8 @@ decisions.
 ## Target and completed foundation
 
 The target is the infinite-volume theorem for a faithful action
-representation `sigma`, an irreducible center-neutral Wilson representation
-`rho`, positive coupling, and an arbitrary translation-invariant limit of the
+representation `sigma`, a center-neutral Wilson representation `rho`,
+positive coupling, and an arbitrary translation-invariant limit of the
 completed free-boundary reflection boxes. The rate must be chosen before the
 limiting measure, basepoint, coordinate plane, and rectangle side lengths.
 

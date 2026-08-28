@@ -43,7 +43,6 @@ theorem centeredInfiniteVolume_centerNeutralPerimeterLaw
     (rho : ContinuousUnitaryRepData G r)
     (hd : 3 ≤ d)
     (hsigma : Function.Injective sigma.ρ)
-    (hirreducible : (asRepresentation rho).IsIrreducible)
     (hcenter : CenterNeutral (asRepresentation rho))
     (beta : ℝ) (hbetaPos : 0 < beta) :
     ∃ rate : ℝ, 0 < rate ∧
@@ -69,7 +68,7 @@ theorem centeredInfiniteVolume_centerNeutralPerimeterLaw
                   rho x₀ a b R T := by
   obtain ⟨rate, hrate, hbound⟩ :=
     centerNeutralInfiniteVolumePerimeterLaw sigma rho
-      hd hsigma hirreducible hcenter beta hbetaPos
+      hd hsigma hcenter beta hbetaPos
   refine ⟨rate, hrate, ?_⟩
   intro hbeta x₀ a b R T hab hR hT
   exact hbound

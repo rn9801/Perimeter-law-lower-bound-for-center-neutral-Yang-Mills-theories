@@ -75,8 +75,8 @@ def rectangleWilsonExpectation {d r : ℕ} {G : Type u}
 
 /-- **Main target proposition: infinite-volume center-neutral perimeter law.**
 
-For a faithful action representation `sigma` and an irreducible
-center-neutral Wilson representation `rho` in dimension at least three, every
+For a faithful action representation `sigma` and a center-neutral Wilson
+representation `rho` in dimension at least three, every
 translation-invariant completed-free-boundary thermodynamic limit satisfies a
 uniform perimeter lower bound at positive coupling.
 
@@ -93,7 +93,6 @@ def CenterNeutralInfiniteVolumePerimeterLaw
     (rho : ContinuousUnitaryRepData G r) : Prop :=
   3 ≤ d →
   Function.Injective sigma.ρ →
-  (asRepresentation rho).IsIrreducible →
   CenterNeutral (asRepresentation rho) →
   ∀ beta : ℝ, 0 < beta →
     ∃ rate : ℝ, 0 < rate ∧

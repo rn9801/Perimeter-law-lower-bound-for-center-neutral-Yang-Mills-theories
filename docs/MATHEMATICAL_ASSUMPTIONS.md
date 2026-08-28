@@ -28,9 +28,9 @@ There are two finite-dimensional continuous unitary representations:
 - `sigma`, the action representation used by the Wilson plaquette potential;
 - `rho`, the representation used by the rectangular Wilson loop.
 
-The public theorem assumes that `sigma.ρ` is injective, that `rho` is
-irreducible, and that `rho` is center neutral. Center neutrality means that
-the center of `G` acts trivially in `rho`.
+The public theorem assumes that `sigma.ρ` is injective and that `rho` is
+center neutral. Center neutrality means that the center of `G` acts trivially
+in `rho`; the theorem also applies when `rho` is reducible.
 
 The operational screening map is not an additional assumption. The proved
 theorem `centerNeutral_exists_conjSpanIntertwiner` constructs a tensor degree
@@ -45,9 +45,9 @@ uses `faithful_selfDual_tensorPower_mapsTo_rep` directly with `rho` as its
 target.  Consequently the Higgs-like endpoint takes values in `rho` and
 transforms by the ordinary `rho(g)` action; the operational proof no longer
 passes through `rho.dual` or a fixed-coordinate duality conversion.
-Irreducibility is retained in the human-facing theorem and is used by the
-converse screening characterization; the forward construction needed for the
-lower bound does not require it.
+Irreducibility is used only by the converse screening characterization
+`centerNeutral_iff_exists_conjSpanIntertwiner`: it is not needed by the
+forward construction or either headline perimeter-law theorem.
 
 ## 3. Coupling and thermodynamic-limit hypothesis
 

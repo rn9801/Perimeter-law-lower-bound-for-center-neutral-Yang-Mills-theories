@@ -45,7 +45,7 @@ theorem centerNeutralInfiniteVolumePerimeterLaw
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r) :
     CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho := by
-  intro hd hsigma _hirreducible hcenter beta hbeta
+  intro hd hsigma hcenter beta hbeta
   obtain ⟨m, Tmap, _hTmap, q, hq, huniform⟩ :=
     centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
       hd sigma hsigma rho hcenter (0 : Site d) rfl hbeta

@@ -1,12 +1,18 @@
 # Status
 
-Updated: 2026-08-27
+Updated: 2026-08-28
 
 The center-neutral infinite-volume gluelump perimeter-law lower bound is
 proved.  The standalone package contains the direct conjugation-span endpoint,
 uniform one-link positivity, physical-length reflection propagation,
 collar-aware corner closure, arbitrary rectangle transport, the public
 completed-limit theorem, and the concrete strong-coupling corollary.
+
+Both headline theorems now assume only that the Wilson representation `rho`
+is center neutral; irreducibility was removed because the proof never uses it.
+The result therefore applies to reducible center-neutral representations as
+well. Irreducibility remains only in the separate converse characterization
+of center neutrality by existence of a nonzero screening intertwiner.
 
 The operational endpoint has now been simplified to use a primal screening
 map
