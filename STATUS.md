@@ -41,8 +41,10 @@ all theorem statements are unchanged.
   extensions of existing modules and nine new modules).
 - Headline axiom footprints contain only `propext`, `Classical.choice`, and
   `Quot.sound`.
-- The critical source path contains no `sorry`, `admit`, custom axiom, or
-  unsafe declaration.
+- All repository-owned Lean sources contain no `sorry`, `admit`, `sorryAx`,
+  custom `axiom` or `constant` declaration, or `unsafe` declaration. A
+  compiled audit of every project declaration found no nonstandard axiom
+  dependency; the five opaque definitions all have kernel-checked bodies.
 
 The standalone tree has 110 gluelump theorem modules, 28 compatibility
 modules, and 10 focused regression modules.
@@ -62,6 +64,10 @@ The primal-screening migration passes:
 
 All three headline declarations still report exactly `propext`,
 `Classical.choice`, and `Quot.sound`.
+
+The README now records this repository-wide proof-integrity audit and
+distinguishes the absence of hidden internal assumptions from the explicit
+mathematical hypotheses in the theorem signatures.
 
 The README now presents the exact Lean signatures of the main
 completed-limit theorem, its concrete strong-coupling corollary, and the

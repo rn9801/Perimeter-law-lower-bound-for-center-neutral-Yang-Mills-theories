@@ -306,6 +306,35 @@ The screening map is constructed directly as
 is `rho`-valued and transforms by the ordinary Wilson representation action;
 the active construction does not pass through the algebraic dual of `rho`.
 
+## Proof integrity
+
+All repository-owned Lean sources are free of `sorry`, `admit`, `sorryAx`,
+project-defined `axiom` or `constant` declarations, and `unsafe`
+declarations. The five `noncomputable opaque` definitions each have an
+explicit `:= by` body which Lean kernel-checks; opacity controls reduction
+and does not introduce an axiom or proof gap.
+
+A compiled `Lean.collectAxioms` audit of every project declaration found no
+nonstandard axiom dependency. In particular, the complete axiom footprint of
+each of the three headline theorems is exactly
+
+- `propext`;
+- `Classical.choice`; and
+- `Quot.sound`.
+
+These are Lean's standard foundational principles, not axioms introduced by
+this project. The regression suite records the headline footprints and
+rejects nonstandard axioms on the neutral critical path; CI also rejects proof
+placeholders, source-level `axiom` declarations, and unsafe declarations.
+
+This does not mean that the mathematical statements have no hypotheses. The
+compact-group, representation, dimension, coupling, positivity, and limit
+hypotheses are explicit in the theorem signatures above. Some reusable
+auxiliary theorems likewise take explicit data or proposition interfaces as
+arguments. None is installed globally or hidden as an unproved internal
+assumption. See [the mathematical assumptions](docs/MATHEMATICAL_ASSUMPTIONS.md)
+for the complete accounting.
+
 ## Build
 
 ```bash
