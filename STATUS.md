@@ -90,8 +90,10 @@ propagation theorem.
 ## Repository publication
 
 The standalone repository is published privately at
-`rn9801/gluelump-perimeter-law`. Its committed Lake manifest resolves the
-unchanged upstream `main` branch to
+`rn9801/Central-neutral-perimeter-law-lower-bound`. The README title uses the
+same repository name; the existing Lake package and Lean module names remain
+stable. The committed Lake manifest resolves the unchanged upstream `main`
+branch to
 `bc7383d023f0c58a16312764a32422248aa42ebe`. A clean production-and-regression
 build against that dependency completed successfully with 8,708 jobs.
 

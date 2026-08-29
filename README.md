@@ -1,4 +1,4 @@
-# Gluelump perimeter-law lower bound
+# Central-neutral-perimeter-law-lower-bound
 
 This Lean 4 project proves a center-neutral gluelump perimeter-law lower bound
 for lattice Yang--Mills theory.  It is the standalone downstream companion to

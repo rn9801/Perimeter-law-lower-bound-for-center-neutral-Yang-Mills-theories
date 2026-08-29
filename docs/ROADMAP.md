@@ -64,7 +64,7 @@ in a downstream compatibility overlay rather than being pushed upstream.
 The resulting package dependency graph is
 
 ```text
-strong-coupling-lattice-yang-mills main -> gluelump-perimeter-law
+strong-coupling-lattice-yang-mills main -> Central-neutral-perimeter-law-lower-bound
 ```
 
 More explicitly:
@@ -520,8 +520,8 @@ one-way adapters and are not in the audited neutral theorem closure.
 ## 7. Post-theorem extraction into a separate repository
 
 **Status:** Complete (2026-08-25). The standalone repository is published
-privately at `rn9801/gluelump-perimeter-law`; the Strong-Coupling repository
-was not modified.
+privately at `rn9801/Central-neutral-perimeter-law-lower-bound`; the
+Strong-Coupling repository was not modified.
 
 **Completed work.**
 
