@@ -30,15 +30,6 @@ Here $G$ is a compact Hausdorff second-countable topological group equipped
 with a compatible Borel structure and a chosen normalized bi-invariant Haar
 probability $\lambda_G$.
 
-**Haar full-support lemma.** For every open set $U\subseteq G$,
-
-```math
-  U\neq\varnothing \quad\Longrightarrow\quad \lambda_G(U)>0.
-```
-
-Thus positivity on nonempty open sets is a theorem for the Haar probability
-in this setting, not an additional hypothesis in the headline theorems.
-
 Let
 
 ```math
@@ -53,14 +44,14 @@ associated to $\sigma$ is
 
 ```math
   \Phi_\sigma(g)
-  :=\operatorname{Re}\!\left(\frac{1}{n}\operatorname{Tr}\sigma(g)\right).
+  :=\mathrm{Re}\!\left(\frac{1}{n}\mathrm{Tr}\,\sigma(g)\right).
 ```
 
 **Definition (center neutrality).** The representation $\rho$ is
 center-neutral if
 
 ```math
-  \operatorname{CenterNeutral}(\rho)
+  \mathrm{CenterNeutral}(\rho)
   \quad:\Longleftrightarrow\quad
   \forall z\in Z(G),\ \rho(z)=I_r.
 ```
@@ -69,7 +60,7 @@ Define the conjugation span of $\sigma$ by
 
 ```math
   \mathcal C_\sigma
-  :=\operatorname{span}_{\mathbb C}\{\sigma(g):g\in G\}
+  :=\mathrm{span}_{\mathbb C}\{\sigma(g):g\in G\}
   \subseteq M_n(\mathbb C),
   \qquad
   g\cdot X:=\sigma(g)X\sigma(g)^{-1}.
@@ -108,8 +99,8 @@ For $A\in\Omega_{d,G}$, define
 
 ```math
   W_\rho(C;A)
-  :=\frac{1}{r}\operatorname{Tr}
-    \rho\!\left(\operatorname{Hol}_A(C)\right).
+  :=\frac{1}{r}\mathrm{Tr}\,
+    \rho\!\left(\mathrm{Hol}_A(C)\right).
 ```
 
 For a probability measure $\mu$ on $\Omega_{d,G}$, set
@@ -123,7 +114,7 @@ and
 
 ```math
   \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T)
-  :=\operatorname{Re}
+  :=\mathrm{Re}\,
     \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T).
 ```
 
@@ -141,7 +132,7 @@ configuration.
 **Definition (translation-invariant completed free-boundary limit).** Write
 
 ```math
-  \operatorname{TIFBL}(\Phi,\beta;\mu)
+  \mathrm{TIFBL}(\Phi,\beta;\mu)
 ```
 
 if $\mu$ is a probability measure on $\Omega_{d,G}$ satisfying
@@ -169,7 +160,7 @@ $\mu$.
 ### Theorem 1 (completed free-boundary perimeter law)
 
 Assume $d\ge 3$, $\sigma$ is injective, and
-$\operatorname{CenterNeutral}(\rho)$. Then
+$\mathrm{CenterNeutral}(\rho)$. Then
 
 ```math
   \forall\beta\in\mathbb R,\quad
@@ -180,7 +171,7 @@ $\operatorname{CenterNeutral}(\rho)$. Then
 such that, for every probability measure $\mu$,
 
 ```math
-  \operatorname{TIFBL}(\Phi_\sigma,\beta;\mu)
+  \mathrm{TIFBL}(\Phi_\sigma,\beta;\mu)
   \Longrightarrow
   \forall x_0,a,b,R,T,
 ```
@@ -210,12 +201,12 @@ Let
 
 ```math
   R_{\mathrm{sc}}
-  :=\operatorname{latticeStrongCouplingRadius}
-      \bigl(d,\operatorname{bound}(\Phi_\sigma)\bigr).
+  :=\mathrm{latticeStrongCouplingRadius}
+      \bigl(d,\mathrm{bound}(\Phi_\sigma)\bigr).
 ```
 
 Assume $d\ge 3$, $\sigma$ is injective, and
-$\operatorname{CenterNeutral}(\rho)$. For every $\beta>0$, there exists
+$\mathrm{CenterNeutral}(\rho)$. For every $\beta>0$, there exists
 $c>0$ such that, for every radius certificate
 $h_\beta:|\beta|<R_{\mathrm{sc}}$, the cluster-constructed centered
 probability
@@ -223,7 +214,7 @@ probability
 ```math
   \mu_{\beta,h_\beta}^{\mathrm{cent}}
   :=
-  \operatorname{centeredInfiniteVolumeProbability}
+  \mathrm{centeredInfiniteVolumeProbability}
     \bigl(\eta_N\equiv\mathbf 1,\Phi_\sigma,\beta,h_\beta\bigr)
 ```
 
@@ -262,15 +253,15 @@ $\mathcal A_\vartheta^+$ to gauge-invariant observables. Define
 ```
 
 **Definition (reflection-positive state).**
-$\operatorname{RPS}(\mu)$ means that $\mu$ is invariant under every
+$\mathrm{RPS}(\mu)$ means that $\mu$ is invariant under every
 lattice translation and every coordinate reflection through the origin, and
 that at every affine site and link cut, and every diagonal and antidiagonal
 cut with distinct axes,
 
 ```math
-  \operatorname{Im}\langle F,F\rangle_{\vartheta,\mu}=0,
+  \mathrm{Im}\,\langle F,F\rangle_{\vartheta,\mu}=0,
   \qquad
-  \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\ge 0,
+  \mathrm{Re}\,\langle F,F\rangle_{\vartheta,\mu}\ge 0,
 ```
 
 and
@@ -278,8 +269,8 @@ and
 ```math
   |\langle F,H\rangle_{\vartheta,\mu}|^2
   \le
-  \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\,
-  \operatorname{Re}\langle H,H\rangle_{\vartheta,\mu}
+  \mathrm{Re}\,\langle F,F\rangle_{\vartheta,\mu}\,
+  \mathrm{Re}\,\langle H,H\rangle_{\vartheta,\mu}
 ```
 
 for all $F,H\in\mathcal A_\vartheta^+$. For diagonal and antidiagonal cuts
@@ -301,13 +292,13 @@ For $\ell,s\in\mathbb N$, let $X_\ell$, of physical length $2\ell+1$,
 and $X_{\ell,s}^{\mathrm{mix}}$, of mixed physical length $\ell+s+1$, be
 the canonical origin-based, link-centered screened-line observables
 determined by $(d,\sigma,\rho,T)$. Define
-$\operatorname{LineLink}(\mu;d,\sigma,\rho,T)$ by
+$\mathrm{LineLink}(\mu;d,\sigma,\rho,T)$ by
 
 ```math
   \forall\ell,\qquad
-  \operatorname{Im}\mathbb E_\mu[X_\ell]=0,
+  \mathrm{Im}\,\mathbb E_\mu[X_\ell]=0,
   \qquad
-  \operatorname{Re}\mathbb E_\mu[X_\ell]\ge 0,
+  \mathrm{Re}\,\mathbb E_\mu[X_\ell]\ge 0,
 ```
 
 and
@@ -316,20 +307,20 @@ and
   \forall\ell,s,\qquad
   |\mathbb E_\mu[X_{\ell,s}^{\mathrm{mix}}]|^2
   \le
-  \operatorname{Re}\mathbb E_\mu[X_\ell]\,
-  \operatorname{Re}\mathbb E_\mu[X_s].
+  \mathrm{Re}\,\mathbb E_\mu[X_\ell]\,
+  \mathrm{Re}\,\mathbb E_\mu[X_s].
 ```
 
 Let $a_*$ be the canonical arm axis, $b_*$ the canonical first transverse
 axis, and, for $u,v,t\in\mathbb N$, let $Y_{u,v,t}$ be the canonical
 link-closed coordinate-cap observable in the $(a_*,b_*)$-plane. Define
-$\operatorname{RectLink}(\mu;\rho;a_*,b_*)$ by
+$\mathrm{RectLink}(\mu;\rho;a_*,b_*)$ by
 
 ```math
   \forall u,t,\qquad
-  \operatorname{Im}\mathbb E_\mu[Y_{u,u,t}]=0,
+  \mathrm{Im}\,\mathbb E_\mu[Y_{u,u,t}]=0,
   \qquad
-  \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\ge 0,
+  \mathrm{Re}\,\mathbb E_\mu[Y_{u,u,t}]\ge 0,
 ```
 
 and
@@ -338,11 +329,11 @@ and
   \forall u,v,t,\qquad
   |\mathbb E_\mu[Y_{u,v,t}]|^2
   \le
-  \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\,
-  \operatorname{Re}\mathbb E_\mu[Y_{v,v,t}].
+  \mathrm{Re}\,\mathbb E_\mu[Y_{u,u,t}]\,
+  \mathrm{Re}\,\mathbb E_\mu[Y_{v,v,t}].
 ```
 
-Finally, define $\operatorname{SwapInv}(\mu,\rho)$ by
+Finally, define $\mathrm{SwapInv}(\mu,\rho)$ by
 
 ```math
   \mathcal W^{\mathbb C}_{\mu,\rho}
@@ -361,7 +352,7 @@ the arm direction, and define
 ```math
   L_k(\mu;d,\sigma,\rho,T)
   :=
-  \operatorname{Re}\int_{\Omega_{d,G}}
+  \mathrm{Re}\,\int_{\Omega_{d,G}}
     \mathcal O^{\mathrm{straight}}_{T,k}(A)\,d\mu(A).
 ```
 
@@ -375,10 +366,10 @@ $T:\mathcal C_\sigma^{\otimes m}\to\mathbb C^r$, and $q\in\mathbb R$.
 Assume
 
 ```math
-  \operatorname{RPS}(\mu),\qquad
-  \operatorname{LineLink}(\mu;d,\sigma,\rho,T),\qquad
-  \operatorname{RectLink}(\mu;\rho;a_*,b_*),\qquad
-  \operatorname{SwapInv}(\mu,\rho),
+  \mathrm{RPS}(\mu),\qquad
+  \mathrm{LineLink}(\mu;d,\sigma,\rho,T),\qquad
+  \mathrm{RectLink}(\mu;\rho;a_*,b_*),\qquad
+  \mathrm{SwapInv}(\mu,\rho),
 ```
 
 and
@@ -722,11 +713,10 @@ placeholders, source-level `axiom` declarations, and unsafe declarations.
 
 This does not mean that the mathematical statements have no hypotheses. The
 compact-group, representation, dimension, positive-coupling or seed, and
-limit hypotheses are explicit in the theorem signatures above. Full support
-of normalized Haar measure is derived from those ambient compact-group and
-Haar-probability hypotheses. Some reusable auxiliary theorems likewise take
-explicit data or proposition interfaces as arguments. None is installed
-globally or hidden as an unproved internal assumption. See
+limit hypotheses are explicit in the theorem signatures above. Some reusable
+auxiliary theorems likewise take explicit data or proposition interfaces as
+arguments. None is installed globally or hidden as an unproved internal
+assumption. See
 [the mathematical assumptions](docs/MATHEMATICAL_ASSUMPTIONS.md) for the
 complete accounting.
 

@@ -81,9 +81,10 @@ Lean statements. It gives precise LaTeX definitions of the normalized Wilson
 rectangle, center neutrality, the full-sequence completed free-boundary
 limit, screening and one-link data, and the reflection interfaces, followed
 by the three headline theorems with their exact quantifier scope and no proof
-discussion. Its 38 display formulas use fenced GitHub `math` blocks; the
-rendered GitHub Markdown output recognizes all 38 as display mathematics, and
-the complete mathematical section also compiles successfully with LaTeX.
+discussion. Its 37 display formulas use fenced GitHub `math` blocks and avoid
+GitHub's unsupported `\operatorname` macro; the complete mathematical section
+also compiles successfully with LaTeX. The nonessential Haar full-support
+aside has been omitted from the paper-style presentation.
 
 The README now presents the exact Lean signatures of the main
 completed-limit theorem, its concrete strong-coupling corollary, and the
