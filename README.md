@@ -21,59 +21,70 @@ required in the Strong-Coupling repository.
 
 Let $d\in\mathbb N$, let $E_d^+$ be the positively oriented nearest-neighbor
 edges of $\mathbb Z^d$, and define the configuration space
-$$
+
+```math
   \Omega_{d,G}:=G^{E_d^+}.
-$$
+```
+
 Here $G$ is a compact Hausdorff second-countable topological group equipped
 with a compatible Borel structure and a chosen normalized bi-invariant Haar
 probability $\lambda_G$.
 
 **Haar full-support lemma.** For every open set $U\subseteq G$,
-$$
+
+```math
   U\neq\varnothing \quad\Longrightarrow\quad \lambda_G(U)>0.
-$$
+```
+
 Thus positivity on nonempty open sets is a theorem for the Haar probability
 in this setting, not an additional hypothesis in the headline theorems.
 
 Let
-$$
+
+```math
   \sigma:G\longrightarrow U(n),
   \qquad
   \rho:G\longrightarrow U(r),
   \qquad n,r\ge 1,
-$$
+```
+
 be continuous unitary representations. The Wilson plaquette potential
 associated to $\sigma$ is
-$$
+
+```math
   \Phi_\sigma(g)
   :=\operatorname{Re}\!\left(\frac{1}{n}\operatorname{Tr}\sigma(g)\right).
-$$
+```
 
 **Definition (center neutrality).** The representation $\rho$ is
 center-neutral if
-$$
+
+```math
   \operatorname{CenterNeutral}(\rho)
   \quad:\Longleftrightarrow\quad
   \forall z\in Z(G),\ \rho(z)=I_r.
-$$
+```
 
 Define the conjugation span of $\sigma$ by
-$$
+
+```math
   \mathcal C_\sigma
   :=\operatorname{span}_{\mathbb C}\{\sigma(g):g\in G\}
   \subseteq M_n(\mathbb C),
   \qquad
   g\cdot X:=\sigma(g)X\sigma(g)^{-1}.
-$$
+```
 
 **Screening theorem.** If $\sigma$ is injective and $\rho$ is
 center-neutral, then
-$$
+
+```math
   \exists m\in\mathbb N\ \exists T:
   \mathcal C_\sigma^{\otimes m}\longrightarrow\mathbb C^r,
   \qquad
   T\neq 0,
-$$
+```
+
 where $T$ is complex-linear and $G$-equivariant, and $G$ acts on
 $\mathbb C^r$ through $\rho$.
 
@@ -81,31 +92,40 @@ $\mathbb C^r$ through $\rho$.
 
 For $x_0\in\mathbb Z^d$, coordinate directions $a,b$, and
 $R,T\in\mathbb N$, let
-$$
+
+```math
   C(x_0;a,b;R,T)
   :=(+a)^R(+b)^T(-a)^R(-b)^T.
-$$
+```
+
 When $a\neq b$ and $R,T>0$, this is a coordinate rectangle of perimeter
-$$
+
+```math
   P(R,T):=2(R+T).
-$$
+```
+
 For $A\in\Omega_{d,G}$, define
-$$
+
+```math
   W_\rho(C;A)
   :=\frac{1}{r}\operatorname{Tr}
     \rho\!\left(\operatorname{Hol}_A(C)\right).
-$$
+```
+
 For a probability measure $\mu$ on $\Omega_{d,G}$, set
-$$
+
+```math
   \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T)
   :=\int_{\Omega_{d,G}}W_\rho(C(x_0;a,b;R,T);A)\,d\mu(A),
-$$
+```
+
 and
-$$
+
+```math
   \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T)
   :=\operatorname{Re}
     \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T).
-$$
+```
 
 ### Completed free-boundary limits
 
@@ -119,23 +139,29 @@ $[-N,N]$ in every transverse direction, with identity exterior
 configuration.
 
 **Definition (translation-invariant completed free-boundary limit).** Write
-$$
+
+```math
   \operatorname{TIFBL}(\Phi,\beta;\mu)
-$$
+```
+
 if $\mu$ is a probability measure on $\Omega_{d,G}$ satisfying
-$$
+
+```math
   \forall \tau\ \forall F\in C_{\mathrm{loc}}(\Omega_{d,G};\mathbb C),
   \qquad
   \lim_{N\to\infty}
     \int F\,d\nu_{\tau,N}^{\Phi,\beta}
   =\int F\,d\mu,
-$$
+```
+
 and
-$$
+
+```math
   \forall v\in\mathbb Z^d,
   \qquad
   (\theta_v)_*\mu=\mu,
-$$
+```
+
 where $\theta_v$ is lattice translation by $v$. The limit is taken along
 the entire sequence for every $\tau$, with the same limiting measure
 $\mu$.
@@ -144,18 +170,22 @@ $\mu$.
 
 Assume $d\ge 3$, $\sigma$ is injective, and
 $\operatorname{CenterNeutral}(\rho)$. Then
-$$
+
+```math
   \forall\beta\in\mathbb R,\quad
   \beta>0\Longrightarrow
   \exists c\in\mathbb R,\quad c>0,
-$$
+```
+
 such that, for every probability measure $\mu$,
-$$
+
+```math
   \operatorname{TIFBL}(\Phi_\sigma,\beta;\mu)
   \Longrightarrow
   \forall x_0,a,b,R,T,
-$$
-$$
+```
+
+```math
   a\neq b\ \wedge\ R>0\ \wedge\ T>0
   \Longrightarrow
   \left[
@@ -164,35 +194,42 @@ $$
     \bigl(\mathcal W^{\mathbb R}_{\mu,\rho}
       (x_0;a,b;R,T):\mathbb C\bigr)
   \right]
-$$
+```
+
 and
-$$
+
+```math
   \exp\!\bigl(-c\,P(R,T)\bigr)
   \le
   \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T).
-$$
+```
 
 ### Theorem 2 (centered strong-coupling state)
 
 Let
-$$
+
+```math
   R_{\mathrm{sc}}
   :=\operatorname{latticeStrongCouplingRadius}
       \bigl(d,\operatorname{bound}(\Phi_\sigma)\bigr).
-$$
+```
+
 Assume $d\ge 3$, $\sigma$ is injective, and
 $\operatorname{CenterNeutral}(\rho)$. For every $\beta>0$, there exists
 $c>0$ such that, for every radius certificate
 $h_\beta:|\beta|<R_{\mathrm{sc}}$, the cluster-constructed centered
 probability
-$$
+
+```math
   \mu_{\beta,h_\beta}^{\mathrm{cent}}
   :=
   \operatorname{centeredInfiniteVolumeProbability}
     \bigl(\eta_N\equiv\mathbf 1,\Phi_\sigma,\beta,h_\beta\bigr)
-$$
+```
+
 satisfies, for every $x_0$, every $a\neq b$, and every $R,T>0$,
-$$
+
+```math
   \mathcal W^{\mathbb C}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
     (x_0;a,b;R,T)
   =
@@ -200,14 +237,16 @@ $$
     \mathcal W^{\mathbb R}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
       (x_0;a,b;R,T):\mathbb C
   \bigr)
-$$
+```
+
 and
-$$
+
+```math
   \exp\!\bigl(-c\,P(R,T)\bigr)
   \le
   \mathcal W^{\mathbb R}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
     (x_0;a,b;R,T).
-$$
+```
 
 ### Model-neutral reflection data
 
@@ -215,99 +254,117 @@ Let $\vartheta$ be a site, link, diagonal, or antidiagonal lattice
 reflection and let $\mathcal A_\vartheta^+$ be its positive-half algebra of
 local observables. For link reflections, restrict
 $\mathcal A_\vartheta^+$ to gauge-invariant observables. Define
-$$
+
+```math
   \langle F,H\rangle_{\vartheta,\mu}
   :=\int_{\Omega_{d,G}}
     \overline{F(\vartheta A)}\,H(A)\,d\mu(A).
-$$
+```
 
 **Definition (reflection-positive state).**
 $\operatorname{RPS}(\mu)$ means that $\mu$ is invariant under every
 lattice translation and every coordinate reflection through the origin, and
 that at every affine site and link cut, and every diagonal and antidiagonal
 cut with distinct axes,
-$$
+
+```math
   \operatorname{Im}\langle F,F\rangle_{\vartheta,\mu}=0,
   \qquad
   \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\ge 0,
-$$
+```
+
 and
-$$
+
+```math
   |\langle F,H\rangle_{\vartheta,\mu}|^2
   \le
   \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\,
   \operatorname{Re}\langle H,H\rangle_{\vartheta,\mu}
-$$
+```
+
 for all $F,H\in\mathcal A_\vartheta^+$. For diagonal and antidiagonal cuts
 with distinct axes, it additionally requires
-$$
+
+```math
   \overline{\langle H,F\rangle_{\vartheta,\mu}}
   =
   \langle F,H\rangle_{\vartheta,\mu}.
-$$
+```
 
 Fix $d\ge 3$, a tensor degree $m$, and an intertwiner
-$$
+
+```math
   T:\mathcal C_\sigma^{\otimes m}\longrightarrow\mathbb C^r.
-$$
+```
+
 For $\ell,s\in\mathbb N$, let $X_\ell$, of physical length $2\ell+1$,
 and $X_{\ell,s}^{\mathrm{mix}}$, of mixed physical length $\ell+s+1$, be
 the canonical origin-based, link-centered screened-line observables
 determined by $(d,\sigma,\rho,T)$. Define
 $\operatorname{LineLink}(\mu;d,\sigma,\rho,T)$ by
-$$
+
+```math
   \forall\ell,\qquad
   \operatorname{Im}\mathbb E_\mu[X_\ell]=0,
   \qquad
   \operatorname{Re}\mathbb E_\mu[X_\ell]\ge 0,
-$$
+```
+
 and
-$$
+
+```math
   \forall\ell,s,\qquad
   |\mathbb E_\mu[X_{\ell,s}^{\mathrm{mix}}]|^2
   \le
   \operatorname{Re}\mathbb E_\mu[X_\ell]\,
   \operatorname{Re}\mathbb E_\mu[X_s].
-$$
+```
 
 Let $a_*$ be the canonical arm axis, $b_*$ the canonical first transverse
 axis, and, for $u,v,t\in\mathbb N$, let $Y_{u,v,t}$ be the canonical
 link-closed coordinate-cap observable in the $(a_*,b_*)$-plane. Define
 $\operatorname{RectLink}(\mu;\rho;a_*,b_*)$ by
-$$
+
+```math
   \forall u,t,\qquad
   \operatorname{Im}\mathbb E_\mu[Y_{u,u,t}]=0,
   \qquad
   \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\ge 0,
-$$
+```
+
 and
-$$
+
+```math
   \forall u,v,t,\qquad
   |\mathbb E_\mu[Y_{u,v,t}]|^2
   \le
   \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\,
   \operatorname{Re}\mathbb E_\mu[Y_{v,v,t}].
-$$
+```
 
 Finally, define $\operatorname{SwapInv}(\mu,\rho)$ by
-$$
+
+```math
   \mathcal W^{\mathbb C}_{\mu,\rho}
     \bigl(0;\pi(a),\pi(b);R,T\bigr)
   =
   \mathcal W^{\mathbb C}_{\mu,\rho}(0;a,b;R,T)
-$$
+```
+
 for every transposition $\pi$ of two coordinate labels and all
 $a,b,R,T$.
 
 Let $\mathcal O^{\mathrm{straight}}_{T,k}$ be the canonical direct
 screened-line observable of physical length $k$, based at the origin in
 the arm direction, and define
-$$
+
+```math
   L_k(\mu;d,\sigma,\rho,T)
   :=
   \operatorname{Re}\int_{\Omega_{d,G}}
     \mathcal O^{\mathrm{straight}}_{T,k}(A)\,d\mu(A).
-$$
+```
+
 For $k=1$, this is the direct reflected one-link gluelump expectation.
 
 ### Theorem 3 (model-neutral propagation from one link)
@@ -316,33 +373,40 @@ Fix $d\ge 3$, a probability measure $\mu$ on $\Omega_{d,G}$,
 representations $\sigma,\rho$, a tensor degree $m$, an intertwiner
 $T:\mathcal C_\sigma^{\otimes m}\to\mathbb C^r$, and $q\in\mathbb R$.
 Assume
-$$
+
+```math
   \operatorname{RPS}(\mu),\qquad
   \operatorname{LineLink}(\mu;d,\sigma,\rho,T),\qquad
   \operatorname{RectLink}(\mu;\rho;a_*,b_*),\qquad
   \operatorname{SwapInv}(\mu,\rho),
-$$
+```
+
 and
-$$
+
+```math
   0<q\le 1,
   \qquad
   q\le L_1(\mu;d,\sigma,\rho,T).
-$$
+```
+
 Then there exists $c>0$ such that, for every $x_0$, every $a\neq b$,
 and every $R,S\in\mathbb N_{>0}$,
-$$
+
+```math
   \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,S)
   =
   \bigl(
     \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,S):\mathbb C
   \bigr)
-$$
+```
+
 and
-$$
+
+```math
   \exp\!\bigl(-c\,P(R,S)\bigr)
   \le
   \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,S).
-$$
+```
 
 ## Exact Lean statements and definitions
 
