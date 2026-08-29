@@ -1,6 +1,6 @@
 # Status
 
-Updated: 2026-08-28
+Updated: 2026-08-29
 
 The center-neutral infinite-volume gluelump perimeter-law lower bound is
 proved.  The standalone package contains the direct conjugation-span endpoint,
@@ -68,6 +68,12 @@ All three headline declarations still report exactly `propext`,
 The README now records this repository-wide proof-integrity audit and
 distinguishes the absence of hidden internal assumptions from the explicit
 mathematical hypotheses in the theorem signatures.
+
+The README now also presents a standalone ordinary-language formulation
+before any Lean statements. It defines the normalized Wilson rectangle,
+center neutrality, the full-sequence completed free-boundary limit,
+screening and one-link data, and the reflection interfaces, then states all
+three headline theorems with their exact uniformity and quantifier scope.
 
 The README now presents the exact Lean signatures of the main
 completed-limit theorem, its concrete strong-coupling corollary, and the
