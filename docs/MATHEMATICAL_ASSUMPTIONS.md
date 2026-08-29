@@ -1,6 +1,6 @@
 # Mathematical assumptions and proof boundary
 
-Updated: 2026-08-27
+Updated: 2026-08-29
 
 This document records the exact assumptions of the proved gluelump
 perimeter-law lower bound. It distinguishes the model-neutral propagation
@@ -14,10 +14,11 @@ The public theorem assumes:
 - a cubic lattice of dimension `d` with `3 ≤ d`;
 - a compact Hausdorff second-countable topological group `G`;
 - compatible measurable and Borel structures on `G`;
-- a normalized Haar probability on `G`; and
-- positive Haar measure for every nonempty open set.
+- a normalized Haar probability on `G`.
 
-The last condition is used in the strict one-link lower bound. No
+Positive Haar measure for every nonempty open set is used in the strict
+one-link lower bound, but it is not an additional assumption. Mathlib derives
+it from compactness, probability normalization, and left invariance. No
 connectedness, Lie-group, or differentiable-manifold hypothesis is present in
 the final theorem.
 

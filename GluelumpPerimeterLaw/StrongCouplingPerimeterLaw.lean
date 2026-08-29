@@ -30,7 +30,6 @@ variable {d n r : ℕ} {G : Type u}
   [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
   [T2Space G] [MeasurableSpace G] [BorelSpace G]
   [SecondCountableTopology G] [GaugeHaarProbability G]
-  [Measure.IsOpenPosMeasure (GaugeHaarProbability.haar G)]
 
 /-- The cluster-constructed centered Wilson state obeys the center-neutral
 perimeter lower bound throughout the positive strong-coupling interval.

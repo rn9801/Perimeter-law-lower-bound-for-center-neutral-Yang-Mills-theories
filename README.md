@@ -15,193 +15,334 @@ paths are downstream-owned, while their declarations intentionally remain in
 the existing `YangMills.*` namespaces. No corresponding commit or branch is
 required in the Strong-Coupling repository.
 
-## The results in ordinary mathematical language
+## Main results in mathematical form
 
-### Setup and relevant definitions
+### Lattice, gauge group, and representations
 
-We work on the infinite cubic lattice in dimension `d`. A gauge
-configuration assigns an element of a compact, Hausdorff, second-countable
-topological group `G` to each positively oriented edge; traversing the edge
-backwards uses the group inverse. Expectations are taken with respect to
-Borel probability measures on this configuration space. All three results
-assume a normalized Haar probability on `G`; the first two additionally
-assume that it gives positive mass to every nonempty open set.
+Let $d\in\mathbb N$, let $E_d^+$ be the positively oriented nearest-neighbor
+edges of $\mathbb Z^d$, and define the configuration space
+$$
+  \Omega_{d,G}:=G^{E_d^+}.
+$$
+Here $G$ is a compact Hausdorff second-countable topological group equipped
+with a compatible Borel structure and a chosen normalized bi-invariant Haar
+probability $\lambda_G$.
 
-The action representation `sigma` and Wilson representation `rho` are
-positive-dimensional continuous unitary matrix representations of `G`.
-The action representation determines the real Wilson plaquette potential
+**Haar full-support lemma.** For every open set $U\subseteq G$,
+$$
+  U\neq\varnothing \quad\Longrightarrow\quad \lambda_G(U)>0.
+$$
+Thus positivity on nonempty open sets is a theorem for the Haar probability
+in this setting, not an additional hypothesis in the headline theorems.
 
-```text
-Phi_sigma(g) = Re((1 / dim sigma) Tr(sigma(g))),
-```
+Let
+$$
+  \sigma:G\longrightarrow U(n),
+  \qquad
+  \rho:G\longrightarrow U(r),
+  \qquad n,r\ge 1,
+$$
+be continuous unitary representations. The Wilson plaquette potential
+associated to $\sigma$ is
+$$
+  \Phi_\sigma(g)
+  :=\operatorname{Re}\!\left(\frac{1}{n}\operatorname{Tr}\sigma(g)\right).
+$$
 
-while the Wilson representation determines the loop observable. Faithfulness
-of `sigma` means that its homomorphism is injective. Center neutrality of
-`rho` means that every element of the center of `G` acts as the identity.
-Center neutrality neither makes `rho` trivial nor requires it to be
-irreducible.
+**Definition (center neutrality).** The representation $\rho$ is
+center-neutral if
+$$
+  \operatorname{CenterNeutral}(\rho)
+  \quad:\Longleftrightarrow\quad
+  \forall z\in Z(G),\ \rho(z)=I_r.
+$$
 
-For a closed lattice path `C` and a configuration `A`, let
+Define the conjugation span of $\sigma$ by
+$$
+  \mathcal C_\sigma
+  :=\operatorname{span}_{\mathbb C}\{\sigma(g):g\in G\}
+  \subseteq M_n(\mathbb C),
+  \qquad
+  g\cdot X:=\sigma(g)X\sigma(g)^{-1}.
+$$
 
-```text
-W_rho(C; A) = (1 / dim rho) Tr(rho(Hol_A(C)))
-```
+**Screening theorem.** If $\sigma$ is injective and $\rho$ is
+center-neutral, then
+$$
+  \exists m\in\mathbb N\ \exists T:
+  \mathcal C_\sigma^{\otimes m}\longrightarrow\mathbb C^r,
+  \qquad
+  T\neq 0,
+$$
+where $T$ is complex-linear and $G$-equivariant, and $G$ acts on
+$\mathbb C^r$ through $\rho$.
 
-be the normalized Wilson observable. If `C` is the boundary of a coordinate
-rectangle based at `x0`, with distinct coordinate directions `a` and `b` and
-positive integer side lengths `R` and `T`, then it travels `R` bonds in
-direction `+a`, `T` bonds in direction `+b`, and returns along the two
-negative directions. Its perimeter is `2(R + T)`. Its expectation in a
-probability measure `mu` is the generally complex number
+### Rectangular Wilson observables
 
-```text
-W_{mu,rho}(C) = integral W_rho(C; A) dmu(A).
-```
+For $x_0\in\mathbb Z^d$, coordinate directions $a,b$, and
+$R,T\in\mathbb N$, let
+$$
+  C(x_0;a,b;R,T)
+  :=(+a)^R(+b)^T(-a)^R(-b)^T.
+$$
+When $a\neq b$ and $R,T>0$, this is a coordinate rectangle of perimeter
+$$
+  P(R,T):=2(R+T).
+$$
+For $A\in\Omega_{d,G}$, define
+$$
+  W_\rho(C;A)
+  :=\frac{1}{r}\operatorname{Tr}
+    \rho\!\left(\operatorname{Hol}_A(C)\right).
+$$
+For a probability measure $\mu$ on $\Omega_{d,G}$, set
+$$
+  \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T)
+  :=\int_{\Omega_{d,G}}W_\rho(C(x_0;a,b;R,T);A)\,d\mu(A),
+$$
+and
+$$
+  \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T)
+  :=\operatorname{Re}
+    \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T).
+$$
 
-The real expectation used in the lower bound is the real part of this
-integral. Each headline conclusion first proves that the complex integral is
-equal to that real number, and therefore really is real, before comparing it
-with a real exponential.
+### Completed free-boundary limits
 
-A local observable is a continuous complex-valued function depending on only
-finitely many edge variables. A translation-invariant completed
-free-boundary limit at coupling `beta` is a probability measure `mu` with two
-properties:
+A local observable is a continuous function
+$F:\Omega_{d,G}\to\mathbb C$ depending on finitely many edge coordinates.
+For a real plaquette potential $\Phi$, coupling $\beta\in\mathbb R$,
+direction $\tau$, and $N\in\mathbb N$, let
+$\nu_{\tau,N}^{\Phi,\beta}$ be the completed link-symmetric free-boundary
+Gibbs probability. Its site box is $[-N,N+1]$ in direction $\tau$ and
+$[-N,N]$ in every transverse direction, with identity exterior
+configuration.
 
-- For every distinguished coordinate direction and every local observable,
-  expectations along the **entire** corresponding sequence of completed
-  link-symmetric free-boundary Gibbs boxes converge to the expectation under
-  `mu`. At scale `N`, the box is `[-N,N+1]` in the distinguished direction
-  and `[-N,N]` transversely, and configurations are extended by the identity
-  outside the completed finite specification. The same `mu` must work for
-  every distinguished direction.
-- Every integer lattice translation preserves `mu`.
+**Definition (translation-invariant completed free-boundary limit).** Write
+$$
+  \operatorname{TIFBL}(\Phi,\beta;\mu)
+$$
+if $\mu$ is a probability measure on $\Omega_{d,G}$ satisfying
+$$
+  \forall \tau\ \forall F\in C_{\mathrm{loc}}(\Omega_{d,G};\mathbb C),
+  \qquad
+  \lim_{N\to\infty}
+    \int F\,d\nu_{\tau,N}^{\Phi,\beta}
+  =\int F\,d\mu,
+$$
+and
+$$
+  \forall v\in\mathbb Z^d,
+  \qquad
+  (\theta_v)_*\mu=\mu,
+$$
+where $\theta_v$ is lattice translation by $v$. The limit is taken along
+the entire sequence for every $\tau$, with the same limiting measure
+$\mu$.
 
-This is local-observable convergence, not total-variation convergence. It is
-not a subsequence definition, and it does not itself assert existence or
-uniqueness of the limiting probability.
+### Theorem 1 (completed free-boundary perimeter law)
 
-A perimeter-law lower bound with rate `c > 0` means that every such rectangle
-satisfies
+Assume $d\ge 3$, $\sigma$ is injective, and
+$\operatorname{CenterNeutral}(\rho)$. Then
+$$
+  \forall\beta\in\mathbb R,\quad
+  \beta>0\Longrightarrow
+  \exists c\in\mathbb R,\quad c>0,
+$$
+such that, for every probability measure $\mu$,
+$$
+  \operatorname{TIFBL}(\Phi_\sigma,\beta;\mu)
+  \Longrightarrow
+  \forall x_0,a,b,R,T,
+$$
+$$
+  a\neq b\ \wedge\ R>0\ \wedge\ T>0
+  \Longrightarrow
+  \left[
+    \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T)
+    =
+    \bigl(\mathcal W^{\mathbb R}_{\mu,\rho}
+      (x_0;a,b;R,T):\mathbb C\bigr)
+  \right]
+$$
+and
+$$
+  \exp\!\bigl(-c\,P(R,T)\bigr)
+  \le
+  \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T).
+$$
 
-```text
-W_{mu,rho}(C) >= exp(-c * perimeter(C)).
-```
+### Theorem 2 (centered strong-coupling state)
 
-When the rate is quantified before a measure or rectangle datum, the same
-rate works uniformly for every later choice.
+Let
+$$
+  R_{\mathrm{sc}}
+  :=\operatorname{latticeStrongCouplingRadius}
+      \bigl(d,\operatorname{bound}(\Phi_\sigma)\bigr).
+$$
+Assume $d\ge 3$, $\sigma$ is injective, and
+$\operatorname{CenterNeutral}(\rho)$. For every $\beta>0$, there exists
+$c>0$ such that, for every radius certificate
+$h_\beta:|\beta|<R_{\mathrm{sc}}$, the cluster-constructed centered
+probability
+$$
+  \mu_{\beta,h_\beta}^{\mathrm{cent}}
+  :=
+  \operatorname{centeredInfiniteVolumeProbability}
+    \bigl(\eta_N\equiv\mathbf 1,\Phi_\sigma,\beta,h_\beta\bigr)
+$$
+satisfies, for every $x_0$, every $a\neq b$, and every $R,T>0$,
+$$
+  \mathcal W^{\mathbb C}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
+    (x_0;a,b;R,T)
+  =
+  \bigl(
+    \mathcal W^{\mathbb R}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
+      (x_0;a,b;R,T):\mathbb C
+  \bigr)
+$$
+and
+$$
+  \exp\!\bigl(-c\,P(R,T)\bigr)
+  \le
+  \mathcal W^{\mathbb R}_{\mu_{\beta,h_\beta}^{\mathrm{cent}},\rho}
+    (x_0;a,b;R,T).
+$$
 
-For the model-neutral theorem, the conjugation span of `sigma` is the complex
-linear span of the matrices `sigma(g)`, with `G` acting by matrix
-conjugation. A screening intertwiner is a complex-linear, equivariant map
-from some tensor power of this conjugation representation to `rho`. The
-project feeds holonomies of a fixed finite comb of local loops through this
-map, then scales the result by a configuration-independent factor obtained
-from a uniform norm bound, to obtain a bounded local `rho`-valued endpoint
-field with the required gauge covariance.
+### Model-neutral reflection data
 
-The direct one-link gluelump observable places this endpoint on one side of a
-distinguished bond, its literal link-reflected copy on the other side,
-parallel-transports across the bond, and takes the Hermitian endpoint
-contraction. Its one-link expectation means the real part of the resulting
-integral.
+Let $\vartheta$ be a site, link, diagonal, or antidiagonal lattice
+reflection and let $\mathcal A_\vartheta^+$ be its positive-half algebra of
+local observables. For link reflections, restrict
+$\mathcal A_\vartheta^+$ to gauge-invariant observables. Define
+$$
+  \langle F,H\rangle_{\vartheta,\mu}
+  :=\int_{\Omega_{d,G}}
+    \overline{F(\vartheta A)}\,H(A)\,d\mu(A).
+$$
 
-A reflection-positive state is translation invariant and invariant under
-reflecting any coordinate through zero. At every affine site, link,
-diagonal, and antidiagonal cut it supplies positivity and
-Cauchy--Schwarz; diagonal and antidiagonal pairings are also Hermitian. The
-ordinary link fields apply only to gauge-invariant positive-half observables,
-which is why the model-neutral theorem uses separate crossing-link
-interfaces. One supplies the corresponding reality, positivity, and mixed
-Cauchy--Schwarz estimates for the whole odd screened-line family, and the
-other supplies them for the half-integer rectangle cuts. Rectangle axis-swap
-invariance says that transposing coordinate labels leaves the origin-based
-rectangular Wilson integrals unchanged.
+**Definition (reflection-positive state).**
+$\operatorname{RPS}(\mu)$ means that $\mu$ is invariant under every
+lattice translation and every coordinate reflection through the origin, and
+that at every affine site and link cut, and every diagonal and antidiagonal
+cut with distinct axes,
+$$
+  \operatorname{Im}\langle F,F\rangle_{\vartheta,\mu}=0,
+  \qquad
+  \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\ge 0,
+$$
+and
+$$
+  |\langle F,H\rangle_{\vartheta,\mu}|^2
+  \le
+  \operatorname{Re}\langle F,F\rangle_{\vartheta,\mu}\,
+  \operatorname{Re}\langle H,H\rangle_{\vartheta,\mu}
+$$
+for all $F,H\in\mathcal A_\vartheta^+$. For diagonal and antidiagonal cuts
+with distinct axes, it additionally requires
+$$
+  \overline{\langle H,F\rangle_{\vartheta,\mu}}
+  =
+  \langle F,H\rangle_{\vartheta,\mu}.
+$$
 
-Finally, the centered strong-coupling probability is the infinite-volume
-Wilson probability constructed by the cluster expansion with constant
-identity exterior data. The certified lattice strong-coupling radius is the
-positive convergence radius supplied by that construction.
+Fix $d\ge 3$, a tensor degree $m$, and an intertwiner
+$$
+  T:\mathcal C_\sigma^{\otimes m}\longrightarrow\mathbb C^r.
+$$
+For $\ell,s\in\mathbb N$, let $X_\ell$, of physical length $2\ell+1$,
+and $X_{\ell,s}^{\mathrm{mix}}$, of mixed physical length $\ell+s+1$, be
+the canonical origin-based, link-centered screened-line observables
+determined by $(d,\sigma,\rho,T)$. Define
+$\operatorname{LineLink}(\mu;d,\sigma,\rho,T)$ by
+$$
+  \forall\ell,\qquad
+  \operatorname{Im}\mathbb E_\mu[X_\ell]=0,
+  \qquad
+  \operatorname{Re}\mathbb E_\mu[X_\ell]\ge 0,
+$$
+and
+$$
+  \forall\ell,s,\qquad
+  |\mathbb E_\mu[X_{\ell,s}^{\mathrm{mix}}]|^2
+  \le
+  \operatorname{Re}\mathbb E_\mu[X_\ell]\,
+  \operatorname{Re}\mathbb E_\mu[X_s].
+$$
 
-### Headline theorem 1: completed free-boundary limits
+Let $a_*$ be the canonical arm axis, $b_*$ the canonical first transverse
+axis, and, for $u,v,t\in\mathbb N$, let $Y_{u,v,t}$ be the canonical
+link-closed coordinate-cap observable in the $(a_*,b_*)$-plane. Define
+$\operatorname{RectLink}(\mu;\rho;a_*,b_*)$ by
+$$
+  \forall u,t,\qquad
+  \operatorname{Im}\mathbb E_\mu[Y_{u,u,t}]=0,
+  \qquad
+  \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\ge 0,
+$$
+and
+$$
+  \forall u,v,t,\qquad
+  |\mathbb E_\mu[Y_{u,v,t}]|^2
+  \le
+  \operatorname{Re}\mathbb E_\mu[Y_{u,u,t}]\,
+  \operatorname{Re}\mathbb E_\mu[Y_{v,v,t}].
+$$
 
-Fix a dimension of at least three, a faithful continuous unitary action
-representation `sigma`, and a center-neutral continuous unitary Wilson
-representation `rho`. For every positive real coupling `beta`, there is a
-positive rate `c` such that the following holds: for every
-translation-invariant completed free-boundary limit `mu` of the
-`sigma`-Wilson action at `beta`, and for every coordinate rectangle with
-arbitrary basepoint, distinct coordinate axes, and positive side lengths,
-the normalized `rho`-Wilson expectation is real and satisfies
+Finally, define $\operatorname{SwapInv}(\mu,\rho)$ by
+$$
+  \mathcal W^{\mathbb C}_{\mu,\rho}
+    \bigl(0;\pi(a),\pi(b);R,T\bigr)
+  =
+  \mathcal W^{\mathbb C}_{\mu,\rho}(0;a,b;R,T)
+$$
+for every transposition $\pi$ of two coordinate labels and all
+$a,b,R,T$.
 
-```text
-W_{mu,rho}(C) >= exp(-c * 2(R + T)).
-```
+Let $\mathcal O^{\mathrm{straight}}_{T,k}$ be the canonical direct
+screened-line observable of physical length $k$, based at the origin in
+the arm direction, and define
+$$
+  L_k(\mu;d,\sigma,\rho,T)
+  :=
+  \operatorname{Re}\int_{\Omega_{d,G}}
+    \mathcal O^{\mathrm{straight}}_{T,k}(A)\,d\mu(A).
+$$
+For $k=1$, this is the direct reflected one-link gluelump expectation.
 
-The quantifier order is `beta`, then `c`, then `mu`, then the rectangle data.
-Thus, within the fixed ambient group, `c` may depend on `d`, `sigma`, `rho`,
-and `beta`, but it is independent of the limiting measure, rectangle
-location and orientation, and both side lengths. This theorem has no
-small-coupling restriction. Outside a regime where a suitable limit has been
-constructed, it is conditional on supplying one. No irreducibility
-hypothesis is imposed on `rho`.
+### Theorem 3 (model-neutral propagation from one link)
 
-### Headline theorem 2: the concrete strong-coupling state
-
-Under the same dimension, faithfulness, and center-neutrality assumptions,
-fix any positive real coupling `beta`. There is a positive rate `c` such that,
-whenever the absolute value of `beta` is smaller than the certified lattice
-strong-coupling radius, the cluster-constructed centered infinite-volume
-Wilson probability has real normalized `rho`-Wilson rectangle expectations
-and satisfies
-
-```text
-W_{mu_beta,rho}(C) >= exp(-c * 2(R + T))
-```
-
-for every basepoint, every ordered pair of distinct coordinate axes, and all
-positive side lengths. The rate is chosen after `beta` but before the
-certificate that `beta` lies inside the radius and before all rectangle data;
-it therefore depends only on `d`, `sigma`, `rho`, and `beta`. Unlike the
-first result, this theorem supplies the limiting probability rather than
-assuming it: the strong-coupling infrastructure proves that this centered
-probability is a translation-invariant completed free-boundary limit.
-
-### Headline theorem 3: model-neutral propagation from one link
-
-Fix a probability measure `mu` on lattice gauge configurations in dimension
-at least three, continuous unitary representations `sigma` and `rho`, a
-tensor degree, and a screening intertwiner from that tensor power of the
-conjugation span of `sigma` to `rho`. Assume that `mu` supplies the full
-reflection-positive-state interface, the crossing-link positivity and
-Cauchy--Schwarz interface for the whole odd screened-line family, the
-corresponding half-integer-cut interface for canonical rectangles, and
-invariance of rectangle expectations under coordinate-axis swaps. Finally,
-assume that some `q` with `0 < q <= 1` is no larger than the direct one-link
-gluelump expectation.
-
-Then there is a positive rate `c` for which every coordinate rectangle with
-positive integer side lengths, at every basepoint and in every pair of
-distinct coordinate directions, has a real normalized `rho`-Wilson
-expectation bounded below by
-
-```text
-exp(-c * perimeter).
-```
-
-Here `mu`, all reflection and screening data, and `q` are fixed before `c` is
-chosen, so the conclusion is uniform over the rectangle data but not over
-different states. This theorem assumes neither faithfulness of `sigma` nor
-center neutrality or irreducibility of `rho`; it also does not explicitly
-assume that the intertwiner is nonzero, because the positive seed supplies
-the operational nontriviality. It contains no coupling, Gibbs-measure,
-finite-volume, thermodynamic-limit, cluster-expansion, or strong-coupling-
-radius hypothesis. In the proof of the first result, the center-neutral
-screening construction supplies the intertwiner, while the completed-limit
-adapters supply the positivity and limit inputs. That proof uses the
-fixed-rate form of the same propagation machinery to retain uniformity over
-`mu`. The second result then instantiates the first with the
-cluster-constructed state.
+Fix $d\ge 3$, a probability measure $\mu$ on $\Omega_{d,G}$,
+representations $\sigma,\rho$, a tensor degree $m$, an intertwiner
+$T:\mathcal C_\sigma^{\otimes m}\to\mathbb C^r$, and $q\in\mathbb R$.
+Assume
+$$
+  \operatorname{RPS}(\mu),\qquad
+  \operatorname{LineLink}(\mu;d,\sigma,\rho,T),\qquad
+  \operatorname{RectLink}(\mu;\rho;a_*,b_*),\qquad
+  \operatorname{SwapInv}(\mu,\rho),
+$$
+and
+$$
+  0<q\le 1,
+  \qquad
+  q\le L_1(\mu;d,\sigma,\rho,T).
+$$
+Then there exists $c>0$ such that, for every $x_0$, every $a\neq b$,
+and every $R,S\in\mathbb N_{>0}$,
+$$
+  \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,S)
+  =
+  \bigl(
+    \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,S):\mathbb C
+  \bigr)
+$$
+and
+$$
+  \exp\!\bigl(-c\,P(R,S)\bigr)
+  \le
+  \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,S).
+$$
 
 ## Exact Lean statements and definitions
 
@@ -516,12 +657,14 @@ rejects nonstandard axioms on the neutral critical path; CI also rejects proof
 placeholders, source-level `axiom` declarations, and unsafe declarations.
 
 This does not mean that the mathematical statements have no hypotheses. The
-compact-group, representation, dimension, coupling, positivity, and limit
-hypotheses are explicit in the theorem signatures above. Some reusable
-auxiliary theorems likewise take explicit data or proposition interfaces as
-arguments. None is installed globally or hidden as an unproved internal
-assumption. See [the mathematical assumptions](docs/MATHEMATICAL_ASSUMPTIONS.md)
-for the complete accounting.
+compact-group, representation, dimension, positive-coupling or seed, and
+limit hypotheses are explicit in the theorem signatures above. Full support
+of normalized Haar measure is derived from those ambient compact-group and
+Haar-probability hypotheses. Some reusable auxiliary theorems likewise take
+explicit data or proposition interfaces as arguments. None is installed
+globally or hidden as an unproved internal assumption. See
+[the mathematical assumptions](docs/MATHEMATICAL_ASSUMPTIONS.md) for the
+complete accounting.
 
 ## Build
 

@@ -88,7 +88,6 @@ def CenterNeutralInfiniteVolumePerimeterLaw
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     [T2Space G] [MeasurableSpace G] [BorelSpace G]
     [SecondCountableTopology G] [GaugeHaarProbability G]
-    [Measure.IsOpenPosMeasure (GaugeHaarProbability.haar G)]
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r) : Prop :=
   3 ≤ d →

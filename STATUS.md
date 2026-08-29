@@ -8,11 +8,17 @@ uniform one-link positivity, physical-length reflection propagation,
 collar-aware corner closure, arbitrary rectangle transport, the public
 completed-limit theorem, and the concrete strong-coupling corollary.
 
-Both headline theorems now assume only that the Wilson representation `rho`
-is center neutral; irreducibility was removed because the proof never uses it.
-The result therefore applies to reducible center-neutral representations as
-well. Irreducibility remains only in the separate converse characterization
-of center neutrality by existence of a nonzero screening intertwiner.
+Both center-neutral headline theorems now assume only that the Wilson
+representation `rho` is center neutral; irreducibility was removed because
+the proof never uses it. The result therefore applies to reducible
+center-neutral representations as well. Irreducibility remains only in the
+separate converse characterization of center neutrality by existence of a
+nonzero screening intertwiner.
+
+The headline declarations also no longer bind Haar positivity on nonempty
+open sets as a separate typeclass hypothesis. Under the existing compact,
+Borel, second-countable, normalized left-invariant Haar assumptions, Mathlib
+synthesizes this property. A binder-free regression check records that fact.
 
 The operational endpoint has now been simplified to use a primal screening
 map
@@ -51,13 +57,14 @@ modules, and 10 focused regression modules.
 
 ## Current milestone
 
-The primal-screening migration passes:
+The current public API and documentation milestone passes:
 
 - focused narrow builds through the endpoint, one-link, straight, corner,
   public infinite-volume, and strong-coupling layers;
+- the binder-free normalized-Haar full-support regression;
 - `-DautoImplicit=false` checks on the critical representation, endpoint,
   propagation, and both headline sources;
-- the production-plus-regression aggregate build (8,707 jobs);
+- the production-plus-regression aggregate build (8,705 jobs);
 - the default `lake build` (8,695 jobs); and
 - focused axiom audits, including the primal target-type guard and the two
   anti-diagonal identities.
@@ -69,11 +76,12 @@ The README now records this repository-wide proof-integrity audit and
 distinguishes the absence of hidden internal assumptions from the explicit
 mathematical hypotheses in the theorem signatures.
 
-The README now also presents a standalone ordinary-language formulation
-before any Lean statements. It defines the normalized Wilson rectangle,
-center neutrality, the full-sequence completed free-boundary limit,
-screening and one-link data, and the reflection interfaces, then states all
-three headline theorems with their exact uniformity and quantifier scope.
+The README now presents a paper-style mathematical formulation before any
+Lean statements. It gives precise LaTeX definitions of the normalized Wilson
+rectangle, center neutrality, the full-sequence completed free-boundary
+limit, screening and one-link data, and the reflection interfaces, followed
+by the three headline theorems with their exact quantifier scope and no proof
+discussion.
 
 The README now presents the exact Lean signatures of the main
 completed-limit theorem, its concrete strong-coupling corollary, and the
@@ -95,7 +103,7 @@ same repository name; the existing Lake package and Lean module names remain
 stable. The committed Lake manifest resolves the unchanged upstream `main`
 branch to
 `bc7383d023f0c58a16312764a32422248aa42ebe`. A clean production-and-regression
-build against that dependency completed successfully with 8,708 jobs.
+build against that dependency completed successfully with 8,705 jobs.
 
 There is no remaining mathematical proof or repository-extraction gap in the
 stated theorem. If a future upstream `main` absorbs an overlaid declaration,
