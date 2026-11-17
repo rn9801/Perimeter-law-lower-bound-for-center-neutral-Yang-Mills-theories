@@ -13,6 +13,6 @@ import GluelumpPerimeterLaw.StrongCouplingPerimeterLaw
 
 This is the public root of the standalone formalization.  It exports the
 model-neutral theorem from a positive one-link gluelump seed, the theorem for
-arbitrary translation-invariant completed-free-boundary limits, and the
+arbitrary translation-invariant ordinary free-boundary limits, and the
 concrete corollary for the strong-coupling infinite-volume Wilson state.
 -/

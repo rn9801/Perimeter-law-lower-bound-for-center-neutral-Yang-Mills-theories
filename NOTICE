@@ -8,10 +8,13 @@ under Apache-2.0.  Extracted files retain their original copyright and author
 notices.  Module paths were renamed from YangMills.Gluelump.* to
 GluelumpPerimeterLaw.*; declaration namespaces were intentionally preserved.
 
-This repository also carries 28 additive compatibility modules developed in
-the same source project: 19 extensions of files present on the dependency's
+The initial extraction included 28 additive compatibility modules developed
+in the same source project: 19 extensions of files present on the dependency's
 main branch and nine new reflection/thermodynamic-limit modules. They are
 installed under GluelumpPerimeterLaw.Upstream.* to avoid claiming upstream
 module paths, while their YangMills.* declaration namespaces are preserved
 for source compatibility. The Strong-Coupling dependency itself is not
 patched or modified by this package.
+
+The paper-alignment update adds ordinary free-boundary box and paper-coupling
+adapters, bringing the compatibility overlay to 30 modules.

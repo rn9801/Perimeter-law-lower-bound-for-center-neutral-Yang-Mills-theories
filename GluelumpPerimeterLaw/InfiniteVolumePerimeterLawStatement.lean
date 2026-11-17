@@ -6,28 +6,20 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.RepresentationTheory.CenterScreening
 import YangMills.Lattice.Plaquette
-import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.PaperFreeBoundary
 import GluelumpPerimeterLaw.Upstream.Wilson.Loop
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 /-!
-# Target statement: center-neutral perimeter law in a thermodynamic limit
+# The paper's main perimeter-law statement
 
-This file records the human-facing gluelump perimeter-law target for a
-translation-invariant infinite-volume limit of completed free-boundary boxes.
-It contains definitions, culminating in the proposition
-`CenterNeutralInfiniteVolumePerimeterLaw`; it does not postulate that
-proposition as an axiom.
+The headline chooses one constant before the positive coupling, the common
+translation-invariant ordinary free-boundary limit, and the rectangle.
+`beta` is in the paper's unnormalized-character convention. The finite
+Wilson potential is normalized, so its internal coupling is `n * beta`.
 
-The thermodynamic-limit hypothesis is explicit: every local observable must
-converge from each coordinate-oriented family of completed reflection boxes,
-and the limiting probability must be translation invariant.  The first part
-lets all reflection inequalities pass to one common state; the second lets
-the propagation argument move its local reflected geometries.
-
-The order of quantifiers records the allowed dependencies.  At fixed positive
-coupling, the positive perimeter rate depends only on the dimension and the
-action and Wilson representations.  It is independent of the chosen limiting
-probability, rectangle location, coordinate plane, and side lengths.
+The older fixed-coupling qualitative proposition is retained under an
+explicitly qualitative name for downstream compatibility.
 -/
 
 namespace YangMills.Gluelump.InfiniteVolume
@@ -73,17 +65,9 @@ def rectangleWilsonExpectation {d r : ℕ} {G : Type u}
     (x0 : Site d) (a b : Fin d) (R T : ℕ) : ℝ :=
   (complexRectangleWilsonExpectation mu rho x0 a b R T).re
 
-/-- **Main target proposition: infinite-volume center-neutral perimeter law.**
-
-For a faithful action representation `sigma` and a center-neutral Wilson
-representation `rho` in dimension at least three, every
-translation-invariant completed-free-boundary thermodynamic limit satisfies a
-uniform perimeter lower bound at positive coupling.
-
-The proof is `centerNeutralInfiniteVolumePerimeterLaw` in
-`YangMills.Gluelump.InfiniteVolumePerimeterLaw`; this definition keeps the
-human-facing quantifier order and conclusion separately inspectable. -/
-def CenterNeutralInfiniteVolumePerimeterLaw
+/-- The fixed-coupling qualitative consequence in the normalized-potential
+coupling convention, retained for the original downstream adapter. -/
+def CenterNeutralQualitativePerimeterLaw
     {d n r : ℕ} {G : Type u}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     [T2Space G] [MeasurableSpace G] [BorelSpace G]
@@ -104,6 +88,36 @@ def CenterNeutralInfiniteVolumePerimeterLaw
                   (rectangleWilsonExpectation mu rho x0 a b R T : ℂ) ∧
                 Real.exp (-rate * (2 * (R + T) : ℕ)) ≤
                   rectangleWilsonExpectation mu rho x0 a b R T
+
+/-- The coupling-uniform perimeter statement in the paper's action
+normalization. The coefficient is chosen before `beta`; the normalized
+Wilson potential uses coupling `n * beta`. -/
+def CenterNeutralUniformCouplingPerimeterLaw
+    {d n r : ℕ} {G : Type u}
+    [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
+    [T2Space G] [MeasurableSpace G] [BorelSpace G]
+    [SecondCountableTopology G] [GaugeHaarProbability G]
+    (sigma : ContinuousUnitaryRepData G n)
+    (rho : ContinuousUnitaryRepData G r) : Prop :=
+  3 ≤ d →
+  Function.Injective sigma.ρ →
+  CenterNeutral (asRepresentation rho) →
+  ∃ C : ℝ, 0 < C ∧
+    ∀ beta : ℝ, 0 < beta →
+      ∀ mu : ProbabilityMeasure (Configuration d G),
+        IsTranslationInvariantPaperFreeBoundaryLimit sigma beta mu →
+          ∀ (x0 : Site d) (a b : Fin d) (R T : ℕ),
+            a ≠ b → 0 < R → 0 < T →
+              complexRectangleWilsonExpectation mu rho x0 a b R T =
+                  (rectangleWilsonExpectation mu rho x0 a b R T : ℂ) ∧
+                Real.exp (-C * (1 + beta + |Real.log beta|) *
+                    (2 * (R + T) : ℕ)) ≤
+                  rectangleWilsonExpectation mu rho x0 a b R T
+
+/-- The headline theorem of the paper: one coefficient works for every
+positive paper coupling and every rectangle in any common local limit. -/
+abbrev CenterNeutralInfiniteVolumePerimeterLaw :=
+  @CenterNeutralUniformCouplingPerimeterLaw
 
 end
 

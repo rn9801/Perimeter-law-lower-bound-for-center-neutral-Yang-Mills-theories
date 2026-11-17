@@ -35,8 +35,7 @@ not irreducibility of the Wilson representation. -/
       (d := d) sigma rho)
     (hd : 3 ≤ d) (hsigma : Function.Injective sigma.ρ)
     (hcenter : CenterNeutral (asRepresentation rho))
-    (beta : ℝ) (hbeta : 0 < beta) =>
-  hmain hd hsigma hcenter beta hbeta
+    => hmain hd hsigma hcenter
 
 end
 

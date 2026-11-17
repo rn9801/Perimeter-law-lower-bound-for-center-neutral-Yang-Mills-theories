@@ -8,6 +8,7 @@ import GluelumpPerimeterLaw.Propagation.SiteReflectionFamily
 import GluelumpPerimeterLaw.Propagation.AntiDiagonalClosing
 import GluelumpPerimeterLaw.Propagation.ReflectedLineMixed
 import GluelumpPerimeterLaw.Propagation.RectangleReflectionCore
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryBoxes
 
 /-!
 # Coordinate-reflection inequalities for Wilson rectangles
@@ -390,8 +391,8 @@ theorem reflectedCapMatrix_conj_linkTheta_supportedInLinkPositiveHalf
   rw [edgeSupport_reverse, reflectedIncomingPath_support_image_linkReflect]
   exact hp
 
-/-- The two-crossing gauge-fixed construction persists along the completed
-link-symmetric exhaustion and supplies the missing half-integer cap
+/-- The two-crossing gauge-fixed construction persists along the ordinary
+free-boundary exhaustion and supplies the missing half-integer cap
 Cauchy--Schwarz certificate. -/
 theorem eventuallyLinkCrossingFamilyCauchySchwarz_linkClosedCaps
     (rho : ContinuousUnitaryRepData G n)
@@ -414,11 +415,11 @@ theorem eventuallyLinkCrossingFamilyCauchySchwarz_linkClosedCaps
     reflectedCapMatrix_conj_linkTheta_supportedInLinkPositiveHalf
       rho τ 0 z hz q hq a
   filter_upwards
-      [support_subset_linkSymmetricSpecification_eventually τ OFH,
-       support_subset_linkSymmetricSpecification_eventually τ OFF,
-       support_subset_linkSymmetricSpecification_eventually τ OHH]
+      [support_subset_freeBoundarySpecification_eventually τ OFH,
+       support_subset_freeBoundarySpecification_eventually τ OFF,
+       support_subset_freeBoundarySpecification_eventually τ OHH]
       with N hFHdyn hFFdyn hHHdyn
-  let Λ := linkSymmetricSpecification G d N τ
+  let Λ := freeBoundarySpecification G d N τ
   have hbottom : crossingPositiveEdge z τ ∈ Λ.linkCrossingEdges τ 0 := by
     rw [FiniteSpecification.linkCrossingEdges, Finset.mem_filter]
     exact ⟨hFHdyn (crossingPositiveEdge_mem_linkClosedCapsObservable_support
@@ -428,20 +429,20 @@ theorem eventuallyLinkCrossingFamilyCauchySchwarz_linkClosedCaps
     exact ⟨hFHdyn (topCrossingPositiveEdge_mem_linkClosedCapsObservable_support
       rho τ 0 z w hz hw p q rfl rfl), rfl, hw⟩
   let F := fun a => linkRestrictNegativeObservable Λ τ 0
-    (linkSymmetricSpecification_linkSymmetric N τ)
+    (freeBoundarySpecification_linkSymmetric N τ)
     (reflectedCapMatrixComponent rho τ 0 z hz p a)
   let H := fun a => linkRestrictNegativeObservable Λ τ 0
-    (linkSymmetricSpecification_linkSymmetric N τ)
+    (freeBoundarySpecification_linkSymmetric N τ)
     (reflectedCapMatrixComponent rho τ 0 z hz q a)
   refine ⟨F, H, ?_, ?_, ?_⟩
   · exact linkClosedCaps_isGaugeFixedLinkFamilyPairing
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho z w hz hw p q rfl rfl hFHdyn hbottom htop hinp hinq hq
   · exact linkClosedCaps_isGaugeFixedLinkFamilyPairing
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho z w hz hw p p rfl rfl hFFdyn hbottom htop hinp hinp hp
   · exact linkClosedCaps_isGaugeFixedLinkFamilyPairing
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho z w hz hw q q rfl rfl hHHdyn hbottom htop hinq hinq hq
 
 /-- A link-reflection self-closure has nonnegative real Wilson expectation;

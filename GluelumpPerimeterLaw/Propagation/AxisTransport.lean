@@ -4,7 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import Mathlib
+import Mathlib.Data.Complex.Basic
+import Mathlib.Logic.Equiv.Basic
 
 /-!
 # Abstract transport between ordered coordinate-axis pairs

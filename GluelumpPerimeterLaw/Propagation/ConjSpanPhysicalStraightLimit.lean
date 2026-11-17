@@ -13,7 +13,7 @@ import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositi
 # Physical straight-line propagation in a free-boundary limit
 
 This is the thin strong-coupling adapter for the measure-parametric
-propagation theorem.  The completed-free-boundary hypothesis supplies both
+propagation theorem.  The ordinary free-boundary hypothesis supplies both
 the neutral reflection-positive state and the two gauge-fixed crossing-family
 callbacks.  The final theorem then combines the uniform center-neutral
 one-link lower bound with reflection propagation.
@@ -36,7 +36,7 @@ variable {d m n r : ℕ} {G : Type u}
 
 namespace StrongCoupling
 
-/-- Every nonnegative-coupling completed-free-boundary limit supplies the
+/-- Every nonnegative-coupling ordinary free-boundary limit supplies the
 gauge-fixed crossing-family consequences for the odd physical lengths. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.conjSpanLinkReflectionData
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
@@ -66,7 +66,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.conjSpanLinkReflectionData
         hd sigma rho T z hz l s)
 
 /-- A positive rate below the direct one-link expectation propagates in any
-completed-free-boundary limit. -/
+ordinary free-boundary limit. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.conjSpanPhysicalStraightExpectation_rate_power_le
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)
@@ -98,7 +98,7 @@ namespace Gluelump.Propagation
 Center neutrality and faithfulness choose one tensor degree, one nonzero
 screening intertwiner, and one positive rate before the limiting probability
 measure is quantified.  The same rate then bounds every positive physical
-length in every completed-free-boundary limit at the fixed positive
+length in every ordinary free-boundary limit at the fixed positive
 coupling. -/
 theorem centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
     (hd : 3 ≤ d)

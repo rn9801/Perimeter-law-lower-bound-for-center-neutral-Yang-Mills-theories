@@ -2,15 +2,40 @@
 
 Updated: 2026-11-17
 
-## Paper and Lean comparison
+## Paper-aligned headline (complete)
 
-Recorded a source-level theorem and proof comparison in
-`docs/PAPER_LEAN_COMPARISON.md`, including coupling normalization, finite-volume
-packaging, the quantitative statement, and the collar-aware corner argument.
-Updated the manuscript's AI acknowledgment to describe mixed author/LLM writing
-and the author's review and responsibility. Rebuilt the PDF. No Lean sources
-changed; fresh Lean validation remains blocked by missing dependency artifacts
-and the Mathlib cache network restriction.
+The public headline now proves the paper's exact uniform-coupling conclusion:
+one `C > 0` precedes every positive paper coupling, common translation-invariant
+ordinary free-boundary limit, and rectangle. The finite law uses internal edges
+and contained plaquettes; `n * beta` is proved to give the paper's character-sum
+normalization. Common-limit uniqueness is derived from local observables.
+
+The proof uses the short comb direction in the rectangle plane, establishes
+both diagonal corner inequalities at every positive length, and compares with
+the square of side `max(R,T)`. The fixed screening data yield an explicit
+monomial/exponential seed and the `1 + beta + |log beta|` coefficient. The
+strong-coupling corollary now specializes this strengthened headline.
+Conservative one-edge numerical constants and implementation details are
+recorded in `docs/PAPER_LEAN_COMPARISON.md`; the manuscript is unchanged.
+
+Validation completed with source-built dependencies:
+
+- narrow headline build: 3573 jobs;
+- public package build: 3577 jobs;
+- `GluelumpPerimeterLawTests`: 3587 jobs;
+- quantifier-order, all-length corner, neutral-import and standard-axiom guards;
+- source placeholder/unsafe guards, overlay/module counts, and whitespace checks.
+
+The headline uses only `propext`, `Classical.choice`, and `Quot.sound`. The
+single direct dependency and locked revision are unchanged.
+
+## Initial paper and Lean review
+
+The earlier audit identified the qualitative headline's coupling quantifiers,
+finite-law convention, and long-axis/cofinal corner geometry as differences.
+The alignment milestone above resolves these headline differences and
+supersedes that audit. The earlier manuscript edit clarified mixed author/LLM
+writing and the author's review and responsibility; its PDF was rebuilt.
 
 ## Targeted manuscript revisions
 
@@ -44,8 +69,8 @@ The illustrated manuscript builds successfully with `latexmk` and BibTeX
 The center-neutral infinite-volume gluelump perimeter-law lower bound is
 proved.  The standalone package contains the direct conjugation-span endpoint,
 uniform one-link positivity, physical-length reflection propagation,
-collar-aware corner closure, arbitrary rectangle transport, the public
-completed-limit theorem, and the concrete strong-coupling corollary.
+all-length short-axis corner closure, arbitrary rectangle transport, the
+paper-convention ordinary-limit theorem, and the strong-coupling corollary.
 
 Both center-neutral headline theorems now assume only that the Wilson
 representation `rho` is center neutral; irreducibility was removed because

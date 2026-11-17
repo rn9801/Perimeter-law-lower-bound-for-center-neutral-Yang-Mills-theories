@@ -12,6 +12,8 @@ import GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectation
 import GluelumpPerimeterLaw.Propagation.CanonicalRectanglePerimeter
 import GluelumpPerimeterLaw.Propagation.CanonicalRectangleTransport
 import GluelumpPerimeterLaw.Propagation.CofinalRectangleCertificate
+import GluelumpPerimeterLaw.Propagation.PaperCorner
+import GluelumpPerimeterLaw.Propagation.CouplingRate
 import GluelumpPerimeterLaw.Propagation.ConjSpanCornerExpectation
 import GluelumpPerimeterLaw.Propagation.ConjSpanPerimeterLaw
 import GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightExpectation
@@ -50,6 +52,9 @@ private def neutralCriticalPathRoots : Array Name := #[
   `GluelumpPerimeterLaw.Propagation.CanonicalRectanglePerimeter,
   `GluelumpPerimeterLaw.Propagation.CanonicalRectangleTransport,
   `GluelumpPerimeterLaw.Propagation.CofinalRectangleCertificate,
+  `GluelumpPerimeterLaw.Propagation.PaperCorner,
+  `GluelumpPerimeterLaw.Propagation.PaperCornerEndpoints,
+  `GluelumpPerimeterLaw.Propagation.CouplingRate,
   `GluelumpPerimeterLaw.Propagation.ConjSpanCornerExpectation,
   `GluelumpPerimeterLaw.Propagation.ConjSpanPerimeterLaw,
   `GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightExpectation,
@@ -156,3 +161,12 @@ assert_only_standard_axioms
   rectangleBoundary_power_lower_bound_of_canonical
 assert_only_standard_axioms
   rectangleBoundary_exp_lower_bound_of_canonical
+
+assert_only_standard_axioms
+  paperPhysicalStraightExpectation_sq_le_cornerBent
+assert_only_standard_axioms
+  paperCornerBent_sq_div_dimension_le_square
+assert_only_standard_axioms
+  paperRectangle_lower_bound_of_line_rate
+assert_only_standard_axioms
+  exp_neg_couplingWeight_rectangle_le_square

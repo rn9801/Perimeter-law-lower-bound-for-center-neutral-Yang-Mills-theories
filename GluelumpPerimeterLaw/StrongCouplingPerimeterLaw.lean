@@ -9,8 +9,8 @@ import GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw
 /-!
 # Strong-coupling specialization of the center-neutral perimeter law
 
-This module is a one-way application adapter.  It specializes the abstract
-completed-free-boundary theorem to the cluster-constructed centered
+This module is a one-way application adapter.  It specializes the paper-convention
+ordinary free-boundary headline theorem to the cluster-constructed centered
 infinite-volume Wilson probability.  The neutral reflection-propagation
 chain does not import this module.
 -/
@@ -65,18 +65,29 @@ theorem centeredInfiniteVolume_centerNeutralPerimeterLaw
                     (fun _ ↦ (1 : Configuration d G))
                     sigma.wilsonPotential beta hbeta)
                   rho x₀ a b R T := by
-  obtain ⟨rate, hrate, hbound⟩ :=
-    centerNeutralInfiniteVolumePerimeterLaw sigma rho
-      hd hsigma hcenter beta hbetaPos
+  have hn : (0 : ℝ) < n := by exact_mod_cast sigma.dimension_pos
+  let paperBeta := beta / (n : ℝ)
+  have hpaperBeta : 0 < paperBeta := div_pos hbetaPos hn
+  obtain ⟨C, hC, hbound⟩ :=
+    centerNeutralInfiniteVolumePerimeterLaw sigma rho hd hsigma hcenter
+  let rate := C * (1 + paperBeta + |Real.log paperBeta|)
+  have hrate : 0 < rate := by
+    dsimp [rate]
+    positivity
   refine ⟨rate, hrate, ?_⟩
   intro hbeta x₀ a b R T hab hR hT
-  exact hbound
-    (centeredInfiniteVolumeProbability
-      (fun _ ↦ (1 : Configuration d G))
-      sigma.wilsonPotential beta hbeta)
-    (wilsonStrongCoupling_isTranslationInvariantFreeBoundaryLimit
-      sigma beta hbeta)
-    x₀ a b R T hab hR hT
+  let mu := centeredInfiniteVolumeProbability
+    (fun _ ↦ (1 : Configuration d G)) sigma.wilsonPotential beta hbeta
+  have hscale : (n : ℝ) * paperBeta = beta := by
+    dsimp [paperBeta]
+    field_simp [hn.ne']
+  have hlimit : IsTranslationInvariantPaperFreeBoundaryLimit sigma paperBeta mu := by
+    change IsTranslationInvariantFreeBoundaryLimit sigma.wilsonPotential
+      ((n : ℝ) * paperBeta) mu
+    rw [hscale]
+    exact wilsonStrongCoupling_isTranslationInvariantFreeBoundaryLimit sigma beta hbeta
+  simpa only [rate, neg_mul] using
+    hbound paperBeta hpaperBeta mu hlimit x₀ a b R T hab hR hT
 
 end
 

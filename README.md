@@ -8,9 +8,9 @@ The package has exactly one direct Lake dependency: the unchanged `main`
 branch of that repository. Mathlib and the established lattice, gauge,
 Wilson, and strong-coupling foundations arrive transitively through it.
 
-The 28 additive prerequisite modules developed with the gluelump proof live
+The 30 additive prerequisite modules developed with the gluelump proof live
 in this repository under `GluelumpPerimeterLaw.Upstream.*`: 19 extend existing
-upstream modules, and nine supply new reflection/limit modules. Their module
+upstream modules, and eleven supply new reflection/limit modules. Their module
 paths are downstream-owned, while their declarations intentionally remain in
 the existing `YangMills.*` namespaces. No corresponding commit or branch is
 required in the Strong-Coupling repository.
@@ -118,18 +118,19 @@ and
     \mathcal W^{\mathbb C}_{\mu,\rho}(x_0;a,b;R,T).
 ```
 
-### Completed free-boundary limits
+### Ordinary free-boundary limits
 
 A local observable is a continuous function
 $F:\Omega_{d,G}\to\mathbb C$ depending on finitely many edge coordinates.
 For a real plaquette potential $\Phi$, coupling $\beta\in\mathbb R$,
 direction $\tau$, and $N\in\mathbb N$, let
-$\nu_{\tau,N}^{\Phi,\beta}$ be the completed link-symmetric free-boundary
+$\nu_{\tau,N}^{\Phi,\beta}$ be the ordinary internal-edge free-boundary
 Gibbs probability. Its site box is $[-N,N+1]$ in direction $\tau$ and
-$[-N,N]$ in every transverse direction, with identity exterior
-configuration.
+$[-N,N]$ in every transverse direction. Only internal edges are dynamic,
+and only contained plaquettes enter the action. Identity exterior data embed
+the finite laws in the common configuration space.
 
-**Definition (translation-invariant completed free-boundary limit).** Write
+**Definition (translation-invariant ordinary free-boundary limit).** Write
 
 ```math
   \mathrm{TIFBL}(\Phi,\beta;\mu)
@@ -157,21 +158,21 @@ where $\theta_v$ is lattice translation by $v$. The limit is taken along
 the entire sequence for every $\tau$, with the same limiting measure
 $\mu$.
 
-### Theorem 1 (completed free-boundary perimeter law)
+### Theorem 1 (the paper's uniform-coupling perimeter law)
 
 Assume $d\ge 3$, $\sigma$ is injective, and
 $\mathrm{CenterNeutral}(\rho)$. Then
 
 ```math
+  \exists C>0,\quad
   \forall\beta\in\mathbb R,\quad
   \beta>0\Longrightarrow
-  \exists c\in\mathbb R,\quad c>0,
 ```
 
 such that, for every probability measure $\mu$,
 
 ```math
-  \mathrm{TIFBL}(\Phi_\sigma,\beta;\mu)
+  \mathrm{TIFBL}(\Phi_\sigma,n\beta;\mu)
   \Longrightarrow
   \forall x_0,a,b,R,T,
 ```
@@ -190,12 +191,22 @@ such that, for every probability measure $\mu$,
 and
 
 ```math
-  \exp\!\bigl(-c\,P(R,T)\bigr)
+  \exp\!\bigl(-C(1+\beta+|\log\beta|)\,P(R,T)\bigr)
   \le
   \mathcal W^{\mathbb R}_{\mu,\rho}(x_0;a,b;R,T).
 ```
 
+Here `beta` is the paper's unnormalized-character coupling. The factor `n`
+converts to the normalized Wilson potential above. One `C`, independent of
+`beta`, the limiting measure, and every rectangle datum, works for all
+positive couplings satisfying the common local-limit hypothesis.
+See [the paper–Lean correspondence](docs/PAPER_LEAN_COMPARISON.md) for the
+finite-law identity, the proof map, and the conservative formal constants.
+
 ### Theorem 2 (centered strong-coupling state)
+
+Here `beta` is the upstream normalized-potential coupling. The proof applies
+Theorem 1 at paper coupling `beta/n`.
 
 Let
 
@@ -411,7 +422,7 @@ import GluelumpPerimeterLaw
 #check YangMills.Gluelump.Propagation.conjSpanPerimeterLaw_of_positiveOneLink
 ```
 
-### Main theorem for completed free-boundary limits
+### Main theorem for ordinary free-boundary limits
 
 [Statement](GluelumpPerimeterLaw/InfiniteVolumePerimeterLawStatement.lean) ·
 [Proof](GluelumpPerimeterLaw/InfiniteVolumePerimeterLaw.lean)
@@ -429,23 +440,26 @@ Ignoring only the ambient compact-group and Haar typeclass binder list, the
 proposition in its conclusion is defined by the following Lean code:
 
 ```lean
-def CenterNeutralInfiniteVolumePerimeterLaw
+def CenterNeutralUniformCouplingPerimeterLaw
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r) : Prop :=
   3 ≤ d →
   Function.Injective sigma.ρ →
   CenterNeutral (asRepresentation rho) →
-  ∀ beta : ℝ, 0 < beta →
-    ∃ rate : ℝ, 0 < rate ∧
+  ∃ C : ℝ, 0 < C ∧
+    ∀ beta : ℝ, 0 < beta →
       ∀ mu : ProbabilityMeasure (Configuration d G),
-        IsTranslationInvariantFreeBoundaryLimit
-            sigma.wilsonPotential beta mu →
+        IsTranslationInvariantPaperFreeBoundaryLimit sigma beta mu →
           ∀ (x0 : Site d) (a b : Fin d) (R T : ℕ),
             a ≠ b → 0 < R → 0 < T →
               complexRectangleWilsonExpectation mu rho x0 a b R T =
                   (rectangleWilsonExpectation mu rho x0 a b R T : ℂ) ∧
-                Real.exp (-rate * (2 * (R + T) : ℕ)) ≤
+                Real.exp (-C * (1 + beta + |Real.log beta|) *
+                    (2 * (R + T) : ℕ)) ≤
                   rectangleWilsonExpectation mu rho x0 a b R T
+
+abbrev CenterNeutralInfiniteVolumePerimeterLaw :=
+  @CenterNeutralUniformCouplingPerimeterLaw
 ```
 
 #### Key definitions in the main statement
@@ -467,7 +481,7 @@ representation: noncentral elements may act nontrivially. The definition
 itself does not require irreducibility, and none of the three headline
 theorems assumes that `rho` is irreducible.
 
-##### Translation-invariant completed free-boundary limit
+##### Translation-invariant ordinary free-boundary limit
 
 [Source](GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryInfiniteVolume.lean)
 
@@ -477,7 +491,7 @@ structure IsTranslationInvariantFreeBoundaryLimit
     (μ : ProbabilityMeasure (Configuration d G)) : Prop where
   localLimit : ∀ (τ : Fin d) (F : LocalObservable d G),
     Tendsto (fun n ↦ localExpectation
-      (linkSymmetricGibbsSequence Φ β τ n) F) atTop
+      (freeBoundaryGibbsSequence Φ β τ n) F) atTop
       (nhds (localExpectation μ F))
   translationInvariant : ∀ v : Site d,
     Measure.map (LocalObservable.translateConfiguration (G := G) v)
@@ -490,11 +504,11 @@ Here:
 - `LocalObservable d G` is a continuous complex observable depending on only
   finitely many lattice edges.
 - `localExpectation μ F` is the integral `∫ A, F A ∂μ`.
-- `linkSymmetricGibbsSequence Φ β τ n` is the completed free-boundary
+- `freeBoundaryGibbsSequence Φ β τ n` is the ordinary free-boundary
   Gibbs probability adapted to reflection in the link plane
   `x_τ = 1/2`. Its underlying box is `[-n,n+1]` in direction `τ` and
   `[-n,n]` in every transverse direction; configurations are extended by the
-  identity outside the completed finite specification.
+  identity outside the box.
 - `localLimit` requires the **entire** sequence, for every orientation `τ`
   and every local observable `F`, to converge to expectations in the same
   probability `μ`. The current definition does not use subsequences.
@@ -565,11 +579,11 @@ For every basepoint, every ordered pair of distinct coordinate axes, and all
 positive side lengths, the theorem proves both
 
 - that the Wilson-loop expectation is real; and
-- that it is at least `exp (-rate * perimeter)`.
+- that it is at least `exp (-C * (1+beta+|log beta|) * perimeter)`.
 
-The rate depends only on `d`, `sigma`, `rho`, and `beta`. Its quantifier comes
-before `mu` and all rectangle data, so it is uniform over the limiting
-probability, basepoint, axes, and side lengths. The theorem itself has no
+The constant `C` depends only on `d`, `sigma`, and `rho`. It is selected before
+`beta`, `mu`, and all rectangle data. The fixed-coupling qualitative helper
+is retained as `centerNeutralQualitativePerimeterLaw`. The theorem itself has no
 small-coupling restriction; away from strong coupling it is conditional on
 the existence of a probability satisfying the full-limit hypothesis.
 
@@ -609,7 +623,7 @@ theorem centeredInfiniteVolume_centerNeutralPerimeterLaw
 ```
 
 The strong-coupling infrastructure proves that the cluster-constructed
-centered Wilson probability satisfies the completed-box limit hypothesis.
+centered Wilson probability satisfies the ordinary-box limit hypothesis.
 This supplies an unconditional application of the main theorem whenever
 `beta > 0` lies inside the cluster-expansion radius. The same rate is chosen
 before the radius witness and before all rectangle data.
@@ -648,7 +662,7 @@ theorem conjSpanPerimeterLaw_of_positiveOneLink
                 ∂(mu : Measure (Configuration d G))).re
 ```
 
-This is the reusable mathematical engine. A positive direct one-link
+This retained qualitative theorem is a reusable mathematical engine. A positive direct one-link
 gluelump seed, a reflection-positive state, the two gauge-fixed crossing-link
 interfaces, and coordinate-swap invariance imply the real exponential
 rectangle bound. This theorem contains no finite-volume exhaustion, cluster
@@ -665,7 +679,7 @@ The project-specific interfaces in this theorem mean:
   gluelump endpoints require the separate link interfaces below.
 - [`ConjSpanLinkReflectionData`](GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightExpectation.lean)
   supplies reality, nonnegativity, and mixed Cauchy--Schwarz for the odd,
-  link-centered gluelump lines. In the completed-box construction these
+  link-centered gluelump lines. In the ordinary-box construction these
   inequalities are obtained by crossing-link gauge fixing.
 - [`CanonicalRectangleLinkReflectionData`](GluelumpPerimeterLaw/Propagation/CanonicalRectangleExpectation.lean)
   supplies the corresponding half-integer-cut positivity and
@@ -679,7 +693,7 @@ The project-specific interfaces in this theorem mean:
   assumed in `hqseed`.
 
 Together with the action data, nonnegative coupling, and geometric
-assumptions, the completed-box limit hypothesis supplies all of these
+assumptions, the ordinary-box limit hypothesis supplies all of these
 interfaces in the main proof; they are explicit assumptions only in the
 model-neutral propagation theorem.
 

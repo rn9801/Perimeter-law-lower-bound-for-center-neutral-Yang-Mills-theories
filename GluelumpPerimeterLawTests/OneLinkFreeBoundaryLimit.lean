@@ -11,7 +11,7 @@ import GluelumpPerimeterLaw.OneLink.FreeBoundaryLimitLowerBound
 open YangMills.Gluelump.OneLink
 
 #print axioms
-  eventually_conjSpanOneLinkAdmissible_linkSymmetricSpecification
+  eventually_conjSpanOneLinkAdmissible_freeBoundarySpecification
 #print axioms ConjSpanOneLinkAdmissible.gibbsExpectation_im_eq_zero
 #print axioms
   centerNeutral_exists_uniform_conjSpanOneLink_freeBoundaryLimit_lowerBound

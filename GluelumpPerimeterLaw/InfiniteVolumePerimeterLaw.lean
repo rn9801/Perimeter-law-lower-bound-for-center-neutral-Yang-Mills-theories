@@ -4,17 +4,17 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: The Strong-Coupling Lattice Yang--Mills contributors
 -/
 
-import GluelumpPerimeterLaw.InfiniteVolumePerimeterLawStatement
+import GluelumpPerimeterLaw.InfiniteVolumeQuantitative
 import GluelumpPerimeterLaw.Propagation.CanonicalCofinalPerimeterLaw
 import GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectationLimit
 import GluelumpPerimeterLaw.Propagation.ConjSpanCornerExpectation
 import GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightLimit
 
 /-!
-# Center-neutral gluelump perimeter law in the completed-box limit
+# Center-neutral gluelump perimeter law in the ordinary-free-boundary limit
 
 This is the one-way application of the neutral gluelump propagation theorem
-to a translation-invariant common local limit of the completed reflection
+to a translation-invariant common local limit of the free-boundary reflection
 boxes.  Strong-coupling infrastructure is used only to supply that abstract
 limit/reflection interface and the uniform positive one-link seed.
 -/
@@ -35,15 +35,15 @@ variable {d n r : ℕ} {G : Type u}
   [T2Space G] [MeasurableSpace G] [BorelSpace G]
   [SecondCountableTopology G] [GaugeHaarProbability G]
 
-/-- The completed-free-boundary infinite-volume center-neutral perimeter law.
+/-- The ordinary free-boundary infinite-volume center-neutral perimeter law.
 
 The screening degree, intertwiner, one-link base, and final rate are all
 chosen before the limiting probability measure.  Consequently the rate is
 uniform over every measure satisfying the common local-limit hypothesis. -/
-theorem centerNeutralInfiniteVolumePerimeterLaw
+theorem centerNeutralQualitativePerimeterLaw
     (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r) :
-    CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho := by
+    CenterNeutralQualitativePerimeterLaw (d := d) sigma rho := by
   intro hd hsigma hcenter beta hbeta
   obtain ⟨m, Tmap, _hTmap, q, hq, huniform⟩ :=
     centerNeutral_exists_uniform_conjSpanPhysicalStraight_rate
@@ -93,6 +93,14 @@ theorem centerNeutralInfiniteVolumePerimeterLaw
   simpa only [B, D, complexRectangleWilsonExpectation,
     rectangleWilsonExpectation, rectangleWilsonObservable,
     localExpectation] using hpublic
+
+/-- The paper's headline theorem, with its exact coupling dependence and
+quantifier order, for the paper's ordinary free-boundary local limits. -/
+theorem centerNeutralInfiniteVolumePerimeterLaw
+    (sigma : ContinuousUnitaryRepData G n)
+    (rho : ContinuousUnitaryRepData G r) :
+    CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho :=
+  centerNeutralUniformCouplingPerimeterLaw sigma rho
 
 end
 

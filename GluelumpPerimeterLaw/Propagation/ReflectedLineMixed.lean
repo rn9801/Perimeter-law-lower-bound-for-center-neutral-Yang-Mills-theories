@@ -6,12 +6,13 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Propagation.ReflectedLine
 import GluelumpPerimeterLaw.Propagation.ReflectedLineMixedCore
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryBoxes
 
 /-!
-# Completed-box certificates for mixed reflected screened lines
+# Free-boundary-box certificates for mixed reflected screened lines
 
 This file adapts the neutral mixed pairing from ReflectedLineMixedCore to the
-completed link-symmetric exhaustion.
+ordinary free-boundary exhaustion.
 -/
 
 namespace YangMills.Gluelump.Propagation
@@ -59,11 +60,11 @@ theorem eventuallyLinkCrossingFamilyCauchySchwarz_reflectedMixed_of_support
   let OHH := screenedObservable rho (Xi.linkPullback τ 0) Xi
     (reflectedFullPath τ 0 z hz r)
   filter_upwards
-      [support_subset_linkSymmetricSpecification_eventually τ OFH,
-       support_subset_linkSymmetricSpecification_eventually τ OFF,
-       support_subset_linkSymmetricSpecification_eventually τ OHH]
+      [support_subset_freeBoundarySpecification_eventually τ OFH,
+       support_subset_freeBoundarySpecification_eventually τ OFF,
+       support_subset_freeBoundarySpecification_eventually τ OHH]
       with N hFHdyn hFFdyn hHHdyn
-  let Λ := linkSymmetricSpecification G d N τ
+  let Λ := freeBoundarySpecification G d N τ
   have hecross : crossingPositiveEdge z τ ∈ Λ.linkCrossingEdges τ 0 := by
     rw [FiniteSpecification.linkCrossingEdges, Finset.mem_filter]
     exact ⟨hFHdyn (by
@@ -80,22 +81,22 @@ theorem eventuallyLinkCrossingFamilyCauchySchwarz_reflectedMixed_of_support
         ({crossingPositiveEdge z τ} : Finset (PositiveEdge d))
       simp), rfl, hz⟩
   let F := fun i => linkRestrictNegativeObservable Λ τ 0
-    (linkSymmetricSpecification_linkSymmetric N τ)
+    (freeBoundarySpecification_linkSymmetric N τ)
     (incomingHalfComponent rho (Psi.linkPullback τ 0)
       (reflectedIncomingPath τ 0 z hz q) i)
   let H := fun i => linkRestrictNegativeObservable Λ τ 0
-    (linkSymmetricSpecification_linkSymmetric N τ)
+    (freeBoundarySpecification_linkSymmetric N τ)
     (incomingHalfComponent rho (Xi.linkPullback τ 0)
       (reflectedIncomingPath τ 0 z hz r) i)
   refine ⟨F, H, ?_, ?_, ?_⟩
   · exact reflectedMixedFullPath_isGaugeFixedLinkFamilyPairing
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho Psi Xi z hz q r hPsiCov hXiCov hFHdyn hecross hinq hinr houtr
   · exact reflectedFullPath_isGaugeFixedLinkFamilyNormSquare
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho Psi z hz q hPsiCov hFFdyn hecross hinq houtq
   · exact reflectedFullPath_isGaugeFixedLinkFamilyNormSquare
-      Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+      Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
       rho Xi z hz r hXiCov hHHdyn hecross hinr houtr
 
 end

@@ -93,6 +93,17 @@ theorem basedLoopSupport_combLoops_transverseAxis₁_bounds
           x (Geometry.transverseAxis₁ hd) + m :=
   basedLoopSupport_transverseLoop_transverseAxis₁_bounds hd x
 
+/-- The paper places the comb's short direction in the rectangle plane;
+that coordinate has width one at every tensor degree. -/
+theorem basedLoopSupport_combLoops_transverseAxis₂_bounds
+    {d m : ℕ} (hd : 3 ≤ d) (x : Site d) :
+    ∀ e ∈ basedLoopSupport (combLoops (m := m) hd x),
+      x (Geometry.transverseAxis₂ hd) ≤ e.source (Geometry.transverseAxis₂ hd) ∧
+      e.source (Geometry.transverseAxis₂ hd) ≤ x (Geometry.transverseAxis₂ hd) + 1 ∧
+      x (Geometry.transverseAxis₂ hd) ≤ e.target (Geometry.transverseAxis₂ hd) ∧
+      e.target (Geometry.transverseAxis₂ hd) ≤ x (Geometry.transverseAxis₂ hd) + 1 :=
+  basedLoopSupport_transverseLoop_transverseAxis₂_bounds hd x
+
 /-- Translation sends the canonical loop template to the same template at
 the translated basepoint. -/
 theorem translate_combLoops {d m : ℕ} (hd : 3 ≤ d)

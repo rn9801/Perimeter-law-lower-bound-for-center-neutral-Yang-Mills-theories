@@ -414,6 +414,28 @@ theorem conjSpanOddCornerStraight_reverse_apply_eq_physical
 
 /-! ## Pointwise normalization -/
 
+/-- The even affine straight segment is the physical line of length
+`2*l`, with the same normalized endpoint used at odd lengths. -/
+theorem conjSpanEvenCornerStraight_reverse_apply_eq_physical
+    (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
+    (rho : ContinuousUnitaryRepData G r)
+    (T : IntertwiningMap (tensorPower (conjSpanRep sigma) m)
+      (asRepresentation rho))
+    (l : ℕ) (A : Configuration d G) :
+    screenedObservable rho
+        (conjSpanEvenCornerOriginEndpoint hd sigma rho T l)
+        (conjSpanCornerFarEndpoint hd sigma rho T l)
+        (conjSpanCornerArmToOrigin (Geometry.armAxis hd) l l).reverse A =
+      conjSpanPhysicalStraightObservable hd sigma rho T (0 : Site d)
+        (conjSpanCornerZeroArm hd) (2 * l) A := by
+  rw [conjSpanPhysicalStraightObservable_even]
+  unfold conjSpanSiteStraightObservable
+  rw [← conjSpanEvenPhysicalArmPath_eq_cornerArm hd l]
+  simp [conjSpanEvenPhysicalArmPath, conjSpanEvenCornerOriginEndpoint,
+    siteReflectedObservable, siteReflectedMixedObservable, siteReflectedFullPath,
+    screenedObservable_apply, screenedValue, holonomy_castSource,
+    holonomy_castTarget, conjSpanEvenCornerFarEndpoint_apply_eq_siteEndpoint]
+
 theorem conjSpanCornerFarEndpoint_l2Norm_le_one
     (hd : 3 ≤ d) (sigma : ContinuousUnitaryRepData G n)
     (rho : ContinuousUnitaryRepData G r)

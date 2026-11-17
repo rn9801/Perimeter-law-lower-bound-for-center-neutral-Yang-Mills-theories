@@ -255,6 +255,53 @@ theorem basedLoopSupport_transverseLoop_transverseAxis₁_bounds
     rw [hx₃] at hconst
     exact ⟨by omega, by omega, by omega, by omega⟩
 
+/-- The short transverse coordinate of every comb edge has width one,
+independently of the number of loops. This is the direction used inside the
+rectangle plane in the paper's corner argument. -/
+theorem basedLoopSupport_transverseLoop_transverseAxis₂_bounds
+    {d m : ℕ} (hd : 3 ≤ d) (x : Site d) :
+    ∀ e ∈ basedLoopSupport (transverseLoop (m := m) hd x),
+      x (Geometry.transverseAxis₂ hd) ≤ e.source (Geometry.transverseAxis₂ hd) ∧
+      e.source (Geometry.transverseAxis₂ hd) ≤ x (Geometry.transverseAxis₂ hd) + 1 ∧
+      x (Geometry.transverseAxis₂ hd) ≤ e.target (Geometry.transverseAxis₂ hd) ∧
+      e.target (Geometry.transverseAxis₂ hd) ≤ x (Geometry.transverseAxis₂ hd) + 1 := by
+  intro e he
+  rw [basedLoopSupport, Finset.mem_biUnion] at he
+  obtain ⟨i, _hi, hei⟩ := he
+  let b := Geometry.transverseAxis₁ hd
+  let c := Geometry.transverseAxis₂ hd
+  let r := i.1 + 1
+  let x₁ := Path.advance x (.forward b) r
+  let x₂ := Path.advance x₁ (.forward c) 1
+  let x₃ := Path.advance x₂ (.backward b) r
+  have hbc : b ≠ c := Geometry.transverseAxis₁_ne_transverseAxis₂ hd
+  have hx₁ : x₁ c = x c :=
+    advance_coordinate_eq_of_axis_ne x (.forward b) r c hbc
+  have hx₂ : x₂ c = x c + 1 := by
+    dsimp only [x₂]
+    rw [Path.advance_eq]
+    simp [SignedDirection.delta_forward, unitVector, hx₁]
+  have hx₃ : x₃ c = x c + 1 := by
+    rw [show x₃ c = x₂ c from
+      advance_coordinate_eq_of_axis_ne x₂ (.backward b) r c hbc, hx₂]
+  simp only [transverseLoop, Path.rectangleBoundary,
+    Path.edgeSupport_castTarget, Path.rectangleRaw, Path.edgeSupport_comp,
+    Finset.mem_union] at hei
+  change x c ≤ e.source c ∧ e.source c ≤ x c + 1 ∧
+    x c ≤ e.target c ∧ e.target c ≤ x c + 1
+  rcases hei with hei | hei | hei | hei
+  · have hconst := straight_edgeSupport_coordinate_eq x (.forward b) r c hbc e hei
+    exact ⟨by omega, by omega, by omega, by omega⟩
+  · have hbounds := straight_forward_edgeSupport_coordinate_bounds x₁ c 1 e hei
+    rw [hx₁] at hbounds
+    exact hbounds
+  · have hconst := straight_edgeSupport_coordinate_eq x₂ (.backward b) r c hbc e hei
+    rw [hx₂] at hconst
+    exact ⟨by omega, by omega, by omega, by omega⟩
+  · have hbounds := straight_backward_edgeSupport_coordinate_bounds x₃ c 1 e hei
+    rw [hx₃] at hbounds
+    exact ⟨by omega, by omega, by omega, by omega⟩
+
 theorem transverseLoopFarEdge_injective {d m : ℕ} (hd : 3 ≤ d)
     (x : Site d) : Function.Injective (transverseLoopFarEdge hd x :
       Fin m → PositiveEdge d) := by

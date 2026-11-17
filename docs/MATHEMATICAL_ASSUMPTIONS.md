@@ -1,10 +1,10 @@
 # Mathematical assumptions and proof boundary
 
-Updated: 2026-08-29
+Updated: 2026-11-17
 
 This document records the exact assumptions of the proved gluelump
 perimeter-law lower bound. It distinguishes the model-neutral propagation
-theorem, the completed-free-boundary thermodynamic-limit theorem, and the
+theorem, the ordinary free-boundary thermodynamic-limit theorem, and the
 concrete strong-coupling corollary.
 
 ## 1. Ambient lattice and gauge group
@@ -52,13 +52,15 @@ forward construction or either headline perimeter-law theorem.
 
 ## 3. Coupling and thermodynamic-limit hypothesis
 
-The completed-free-boundary theorem assumes `beta > 0` and a probability
+The ordinary free-boundary theorem assumes `beta > 0` and a probability
 measure `mu` satisfying
-`IsTranslationInvariantFreeBoundaryLimit sigma.wilsonPotential beta mu`.
+`IsTranslationInvariantPaperFreeBoundaryLimit sigma beta mu`. This is the
+ordinary local limit at normalized-potential coupling `n*beta`, where
+`n=dim(sigma)`, so `beta` has the paper's convention.
 This structure has two fields:
 
 1. every local continuous observable converges to its `mu` expectation along
-   the completed link-symmetric box exhaustion, for every choice of elongated
+   the ordinary internal-edge box exhaustion, for every choice of elongated
    coordinate direction; and
 2. `mu` is invariant under every lattice translation.
 
@@ -67,8 +69,10 @@ that puts link, site, diagonal, and anti-diagonal reflection positivity in one
 state. It is stronger than convergence along one arbitrarily chosen sequence
 of boxes.
 
-This limit condition is a hypothesis of the general infinite-volume theorem,
-not a uniqueness claim for all Gibbs states. In the positive strong-coupling
+The common local limit is unique by
+`IsTranslationInvariantFreeBoundaryLimit.unique`; the local observable
+expectations determine it. This is not a uniqueness theorem for all Gibbs
+states at arbitrary coupling. In the positive strong-coupling
 interval it is discharged by the downstream compatibility theorem
 `wilsonStrongCoupling_isTranslationInvariantFreeBoundaryLimit`, which is
 proved from the thermodynamic-limit infrastructure on unchanged upstream
@@ -96,7 +100,7 @@ distinct coordinate axes, and all positive rectangle side lengths, proves
 both literal reality of the complex Wilson expectation and an exponential
 lower bound in the perimeter.
 
-The completed-free-boundary adapter proves all of these reflection and
+The ordinary free-boundary adapter proves all of these reflection and
 crossing interfaces and constructs a uniform positive `q`. Thus none of
 them remains an unproved assumption in the public theorem.
 
@@ -110,7 +114,8 @@ adds the small-coupling condition supplied by the upstream construction
 ‖(beta : ℂ)‖ < latticeStrongCouplingRadius d sigma.wilsonPotential.bound.
 ```
 
-It applies the abstract result to the cluster-constructed centered
+Here `beta` uses the upstream normalized-potential convention; the proof
+applies the headline at paper coupling `beta/n`. It applies the result to the cluster-constructed centered
 infinite-volume Wilson probability with identity exterior data. The rate is
 chosen before the radius witness and before the rectangle data.
 
@@ -120,21 +125,21 @@ every positive coupling whenever its state and one-link hypotheses hold.
 
 ## 6. Quantifier dependencies and conclusion
 
-At fixed `d`, `sigma`, `rho`, and positive `beta`, the public theorem chooses
-`rate > 0` before quantifying over:
-
-- the limiting probability `mu`;
-- the rectangle basepoint;
-- the two distinct coordinate axes; and
-- the positive side lengths `R` and `T`.
-
-Consequently the rate is uniform in all of those data. The theorem does not
-claim an optimal or explicit asymptotic rate. Its conclusion is
+At fixed `d`, `sigma`, and `rho`, the public theorem chooses `C > 0` before
+quantifying over the positive paper coupling `beta`, the limiting probability
+`mu`, the rectangle basepoint, its distinct coordinate axes, and its positive
+side lengths. Its conclusion is
 
 ```text
 E_mu[W_rho(rectangle)] ∈ ℝ,
-exp (-rate * 2 * (R + T)) ≤ E_mu[W_rho(rectangle)].
+exp (-C * (1 + beta + |log beta|) * 2 * (R + T)) ≤ E_mu[W_rho(rectangle)].
 ```
+
+The screening data are chosen before `beta`. The scalar seed and all-length
+short-axis corner proof are documented in
+[PAPER_LEAN_COMPARISON.md](PAPER_LEAN_COMPARISON.md). The formal proof uses
+conservative numerical constants; it asserts the paper's growth class, not
+optimality of those constants.
 
 Reality is a proved equality in `ℂ`; the lower bound is therefore stated on
 the real expectation itself, not merely on an unexplained real part.
@@ -165,8 +170,8 @@ theorems and report only Lean's standard
 - `Classical.choice`; and
 - `Quot.sound`.
 
-The standalone source consists of 110 gluelump theorem modules, 28 additive
-compatibility modules, and 10 regression modules. The package is configured
+The standalone source contains 30 additive compatibility modules and 10
+regression modules, in addition to the gluelump theorem modules. The package is configured
 to depend only on the unchanged `main` branch of
 `strong-coupling-lattice-yang-mills`; the compatibility modules live under
 downstream-owned `GluelumpPerimeterLaw.Upstream.*` paths. The final clean-main

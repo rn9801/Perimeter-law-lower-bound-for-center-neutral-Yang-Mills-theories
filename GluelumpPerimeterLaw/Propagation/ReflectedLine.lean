@@ -6,13 +6,14 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Propagation.ReflectedLineCore
 import GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeLinkCrossing
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryBoxes
 
 /-!
-# Completed-box certificates for reflected screened lines
+# Free-boundary-box certificates for reflected screened lines
 
 This file is the strong-coupling adapter for the neutral pointwise and finite-
 specification constructions in ReflectedLineCore. It packages those exact
-factorizations along the completed link-symmetric exhaustion.
+factorizations along the ordinary free-boundary exhaustion.
 -/
 
 namespace YangMills.Gluelump.Propagation
@@ -26,7 +27,7 @@ noncomputable section
 variable {d n : ℕ} {G : Type*} [Group G] [TopologicalSpace G]
   [IsTopologicalGroup G]
 
-/-! ## Passage to the completed link-symmetric exhaustion -/
+/-! ## Passage to the ordinary free-boundary exhaustion -/
 
 variable [CompactSpace G] [T2Space G] [MeasurableSpace G] [BorelSpace G]
   [SecondCountableTopology G] [GaugeHaarProbability G]
@@ -54,7 +55,7 @@ theorem crossingPositiveEdge_mem_reflectedFullPath_support
   simp
 
 /-- The exact fixed-slice reflected-line factorization persists eventually
-along the completed link-symmetric exhaustion, and therefore is directly
+along the ordinary free-boundary exhaustion, and therefore is directly
 usable by the infinite-volume family reflection-positivity engine. -/
 theorem eventuallyLinkCrossingFamilyNormSquare_reflectedFullPath
     (rho : ContinuousUnitaryRepData G n)
@@ -72,9 +73,9 @@ theorem eventuallyLinkCrossingFamilyNormSquare_reflectedFullPath
         (reflectedFullPath τ 0 z hz q)) := by
   let O := screenedObservable rho (Psi.linkPullback τ 0) Psi
     (reflectedFullPath τ 0 z hz q)
-  filter_upwards [support_subset_linkSymmetricSpecification_eventually τ O]
+  filter_upwards [support_subset_freeBoundarySpecification_eventually τ O]
       with N hdyn
-  let Λ := linkSymmetricSpecification G d N τ
+  let Λ := freeBoundarySpecification G d N τ
   have hedynamic : crossingPositiveEdge z τ ∈ Λ.dynamicEdges :=
     hdyn (crossingPositiveEdge_mem_reflectedFullPath_support
       rho Psi τ z hz q)
@@ -82,11 +83,11 @@ theorem eventuallyLinkCrossingFamilyNormSquare_reflectedFullPath
     rw [FiniteSpecification.linkCrossingEdges, Finset.mem_filter]
     exact ⟨hedynamic, rfl, hz⟩
   refine ⟨fun i => linkRestrictNegativeObservable Λ τ 0
-    (linkSymmetricSpecification_linkSymmetric N τ)
+    (freeBoundarySpecification_linkSymmetric N τ)
     (incomingHalfComponent rho (Psi.linkPullback τ 0)
       (reflectedIncomingPath τ 0 z hz q) i), ?_⟩
   exact reflectedFullPath_isGaugeFixedLinkFamilyNormSquare
-    Λ τ 0 (linkSymmetricSpecification_linkSymmetric N τ)
+    Λ τ 0 (freeBoundarySpecification_linkSymmetric N τ)
     rho Psi z hz q hPsi hdyn hecross hin hout
 
 /-- Usable reflected-line certificate with the internal scalar-component

@@ -1,5 +1,13 @@
 # Center-neutral gluelump perimeter law: implementation record
 
+
+**2026-11-17 update:** The current headline is the paper-convention uniform
+bound with `exists C > 0, forall beta > 0`, ordinary internal-edge
+free-boundary limits, and the all-length short-axis corner argument. See
+[PAPER_LEAN_COMPARISON.md](PAPER_LEAN_COMPARISON.md) for the current statement
+and proof map. The completed-box and cofinal proof descriptions below record
+the earlier implementation milestones.
+
 Updated: 2026-08-27
 
 This is the numbered implementation and extraction record for

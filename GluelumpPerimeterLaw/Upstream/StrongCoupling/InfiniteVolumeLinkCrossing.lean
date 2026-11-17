@@ -6,12 +6,13 @@ Authors: The Strong-Coupling Lattice Yang--Mills contributors
 
 import GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossingFamily
 import GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteLinkReflectionPositivity
+import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume
 
 /-!
 # Infinite-volume crossing-link reflection pairings
 
 This file passes the gauge-fixed crossing-pairing theorem through the same
-completed link-symmetric KP exhaustion used by ordinary link reflection
+ordinary free-boundary KP exhaustion used by ordinary link reflection
 positivity.  The half-observable is allowed to depend on the finite
 specification; only the full local observable remains fixed in the limit.
 -/
@@ -30,15 +31,15 @@ variable {d : ℕ} {G : Type*} [Group G] [TopologicalSpace G]
   [GaugeHaarProbability G]
 
 /-- A fixed local observable has a finite-volume crossing norm-square
-certificate along the completed link-symmetric exhaustion. -/
+certificate along the ordinary free-boundary exhaustion. -/
 def EventuallyLinkCrossingNormSquare (τ : Fin d)
     (O : LocalObservable d G) : Prop :=
   ∀ᶠ n in atTop,
     ∃ F : LinkReflection.WilsonActionDecomposition.PositiveObservable G
-        ((linkSymmetricSpecification G d n τ).linkCrossingEdges τ 0)
-        ((linkSymmetricSpecification G d n τ).linkPositiveEdges τ 0),
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkPairing τ 0
-        (linkSymmetricSpecification_linkSymmetric n τ) O F F
+        ((freeBoundarySpecification G d n τ).linkCrossingEdges τ 0)
+        ((freeBoundarySpecification G d n τ).linkPositiveEdges τ 0),
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkPairing τ 0
+        (freeBoundarySpecification_linkSymmetric n τ) O F F
 
 /-- Strong-coupling positivity for an observable which becomes a norm square
 only after crossing-link gauge fixing. -/
@@ -53,29 +54,29 @@ theorem centeredInfiniteVolume_linkCrossingReflectionPositive_half
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) = 0 ∧
       0 ≤ Complex.re (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) := by
-  have hO := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hO := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ O
   have hre : Tendsto (fun n => Complex.re (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds (Complex.re (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     Complex.continuous_re.continuousAt.tendsto.comp hO
   have him : Tendsto (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds (Complex.im (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     Complex.continuous_im.continuousAt.tendsto.comp hO
   have hfinite : ∀ᶠ n in atTop,
       Complex.im (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O) = 0 ∧
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O) = 0 ∧
       0 ≤ Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O) := by
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O) := by
     filter_upwards [hpair] with n hn
     obtain ⟨F, hF⟩ := hn
-    let Λ := linkSymmetricSpecification G d n τ
+    let Λ := freeBoundarySpecification G d n τ
     have hfinite := Λ.linkCrossingReflectionPositive_gibbsMeasure τ 0
-      (linkSymmetricSpecification_linkSymmetric n τ)
-      (linkSymmetricSpecification_plaquetteClosed n τ) ρ hβ0 O F hF
+      (freeBoundarySpecification_linkSymmetric n τ)
+      (freeBoundarySpecification_plaquetteClosed n τ) ρ hβ0 O F hF
     change Complex.im (localExpectation
         (fullGibbsProbability Λ ρ.wilsonPotential β) O) = 0 ∧
       0 ≤ Complex.re (localExpectation
@@ -86,10 +87,10 @@ theorem centeredInfiniteVolume_linkCrossingReflectionPositive_half
   have himZero : Tendsto (fun _ : ℕ => (0 : ℝ)) atTop (nhds 0) :=
     tendsto_const_nhds
   have heventIm : (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) =ᶠ[atTop]
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) =ᶠ[atTop]
       fun _ => (0 : ℝ) := hfinite.mono fun _ hn => hn.1
   have him' : Tendsto (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds 0) := himZero.congr' heventIm.symm
   constructor
   · exact tendsto_nhds_unique him him'
@@ -101,14 +102,14 @@ def EventuallyLinkCrossingCauchySchwarz (τ : Fin d)
     (OFH OFF OHH : LocalObservable d G) : Prop :=
   ∀ᶠ n in atTop,
     ∃ (F H : LinkReflection.WilsonActionDecomposition.PositiveObservable G
-        ((linkSymmetricSpecification G d n τ).linkCrossingEdges τ 0)
-        ((linkSymmetricSpecification G d n τ).linkPositiveEdges τ 0)),
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OFH F H ∧
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OFF F F ∧
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OHH H H
+        ((freeBoundarySpecification G d n τ).linkCrossingEdges τ 0)
+        ((freeBoundarySpecification G d n τ).linkPositiveEdges τ 0)),
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OFH F H ∧
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OFF F F ∧
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OHH H H
 
 /-- Strong-coupling Cauchy--Schwarz for full observables which acquire their
 Gram factorization only after crossing-link gauge fixing. -/
@@ -125,22 +126,22 @@ theorem centeredInfiniteVolume_linkCrossingCauchySchwarz_half
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) *
       Complex.re (∫ A, OHH A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) := by
-  have hFH := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hFH := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OFH
-  have hFF := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hFF := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OFF
-  have hHH := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hHH := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OHH
   have hlhs : Tendsto (fun n => Complex.normSq (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFH)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFH)) atTop
       (nhds (Complex.normSq (∫ A, OFH A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     (Complex.continuous_normSq.continuousAt.tendsto.comp hFH)
   have hrhs : Tendsto (fun n =>
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFF) *
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFF) *
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OHH)) atTop
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OHH)) atTop
       (nhds (Complex.re (∫ A, OFF A
           ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) *
         Complex.re (∫ A, OHH A
@@ -149,17 +150,17 @@ theorem centeredInfiniteVolume_linkCrossingCauchySchwarz_half
       (Complex.continuous_re.continuousAt.tendsto.comp hHH)
   have hfinite : ∀ᶠ n in atTop,
       Complex.normSq (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFH) ≤
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFH) ≤
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFF) *
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFF) *
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OHH) := by
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OHH) := by
     filter_upwards [hpair] with n hn
     obtain ⟨F, H, hFH', hFF', hHH'⟩ := hn
-    let Λ := linkSymmetricSpecification G d n τ
+    let Λ := freeBoundarySpecification G d n τ
     have hfinite := Λ.normSq_integral_gibbsMeasure_crossingPairing_le τ 0
-      (linkSymmetricSpecification_linkSymmetric n τ)
-      (linkSymmetricSpecification_plaquetteClosed n τ) ρ hβ0
+      (freeBoundarySpecification_linkSymmetric n τ)
+      (freeBoundarySpecification_plaquetteClosed n τ) ρ hβ0
       OFH OFF OHH F H hFH' hFF' hHH'
     change Complex.normSq (localExpectation
         (fullGibbsProbability Λ ρ.wilsonPotential β) OFH) ≤
@@ -177,15 +178,15 @@ theorem centeredInfiniteVolume_linkCrossingCauchySchwarz_half
   exact le_of_tendsto_of_tendsto hlhs hrhs hfinite
 
 /-- A fixed local observable has a finite Gram-family crossing norm-square
-certificate along the completed link-symmetric exhaustion. -/
+certificate along the ordinary free-boundary exhaustion. -/
 def EventuallyLinkCrossingFamilyNormSquare {ι : Type*} [Fintype ι]
     (τ : Fin d) (O : LocalObservable d G) : Prop :=
   ∀ᶠ n in atTop,
     ∃ F : ι → LinkReflection.WilsonActionDecomposition.PositiveObservable G
-        ((linkSymmetricSpecification G d n τ).linkCrossingEdges τ 0)
-        ((linkSymmetricSpecification G d n τ).linkPositiveEdges τ 0),
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
-        (linkSymmetricSpecification_linkSymmetric n τ) O F F
+        ((freeBoundarySpecification G d n τ).linkCrossingEdges τ 0)
+        ((freeBoundarySpecification G d n τ).linkPositiveEdges τ 0),
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
+        (freeBoundarySpecification_linkSymmetric n τ) O F F
 
 /-- Strong-coupling positivity for a fixed observable which becomes a finite
 Gram norm square only after crossing-link gauge fixing. -/
@@ -201,29 +202,29 @@ theorem centeredInfiniteVolume_linkCrossingFamilyReflectionPositive_half
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) = 0 ∧
       0 ≤ Complex.re (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) := by
-  have hO := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hO := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ O
   have hre : Tendsto (fun n => Complex.re (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds (Complex.re (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     Complex.continuous_re.continuousAt.tendsto.comp hO
   have him : Tendsto (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds (Complex.im (∫ A, O A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     Complex.continuous_im.continuousAt.tendsto.comp hO
   have hfinite : ∀ᶠ n in atTop,
       Complex.im (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O) = 0 ∧
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O) = 0 ∧
       0 ≤ Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O) := by
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O) := by
     filter_upwards [hpair] with n hn
     obtain ⟨F, hF⟩ := hn
-    let Λ := linkSymmetricSpecification G d n τ
+    let Λ := freeBoundarySpecification G d n τ
     have hfinite := Λ.linkCrossingFamilyReflectionPositive_gibbsMeasure τ 0
-      (linkSymmetricSpecification_linkSymmetric n τ)
-      (linkSymmetricSpecification_plaquetteClosed n τ) ρ hβ0 O F hF
+      (freeBoundarySpecification_linkSymmetric n τ)
+      (freeBoundarySpecification_plaquetteClosed n τ) ρ hβ0 O F hF
     change Complex.im (localExpectation
         (fullGibbsProbability Λ ρ.wilsonPotential β) O) = 0 ∧
       0 ≤ Complex.re (localExpectation
@@ -234,10 +235,10 @@ theorem centeredInfiniteVolume_linkCrossingFamilyReflectionPositive_half
   have himZero : Tendsto (fun _ : ℕ => (0 : ℝ)) atTop (nhds 0) :=
     tendsto_const_nhds
   have heventIm : (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) =ᶠ[atTop]
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) =ᶠ[atTop]
       fun _ => (0 : ℝ) := hfinite.mono fun _ hn => hn.1
   have him' : Tendsto (fun n => Complex.im (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) O)) atTop
       (nhds 0) := himZero.congr' heventIm.symm
   constructor
   · exact tendsto_nhds_unique him him'
@@ -249,14 +250,14 @@ def EventuallyLinkCrossingFamilyCauchySchwarz {ι : Type*} [Fintype ι]
     (τ : Fin d) (OFH OFF OHH : LocalObservable d G) : Prop :=
   ∀ᶠ n in atTop,
     ∃ (F H : ι → LinkReflection.WilsonActionDecomposition.PositiveObservable G
-        ((linkSymmetricSpecification G d n τ).linkCrossingEdges τ 0)
-        ((linkSymmetricSpecification G d n τ).linkPositiveEdges τ 0)),
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OFH F H ∧
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OFF F F ∧
-      (linkSymmetricSpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
-          (linkSymmetricSpecification_linkSymmetric n τ) OHH H H
+        ((freeBoundarySpecification G d n τ).linkCrossingEdges τ 0)
+        ((freeBoundarySpecification G d n τ).linkPositiveEdges τ 0)),
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OFH F H ∧
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OFF F F ∧
+      (freeBoundarySpecification G d n τ).IsGaugeFixedLinkFamilyPairing τ 0
+          (freeBoundarySpecification_linkSymmetric n τ) OHH H H
 
 /-- Strong-coupling Cauchy--Schwarz for finite Gram families which appear
 only after crossing-link gauge fixing. -/
@@ -275,22 +276,22 @@ theorem centeredInfiniteVolume_linkCrossingFamilyCauchySchwarz_half
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) *
       Complex.re (∫ A, OHH A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) := by
-  have hFH := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hFH := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OFH
-  have hFF := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hFF := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OFF
-  have hHH := tendsto_linkSymmetric_localExpectation_infiniteVolume
+  have hHH := tendsto_freeBoundary_localExpectation_infiniteVolume
     η ρ.wilsonPotential β hβ τ OHH
   have hlhs : Tendsto (fun n => Complex.normSq (localExpectation
-      (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFH)) atTop
+      (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFH)) atTop
       (nhds (Complex.normSq (∫ A, OFH A
         ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ))) :=
     Complex.continuous_normSq.continuousAt.tendsto.comp hFH
   have hrhs : Tendsto (fun n =>
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFF) *
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFF) *
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OHH)) atTop
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OHH)) atTop
       (nhds (Complex.re (∫ A, OFF A
           ∂centeredInfiniteVolumeMeasure η ρ.wilsonPotential β hβ) *
         Complex.re (∫ A, OHH A
@@ -299,17 +300,17 @@ theorem centeredInfiniteVolume_linkCrossingFamilyCauchySchwarz_half
       (Complex.continuous_re.continuousAt.tendsto.comp hHH)
   have hfinite : ∀ᶠ n in atTop,
       Complex.normSq (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFH) ≤
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFH) ≤
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OFF) *
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OFF) *
       Complex.re (localExpectation
-        (linkSymmetricGibbsSequence ρ.wilsonPotential β τ n) OHH) := by
+        (freeBoundaryGibbsSequence ρ.wilsonPotential β τ n) OHH) := by
     filter_upwards [hpair] with n hn
     obtain ⟨F, H, hFH', hFF', hHH'⟩ := hn
-    let Λ := linkSymmetricSpecification G d n τ
+    let Λ := freeBoundarySpecification G d n τ
     have hfinite := Λ.normSq_integral_gibbsMeasure_crossingFamilyPairing_le
-      τ 0 (linkSymmetricSpecification_linkSymmetric n τ)
-      (linkSymmetricSpecification_plaquetteClosed n τ) ρ hβ0
+      τ 0 (freeBoundarySpecification_linkSymmetric n τ)
+      (freeBoundarySpecification_plaquetteClosed n τ) ρ hβ0
       OFH OFF OHH F H hFH' hFF' hHH'
     change Complex.normSq (localExpectation
         (fullGibbsProbability Λ ρ.wilsonPotential β) OFH) ≤

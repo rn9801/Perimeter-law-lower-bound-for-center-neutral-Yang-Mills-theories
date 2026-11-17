@@ -9,11 +9,11 @@ import GluelumpPerimeterLaw.Propagation.RectangleReflection
 import GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositiveState
 
 /-!
-# Completed-free-boundary adapter for canonical rectangle expectations
+# Ordinary free-boundary adapter for canonical rectangle expectations
 
 This is the thin model-specific discharge of the two callbacks in
 `CanonicalRectangleExpectation`.  Gauge-fixed crossing families supply the
-half-integer cuts, while coordinate-swap invariance of the completed boxes
+half-integer cuts, while coordinate-swap invariance of the free-boundary boxes
 supplies axis transport.  The neutral rectangle argument remains in the
 separate upstream module.
 -/
@@ -31,7 +31,7 @@ variable {d n nYM : ℕ} {G : Type*} [Group G] [TopologicalSpace G]
   [IsTopologicalGroup G] [MeasurableSpace G] [CompactSpace G] [T2Space G]
   [BorelSpace G] [SecondCountableTopology G] [GaugeHaarProbability G]
 
-/-- The completed-box crossing construction supplies exactly the odd-cut
+/-- The free-boundary-box crossing construction supplies exactly the odd-cut
 callback required by neutral rectangle reflection. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.canonicalRectangleLinkReflectionData
     (rhoYM : ContinuousUnitaryRepData G nYM)
@@ -115,7 +115,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.canonicalRectangleLinkReflection
         ∂(mu : Measure (Configuration d G))).re
     nlinarith [sq_pos_of_pos hn]
 
-/-- Coordinate-swap invariance of the completed-box limit supplies the
+/-- Coordinate-swap invariance of the free-boundary-box limit supplies the
 neutral rectangle axis-swap callback. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.rectangleAxisSwapInvariant
     (rhoYM : ContinuousUnitaryRepData G nYM)
@@ -144,7 +144,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.rectangleAxisSwapInvariant
       simpa only [localExpectation,
         LocalObservable.diagonalReflectionPullback_apply] using hinvariant
 
-/-- The full neutral rectangle certificate for the completed-free-boundary
+/-- The full neutral rectangle certificate for the ordinary free-boundary
 limit. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.canonicalRectangleExpectationCertificate
     (rhoYM : ContinuousUnitaryRepData G nYM)
@@ -206,7 +206,7 @@ theorem IsTranslationInvariantFreeBoundaryLimit.rectangleBoundaryExpectation_im_
 
 /-- Coordinate-label swaps transport rectangle expectations between arbitrary
 basepoints.  Translation invariance removes the two basepoints, and the
-completed-box swap identity handles the direction labels. -/
+free-boundary-box swap identity handles the direction labels. -/
 theorem IsTranslationInvariantFreeBoundaryLimit.rectangleBoundaryExpectation_axisSwap
     (rhoYM : ContinuousUnitaryRepData G nYM)
     {beta : ℝ} (hbeta : 0 ≤ beta)

@@ -353,31 +353,34 @@ theorem conjSpanCornerBent_sq_div_dimension_le_square_odd
 
 /-- Translation and first-coordinate reflection identify the affine square
 from corner closing with the public canonical rectangle expectation. -/
-theorem conjSpanCornerSquareExpectation_eq_canonicalRectangleExpectation_odd
+theorem conjSpanCornerSquareExpectation_eq_canonicalRectangleExpectation
     (mu : ProbabilityMeasure (Configuration d G))
     (hstate : ReflectionPositiveState mu)
     (rho : ContinuousUnitaryRepData G r)
-    {a b : Fin d} (hab : a ≠ b) (l : ℕ) :
-    conjSpanCornerSquareExpectation mu rho hab (2 * l + 1) =
-      canonicalRectangleExpectation mu rho hab (2 * l + 1) (2 * l + 1) := by
-  let length := 2 * l + 1
-  let v := conjSpanCornerFarSite a (l + 1)
+    {a b : Fin d} (hab : a ≠ b) (length : ℕ) :
+    conjSpanCornerSquareExpectation mu rho hab length =
+      canonicalRectangleExpectation mu rho hab length length := by
+  let s := length / 2
+  let t := length - s
+  let v := conjSpanCornerFarSite a t
   let F := rho.wilsonLoop
     (conjSpanCornerSiteReflectedStandardSquare hab length)
-  have hlength : l + (l + 1) = length := by
-    dsimp only [length]
+  have hlength : s + t = length := by
+    dsimp only [s, t]
     omega
   have htranslate := hstate.localExpectation_translatePullback v F
   have hreflect := hstate.localExpectation_siteReflectionPullback a
     (rho.wilsonLoop (Path.rectangleBoundary 0 a b length length))
-  rw [conjSpanCornerSquareExpectation_odd]
+  change Complex.re (∫ A, rho.wilsonLoop
+      (conjSpanCornerSquareLoop hab s t) A ∂(mu : Measure (Configuration d G))) =
+    canonicalRectangleExpectation mu rho hab length length
   unfold canonicalRectangleExpectation
   apply congrArg Complex.re
   calc
-    (∫ A, rho.wilsonLoop (conjSpanCornerSquareLoop hab l (l + 1)) A
+    (∫ A, rho.wilsonLoop (conjSpanCornerSquareLoop hab s t) A
         ∂(mu : Measure (Configuration d G))) =
       ∫ A, rho.wilsonLoop
-        (conjSpanCornerTranslatedReflectedStandardSquare hab l (l + 1)) A
+        (conjSpanCornerTranslatedReflectedStandardSquare hab s t) A
           ∂(mu : Measure (Configuration d G)) := by
       apply integral_congr_ae
       exact ae_of_all _ fun A => by
@@ -408,6 +411,17 @@ theorem conjSpanCornerSquareExpectation_eq_canonicalRectangleExpectation_odd
     _ = canonicalRectangleIntegral mu rho hab length length :=
       (canonicalRectangleIntegral_eq_rectangleBoundaryIntegral
         hstate rho hab length length).symm
+
+/-- Odd-length specialization retained for the existing cofinal adapter. -/
+theorem conjSpanCornerSquareExpectation_eq_canonicalRectangleExpectation_odd
+    (mu : ProbabilityMeasure (Configuration d G))
+    (hstate : ReflectionPositiveState mu)
+    (rho : ContinuousUnitaryRepData G r)
+    {a b : Fin d} (hab : a ≠ b) (l : ℕ) :
+    conjSpanCornerSquareExpectation mu rho hab (2 * l + 1) =
+      canonicalRectangleExpectation mu rho hab (2 * l + 1) (2 * l + 1) :=
+  conjSpanCornerSquareExpectation_eq_canonicalRectangleExpectation
+    mu hstate rho hab (2 * l + 1)
 
 /-- Package the direct corner geometry with any neutral canonical-rectangle
 certificate.  This is the exact collar-aware interface consumed by the

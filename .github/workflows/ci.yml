@@ -34,7 +34,7 @@ jobs:
 
       - name: Check repository boundary
         run: |
-          test "$(find GluelumpPerimeterLaw/Upstream -name '*.lean' | wc -l | tr -d ' ')" = 28
+          test "$(find GluelumpPerimeterLaw/Upstream -name '*.lean' | wc -l | tr -d ' ')" = 30
           test "$(find GluelumpPerimeterLawTests -name '*.lean' | wc -l | tr -d ' ')" = 10
           test "$(grep -c '^\[\[require\]\]$' lakefile.toml)" = 1
           grep --quiet '^rev = "main"$' lakefile.toml
