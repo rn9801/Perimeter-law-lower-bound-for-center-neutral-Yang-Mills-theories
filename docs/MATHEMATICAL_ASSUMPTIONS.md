@@ -137,7 +137,7 @@ exp (-C * (1 + beta + |log beta|) * 2 * (R + T)) ≤ E_mu[W_rho(rectangle)].
 
 The screening data are chosen before `beta`. The scalar seed and all-length
 short-axis corner proof are documented in
-[PAPER_LEAN_COMPARISON.md](PAPER_LEAN_COMPARISON.md). The formal proof uses
+[PAPER_LEAN_COMPARISON.md](../comparison/PAPER_LEAN_COMPARISON.md). The formal proof uses
 conservative numerical constants; it asserts the paper's growth class, not
 optimality of those constants.
 

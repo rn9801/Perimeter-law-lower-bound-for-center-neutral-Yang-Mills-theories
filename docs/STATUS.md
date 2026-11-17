@@ -2,6 +2,27 @@
 
 Updated: 2026-11-17
 
+## Repository presentation and organization
+
+The root README now gives a short natural-language theorem description and
+links to the paper, Lean code, comparison, and project notes. The content is
+organized under `paper/`, `lean/`, `comparison/`, and `docs/`; `paper/main.pdf`
+is kept beside `paper/main.tex`. The Lean project and its toolchain, manifest,
+and regression suite now live together under `lean/`, and CI uses that folder.
+All Lean source files and the mathematical paper/figure files retain their
+previous contents. Documentation links and the 19-page compiled PDF were checked.
+The narrow headline build (3573 jobs) and regression suite (3587 jobs) passed
+from `lean/`. Saved cloud setup instructions now use the new folder layout.
+
+The requested repository name is
+`Perimeter-law-lower-bound-for-center-neutral-Yang-Mills-theories`.
+The GitHub rename remains pending: the running environment's network policy
+blocks `api.github.com` (CONNECT/PATCH 403). The saved environment draft adds
+that host while preserving the existing Mathlib cache domain. Applying the
+running access change is required before retrying the rename; the saved draft
+requires review/save and publication for future tasks. Repository visibility
+has not been changed.
+
 ## Paper-aligned headline (complete)
 
 The public headline now proves the paper's exact uniform-coupling conclusion:
@@ -16,7 +37,7 @@ the square of side `max(R,T)`. The fixed screening data yield an explicit
 monomial/exponential seed and the `1 + beta + |log beta|` coefficient. The
 strong-coupling corollary now specializes this strengthened headline.
 Conservative one-edge numerical constants and implementation details are
-recorded in `docs/PAPER_LEAN_COMPARISON.md`; the manuscript is unchanged.
+recorded in `comparison/PAPER_LEAN_COMPARISON.md`; the manuscript is unchanged.
 
 Validation completed with source-built dependencies:
 
@@ -57,7 +78,7 @@ references and citations resolved.
 ## Manuscript illustrations
 
 The supplied LaTeX manuscript is stored under
-`docs/Gluelump_Perimeter_Law_Lower_Bound/`. Its four existing figure
+`paper/`. Its four existing figure
 references now have vector PDF diagrams and PNG previews, with a
 reproducible generator in `figures/`. The generator checks the comb
 half-space conditions for the two diagonal reflections. The mathematical

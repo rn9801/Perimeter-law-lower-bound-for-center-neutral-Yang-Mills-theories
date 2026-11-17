@@ -18,6 +18,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lean
     steps:
       - uses: actions/checkout@v4
 
@@ -25,6 +28,7 @@ jobs:
         uses: leanprover/lean-action@v1
         with:
           use-mathlib-cache: auto
+          lake-package-directory: lean
 
       - name: Verify current Strong-Coupling main
         run: |

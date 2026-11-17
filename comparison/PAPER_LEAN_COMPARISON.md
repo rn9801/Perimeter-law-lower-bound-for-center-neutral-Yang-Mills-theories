@@ -2,7 +2,7 @@
 
 Updated 2026-11-17. This document describes the strengthened headline and its
 proof path. It supersedes the earlier audit of the qualitative headline.
-The manuscript is [main.tex](Gluelump_Perimeter_Law_Lower_Bound/main.tex);
+The manuscript is [main.tex](../paper/main.tex);
 Lean's dependency remains the locked Strong-Coupling `main` revision
 `bc7383d023f0c58a16312764a32422248aa42ebe`.
 
@@ -10,11 +10,11 @@ Lean's dependency remains the locked Strong-Coupling `main` revision
 
 The paper's Theorem `thm:Main-theorem` is exported as
 `YangMills.Gluelump.InfiniteVolume.centerNeutralInfiniteVolumePerimeterLaw`
-in [InfiniteVolumePerimeterLaw.lean](../GluelumpPerimeterLaw/InfiniteVolumePerimeterLaw.lean).
+in [InfiniteVolumePerimeterLaw.lean](../lean/GluelumpPerimeterLaw/InfiniteVolumePerimeterLaw.lean).
 Its proposition is
 `CenterNeutralInfiniteVolumePerimeterLaw`, an abbreviation for
 `CenterNeutralUniformCouplingPerimeterLaw` in
-[InfiniteVolumePerimeterLawStatement.lean](../GluelumpPerimeterLaw/InfiniteVolumePerimeterLawStatement.lean).
+[InfiniteVolumePerimeterLawStatement.lean](../lean/GluelumpPerimeterLaw/InfiniteVolumePerimeterLawStatement.lean).
 
 With `rho` denoting the paper's Wilson representation `tau`, its quantifiers
 and conclusion are:
@@ -46,7 +46,7 @@ sets is synthesized from the ambient hypotheses.
 
 ## Finite-volume law and the limit assumption
 
-[FreeBoundaryBoxes.lean](../GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryBoxes.lean)
+[FreeBoundaryBoxes.lean](../lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryBoxes.lean)
 defines `freeBoundarySpecification` with exactly the paper's finite variables
 and interactions:
 
@@ -70,7 +70,7 @@ The internal potential is `Re Tr(sigma(g))/n`, where `n=dim(sigma)`.
 Consequently the paper's coupling `beta` corresponds to internal coupling
 `n*beta`. The two oriented plaquette labels already supply the paper's factor
 of two per geometric plaquette; a further factor of two would be incorrect.
-[PaperFreeBoundary.lean](../GluelumpPerimeterLaw/Upstream/StrongCoupling/PaperFreeBoundary.lean)
+[PaperFreeBoundary.lean](../lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/PaperFreeBoundary.lean)
 exports:
 
 - `paperFreeBoundaryGibbsSequence` at coupling `n*beta`;
@@ -79,7 +79,7 @@ exports:
 - `IsTranslationInvariantPaperFreeBoundaryLimit`, the ordinary local-limit
   hypothesis at that coupling.
 
-[FreeBoundaryInfiniteVolume.lean](../GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryInfiniteVolume.lean)
+[FreeBoundaryInfiniteVolume.lean](../lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryInfiniteVolume.lean)
 requires convergence of every continuous local observable along each
 elongation axis to the same translation-invariant probability. This is
 Assumption `as:infinite-vol`, using the local-convergence explanation after
@@ -89,7 +89,7 @@ the measure. Uniqueness therefore needs no extra input in the headline.
 
 Finite site, bond, diagonal, and anti-diagonal reflection inequalities pass
 to this common limit in
-[FreeBoundaryReflectionPositiveState.lean](../GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryReflectionPositiveState.lean).
+[FreeBoundaryReflectionPositiveState.lean](../lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryReflectionPositiveState.lean).
 The finite bond argument uses gauge-fixed crossing families, allowing
 covariant half-observables whose glued full observable is gauge invariant,
 as in the paper's Remark `rem:RP-Wilson-observables`.
@@ -98,15 +98,15 @@ as in the paper's Remark `rem:RP-Wilson-observables`.
 
 | Paper step | Lean proof used by the headline | Correspondence |
 | --- | --- | --- |
-| Lemmas `lm:faithful` and `lm:Intertwiner-construct` | `centerNeutral_exists_conjSpanIntertwiner` in [CenterScreening.lean](../GluelumpPerimeterLaw/RepresentationTheory/CenterScreening.lean), using [TensorGeneration.lean](../GluelumpPerimeterLaw/RepresentationTheory/TensorGeneration.lean) | Pass to `G/Z(G)`, detect a nonzero matrix coefficient by Stone–Weierstrass, and Haar-average a rank-one map. The degree and nonzero screening map are fixed before the coupling. |
-| Definitions `def:comb`, `def:higgs-like-field`; Lemmas `lm:Higgs-field-transform`, `lm:gluelump-gauge-invariant` | [CombLoops.lean](../GluelumpPerimeterLaw/Endpoint/CombLoops.lean), [ConjugationSpanField.lean](../GluelumpPerimeterLaw/Endpoint/ConjugationSpanField.lean), and the screened-observable APIs | The same nested unit-height rectangles give a nonzero covariant field; distinct far edges realize independent holonomies. The normalized field has pointwise norm at most one. |
-| Lemma `lm:one-edge-positivity` | [ConjugationSpanOneLinkFactorization.lean](../GluelumpPerimeterLaw/OneLink/ConjugationSpanOneLinkFactorization.lean), [ConcreteOneLinkLowerBound.lean](../GluelumpPerimeterLaw/OneLink/ConcreteOneLinkLowerBound.lean) | Gauge-fix crossing bonds, expand the positive kernel, extract a fixed-degree nonzero endpoint mode, compare the local collar with Haar measure by finite energy, and cancel the common remote factor. The resulting bound is independent of box size. |
-| Pass the seed to infinite volume | `conjSpanOneLinkLowerConstant_le_freeBoundaryLimit` in [FreeBoundaryLimitLowerBound.lean](../GluelumpPerimeterLaw/OneLink/FreeBoundaryLimitLowerBound.lean) | The same fixed screening data and explicit positive constant work eventually in ordinary free-boundary boxes and pass through local convergence; the imaginary part vanishes. |
-| One edge to a straight path, equation `eq:main-straight-lower-bound` | `conjSpanPhysicalStraightExpectation_rate_power_le` in [ConjSpanPhysicalStraightExpectation.lean](../GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightExpectation.lean), instantiated by [ConjSpanPhysicalStraightLimit.lean](../GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightLimit.lean) | Site and bond Cauchy–Schwarz give the two parity cases of log-convexity. Together with the seed and the norm bound at length zero, this gives `g_length >= q^length`. |
-| Straight path to an L shape | `paperPhysicalStraightExpectation_sq_le_cornerBent` in [PaperCorner.lean](../GluelumpPerimeterLaw/Propagation/PaperCorner.lean) | Diagonal vector Cauchy–Schwarz and the norm-one comparison field give `g_length^2 <= bent_length` for **every positive length**. |
-| L shape to a square, equation `eq:main-square-lower-bound` | `paperCornerBent_sq_div_dimension_le_square` and `paperSquare_lower_bound_of_line_rate` in [PaperCorner.lean](../GluelumpPerimeterLaw/Propagation/PaperCorner.lean) | Anti-diagonal matrix Cauchy–Schwarz with the unnormalized Hilbert–Schmidt pairing gives `bent_length^2 / dim(rho) <= w(length,length)`, hence `q^(4*length)/dim(rho) <= w(length,length)`. |
-| Squares to rectangles | `paperRectangle_lower_bound_of_line_rate` in [PaperCorner.lean](../GluelumpPerimeterLaw/Propagation/PaperCorner.lean), using [CanonicalRectangleExpectation.lean](../GluelumpPerimeterLaw/Propagation/CanonicalRectangleExpectation.lean) | Reflection log-convexity, nonnegativity, and the unit upper bound imply monotonicity in each side. Choose the square of side **`max(R,T)`**, as in the paper. |
-| Quantitative dependence and final assembly | [CouplingLowerBound.lean](../GluelumpPerimeterLaw/OneLink/CouplingLowerBound.lean), [CouplingRate.lean](../GluelumpPerimeterLaw/Propagation/CouplingRate.lean), [InfiniteVolumeQuantitative.lean](../GluelumpPerimeterLaw/InfiniteVolumeQuantitative.lean) | Exhibit a fixed monomial/exponential seed, dominate its logarithmic rate by `1+beta+|log beta|`, and transport the canonical rectangle to every basepoint and coordinate plane. |
+| Lemmas `lm:faithful` and `lm:Intertwiner-construct` | `centerNeutral_exists_conjSpanIntertwiner` in [CenterScreening.lean](../lean/GluelumpPerimeterLaw/RepresentationTheory/CenterScreening.lean), using [TensorGeneration.lean](../lean/GluelumpPerimeterLaw/RepresentationTheory/TensorGeneration.lean) | Pass to `G/Z(G)`, detect a nonzero matrix coefficient by Stone–Weierstrass, and Haar-average a rank-one map. The degree and nonzero screening map are fixed before the coupling. |
+| Definitions `def:comb`, `def:higgs-like-field`; Lemmas `lm:Higgs-field-transform`, `lm:gluelump-gauge-invariant` | [CombLoops.lean](../lean/GluelumpPerimeterLaw/Endpoint/CombLoops.lean), [ConjugationSpanField.lean](../lean/GluelumpPerimeterLaw/Endpoint/ConjugationSpanField.lean), and the screened-observable APIs | The same nested unit-height rectangles give a nonzero covariant field; distinct far edges realize independent holonomies. The normalized field has pointwise norm at most one. |
+| Lemma `lm:one-edge-positivity` | [ConjugationSpanOneLinkFactorization.lean](../lean/GluelumpPerimeterLaw/OneLink/ConjugationSpanOneLinkFactorization.lean), [ConcreteOneLinkLowerBound.lean](../lean/GluelumpPerimeterLaw/OneLink/ConcreteOneLinkLowerBound.lean) | Gauge-fix crossing bonds, expand the positive kernel, extract a fixed-degree nonzero endpoint mode, compare the local collar with Haar measure by finite energy, and cancel the common remote factor. The resulting bound is independent of box size. |
+| Pass the seed to infinite volume | `conjSpanOneLinkLowerConstant_le_freeBoundaryLimit` in [FreeBoundaryLimitLowerBound.lean](../lean/GluelumpPerimeterLaw/OneLink/FreeBoundaryLimitLowerBound.lean) | The same fixed screening data and explicit positive constant work eventually in ordinary free-boundary boxes and pass through local convergence; the imaginary part vanishes. |
+| One edge to a straight path, equation `eq:main-straight-lower-bound` | `conjSpanPhysicalStraightExpectation_rate_power_le` in [ConjSpanPhysicalStraightExpectation.lean](../lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightExpectation.lean), instantiated by [ConjSpanPhysicalStraightLimit.lean](../lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightLimit.lean) | Site and bond Cauchy–Schwarz give the two parity cases of log-convexity. Together with the seed and the norm bound at length zero, this gives `g_length >= q^length`. |
+| Straight path to an L shape | `paperPhysicalStraightExpectation_sq_le_cornerBent` in [PaperCorner.lean](../lean/GluelumpPerimeterLaw/Propagation/PaperCorner.lean) | Diagonal vector Cauchy–Schwarz and the norm-one comparison field give `g_length^2 <= bent_length` for **every positive length**. |
+| L shape to a square, equation `eq:main-square-lower-bound` | `paperCornerBent_sq_div_dimension_le_square` and `paperSquare_lower_bound_of_line_rate` in [PaperCorner.lean](../lean/GluelumpPerimeterLaw/Propagation/PaperCorner.lean) | Anti-diagonal matrix Cauchy–Schwarz with the unnormalized Hilbert–Schmidt pairing gives `bent_length^2 / dim(rho) <= w(length,length)`, hence `q^(4*length)/dim(rho) <= w(length,length)`. |
+| Squares to rectangles | `paperRectangle_lower_bound_of_line_rate` in [PaperCorner.lean](../lean/GluelumpPerimeterLaw/Propagation/PaperCorner.lean), using [CanonicalRectangleExpectation.lean](../lean/GluelumpPerimeterLaw/Propagation/CanonicalRectangleExpectation.lean) | Reflection log-convexity, nonnegativity, and the unit upper bound imply monotonicity in each side. Choose the square of side **`max(R,T)`**, as in the paper. |
+| Quantitative dependence and final assembly | [CouplingLowerBound.lean](../lean/GluelumpPerimeterLaw/OneLink/CouplingLowerBound.lean), [CouplingRate.lean](../lean/GluelumpPerimeterLaw/Propagation/CouplingRate.lean), [InfiniteVolumeQuantitative.lean](../lean/GluelumpPerimeterLaw/InfiniteVolumeQuantitative.lean) | Exhibit a fixed monomial/exponential seed, dominate its logarithmic rate by `1+beta+|log beta|`, and transport the canonical rectangle to every basepoint and coordinate plane. |
 
 ### Corner geometry
 
@@ -120,7 +120,7 @@ direction is outside its plane, just as for the paper's `Phi^{32}` in the
 | `2`, short in-plane comb direction | `Geometry.transverseAxis₂` (`Fin` value 2) |
 | `3`, long out-of-plane comb direction | `Geometry.transverseAxis₁` (`Fin` value 1) |
 
-[PaperCornerEndpoints.lean](../GluelumpPerimeterLaw/Propagation/PaperCornerEndpoints.lean)
+[PaperCornerEndpoints.lean](../lean/GluelumpPerimeterLaw/Propagation/PaperCornerEndpoints.lean)
 proves that the in-plane comb width is one, independently of the screening
 degree. Lean splits a physical length into `s=length/2` and `t=length-s`;
 its affine diagonal plane has offset `-s`. Translating by `s` in the arm
@@ -188,7 +188,8 @@ headline's proof path.
 ## Validation
 
 The following builds completed successfully with Lean 4.30.0 and the locked
-upstream dependency, using source-built dependencies:
+upstream dependency, using source-built dependencies. Run these commands from
+the repository’s `lean/` folder:
 
 ```bash
 lake --no-cache build GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw  # 3573 jobs
