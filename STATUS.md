@@ -1,6 +1,18 @@
 # Status
 
-Updated: 2026-08-29
+Updated: 2026-11-17
+
+## Manuscript illustrations
+
+The supplied LaTeX manuscript is stored under
+`docs/Gluelump_Perimeter_Law_Lower_Bound/`. Its four existing figure
+references now have vector PDF diagrams and PNG previews, with a
+reproducible generator in `figures/`. The generator checks the comb
+half-space conditions for the two diagonal reflections. The mathematical
+text and captions are unchanged; this documentation milestone changes no
+Lean declarations.
+The illustrated manuscript builds successfully with `latexmk` and BibTeX
+(19 pages); all four figures were inspected in the rendered document.
 
 The center-neutral infinite-volume gluelump perimeter-law lower bound is
 proved.  The standalone package contains the direct conjugation-span endpoint,
