@@ -2,6 +2,16 @@
 
 Updated: 2026-11-17
 
+## Paper and Lean comparison
+
+Recorded a source-level theorem and proof comparison in
+`docs/PAPER_LEAN_COMPARISON.md`, including coupling normalization, finite-volume
+packaging, the quantitative statement, and the collar-aware corner argument.
+Updated the manuscript's AI acknowledgment to describe mixed author/LLM writing
+and the author's review and responsibility. Rebuilt the PDF. No Lean sources
+changed; fresh Lean validation remains blocked by missing dependency artifacts
+and the Mathlib cache network restriction.
+
 ## Targeted manuscript revisions
 
 Clarified infinite-volume convergence through continuous local observables and
