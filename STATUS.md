@@ -2,6 +2,13 @@
 
 Updated: 2026-11-17
 
+## Targeted manuscript revisions
+
+Clarified infinite-volume convergence through continuous local observables and
+revised the three requested passages: the one-edge bound, the tensor-generation
+preamble, and the alternating-tensor example. The other three flagged passages
+are unchanged. Rebuilt the manuscript PDF; no Lean sources changed.
+
 ## Manuscript proofreading
 
 Completed a readthrough of the manuscript and the separate reflection-positivity

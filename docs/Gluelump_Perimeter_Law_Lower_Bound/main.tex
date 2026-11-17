@@ -136,6 +136,8 @@ Before stating the main result, we must introduce one assumption and one definit
     We assume that there is a unique measure $\mu$ on gauge configurations $G^{E_{\Z^d}^+}$ (with respect to the Borel $\sigma$-algebra), which is invariant under integer coordinate translations, such that for each coordinate $i \in [d]$, the measures $\mu_{\Lambda_L^i} \rightharpoonup \mu$ as $L \to \infty$. We will denote expectations with respect to $\mu$ by $\langle \cdot \rangle$. 
 \end{assumption}
 
+Here weak convergence means that the expectation of every continuous local observable under $\mu_{\Lambda_L^i}$ converges to its expectation under $\mu$, once all edges in its support are contained in $\Lambda_L^i$.
+
 \begin{remark}
     Assumption \ref{as:infinite-vol} is known to be true in the strong coupling regime $\beta \ll_{d,G,\sigma} 1$ by the cluster expansion arguments of \cite{osterwalderseiler1978}.
 \end{remark}
@@ -315,8 +317,9 @@ The next lemma is the core of the Higgs-like field construction. Recall once aga
     In representation-theoretic terms, $T$ is an intertwiner.
 \end{lemma}
 
-This lemma can be proven as a rather simple corollary of the tensor-generation theorem
-\cite[Chapter~III, Theorem~4.4]{Brocker2013}; however, in order to provide more clarity along with an explicit form of the map $T$, we provide the details for the proof of Lemma \ref{lm:Intertwiner-construct}.
+This lemma follows from the tensor-generation theorem
+\cite[Chapter~III, Theorem~4.4]{Brocker2013}.
+The proof below gives an explicit integral formula for $T$.
 
 %\begin{proof}
 %By Lemma \ref{lm:faithful}, $\mathrm{Ad}_{\sigma}$ descends
@@ -534,7 +537,7 @@ We will need the following elementary Haar integral lemma with proof deferred to
         T(E_{12}\otimes E_{34}\otimes\cdots\otimes E_{2N-1,2N})
         =\frac{e_{2N+1}}{(2N+1)!}\neq0.
     \end{equs}
-    We encourage the reader to verify the intertwining property directly from \eqref{eq:intertwiner-SOodd-explicit} as an entertaining exercise in linear algebra.
+    The intertwining property follows directly from \eqref{eq:intertwiner-SOodd-explicit} and the invariance of the alternating tensor under $\mrm{SO}(2N+1)$.
     
     %There is also an elegant proof of the intertwining property \eqref{eq:intertwining} directly from the explicit formula \eqref{eq:intertwiner-SOodd-explicit}: we claim that
     %\begin{equs}
@@ -847,7 +850,7 @@ We now illustrate Definition \ref{def:higgs-like-field} using the intertwiner ma
 In the last section we constructed a nonzero field assigned to vertices which transforms like a Higgs field under gauge transformations.
 In this section we use arguments based on reflection positivity which first appeared in the Yang--Mills--Higgs case \cite{EvertzEtAl1987Perimeter} to complete the proof of Theorem \ref{thm:Main-theorem}.
 
-The first and most technical step is simply to show that the Wilson line observable associated to a single-edge open path $O_e^{ij}$ has expectation bounded from below uniformly in the volume of the lattice. In order to prove this result, we first recall a standard gauge fixing procedure.
+The first step is to bound the expectation of the one-edge Wilson line $O_e^{ij}$ below by a positive constant independent of the volume. We begin with a standard gauge-fixing procedure.
 
 \begin{lemma}[Gauge fixing to identity on a forest]
 \label{lm:gauge-fix-to-identity}
