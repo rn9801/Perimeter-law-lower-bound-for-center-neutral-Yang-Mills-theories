@@ -1,0 +1,129 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       MATH PACKAGES                                   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathabx}
+\usepackage[scr=boondoxo]{mathalfa}
+\usepackage{bbm} 
+\usepackage{esint}
+\usepackage{hyperref}
+\usepackage{mhequ}
+
+% \setmathfont{lucida}
+% \usepackage[scr=boondoxo, frak=lucida]{mathalpha}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Editing                                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\todo}[1]{\textcolor{red}{[To Do: #1]}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Layout                                          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1in]{geometry}
+\usepackage[dvipsnames,table]{xcolor}
+% \setlength{\parindent}{0ex}
+\usepackage{enumitem}
+\setcounter{tocdepth}{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Theorem Environments                             %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{prop}[definition]{Proposition}
+\newtheorem{cor}[definition]{Corollary}
+\newtheorem{notation}[definition]{Notation}
+\newtheorem{convention}[definition]{Convention}
+\newtheorem{terminology}[definition]{Terminology}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{hypothesis}[definition]{Hypothesis}
+\newtheorem{assumption}[definition]{Assumption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Numbering                                  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       
+
+%Basic math commands                             %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Parameters
+\newcommand{\sreg}{\varepsilon}
+\newcommand{\sdecay}{\nu}
+
+%Sets 
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}} 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+
+%Data-to-solution map 
+\newcommand{\bA}{\mathbb{A}}
+
+%Functions
+\newcommand{\e}{\mathscr{e}}
+
+%Function spaces
+\newcommand{\Cs}{\mathscr{C}}
+\newcommand{\Dc}{\mathcal{D}}
+\newcommand{\dc}{\mathscr{d}}
+\newcommand{\Bc}{\mathcal{B}}
+\newcommand{\Xc}{\mathcal{X}}
+\newcommand{\Yc}{\mathcal{Y}}
+\newcommand{\BS}{\mathcal{B}_{\leq S}^{-\kappa}}
+
+
+%Macros
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\floor}[1]{ \lfloor #1 \rfloor }
+\newcommand{\ffloor}[1] { \left \lfloor #1 \right \rfloor }
+\newcommand{\ceil}[1]{ \lceil #1 \rceil }
+\newcommand{\fceil}[1]{ \left \lceil #1 \right \rceil}
+\newcommand{\varep}{ \varepsilon }
+\newcommand{\sse} {\subseteq}
+\newcommand{\bs} {\backslash}
+\newcommand{\icomplex}{\textup{i}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\toinf}{\ra \infty}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\Var}[1]{\mathrm{Var}(#1)}
+\newcommand{\Cov}{\mrm{Cov}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\liegroup}{G}
+\newcommand{\lalg}{\mf{g}}
+\newcommand{\lalgdim}{d_\lalg}
+\newcommand{\groupid}{\textup{id}}
+\newcommand{\unitary}{\mrm{U}}
+\newcommand{\End}{\mrm{End}}
+\newcommand{\ptl}{\partial}

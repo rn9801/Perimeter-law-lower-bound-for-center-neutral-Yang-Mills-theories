@@ -1,0 +1,163 @@
+\section{Three flavors of reflection positivity}
+
+In this section we prove the standard reflection positivity results, Lemmas \ref{lm:site-reflection-positivity}, \ref{lm:bond-reflection-positivity}, and \ref{lm:diagonal-reflection-positivity}.
+
+\begin{proof}[Proof of Lemma \ref{lm:site-reflection-positivity}]
+    First work in the finite box $\Lambda$. Split the edge variables as
+    $Q=(Q_-,Q_0,Q_+)$, where $Q_0$ consists of the edges contained in $P$,
+    and $Q_\pm$ consists of the remaining edges in the respective closed
+    half spaces. Every plaquette is contained in one of these half spaces.
+    Thus
+    \begin{equs}
+        S_\Lambda=S_0+S_++\Theta_PS_+,
+    \end{equs}
+    where $S_0$ contains the plaquettes in $P$, and $S_+$ contains those
+    in the positive half space but not in $P$. Both are real. The reflection
+    fixes $Q_0$ and exchanges the remaining two sets of variables. Fubini's
+    theorem therefore gives
+    \begin{equs}\label{eq:site-RP-Gram}
+        Z_\Lambda B_{P,\Lambda}(f,g)
+        &=\int e^{S_0(Q_0)}
+          \langle I_f(Q_0),I_g(Q_0)\rangle_{\mathcal K}\,dQ_0,\\
+        I_f(Q_0)&:=\int f(Q_0,Q_+)e^{S_+(Q_0,Q_+)}\,dQ_+.
+    \end{equs}
+    This proves positivity and Hermitian symmetry, and Cauchy--Schwarz
+    proves \eqref{eq:site-RP-CS}.
+
+    For the infinite-volume assertion, first take $a=0$ and use
+    $\Lambda=\Lambda_L^r$ with $r\neq k$. These boxes are invariant under
+    $\Theta_P$. For fixed local $f,g$, all functions appearing in
+    \eqref{eq:site-RP-CS} are bounded, continuous, and local. Their
+    expectations converge by Assumption \ref{as:infinite-vol}, so the
+    inequalities pass to the limit. Finally, translation invariance of
+    $\mu$, applied to the translation by $ae_k$, gives the assertion for
+    every integer $a$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lm:bond-reflection-positivity}]
+    We first fix the finite box $\Lambda$. The crossing bonds are pairwise
+    vertex-disjoint. For fixed values $q_b$ of these bonds, apply the gauge
+    transformation
+    \begin{equs}
+        g_v=q_{b_v}^{-1}\quad(v_k=a+1),\qquad
+        g_z=\groupid\quad\text{at every other vertex}.
+    \end{equs}
+    This sets every crossing bond to the identity. For fixed $(q_b)_b$,
+    its action on the remaining edge variables preserves product Haar
+    measure, since it acts on each variable by fixed left and right
+    multiplications. Gauge invariance of $A_{rs}$ and $S_\Lambda$ then
+    allows the crossing variables to be integrated out; their normalized
+    Haar integral is one. Writing $\widehat Q$ for the configuration with
+    all crossing bonds fixed, and $d\widehat Q$ for product Haar measure
+    on its remaining variables, we obtain
+    \begin{equs}\label{eq:bond-RP-gauge-fixing}
+        Z_\Lambda\langle A_{rs}\rangle_\Lambda
+        =\int\langle f_r(\widehat Q),\Theta_Pf_s(\widehat Q)
+              \rangle_{\mathcal K}
+              e^{S_\Lambda(\widehat Q)}\,d\widehat Q.
+    \end{equs}
+    The same change of variables with observable $1$ shows that the
+    normalizing constant is still $Z_\Lambda$.
+
+    The remaining variables split into $Q_+$ and $Q_-$, and
+    \begin{equs}
+        S_\Lambda(\widehat Q)=S_++\Theta_PS_++S_\times,
+    \end{equs}
+    where $S_+$ contains the plaquettes wholly in $H_+$. For each plaquette
+    crossing $P$, let $e$ be its edge in the boundary layer of $H_+$.
+    Up to cyclic permutation and reversal, its holonomy after gauge fixing
+    is $Q_eQ_{\Theta_Pe}^{-1}$. In an orthonormal basis of $V$, write
+    $u_{ij}(Q):=\sigma(Q_e)_{ij}$. Its two orientations contribute
+    \begin{equs}\label{eq:RP-crossing-plaquette}
+        \beta\sum_{i,j=1}^{\dim V}
+        \big(u_{ij}\,\overline{\Theta_Pu_{ij}}
+             +\overline{u_{ij}}\,\Theta_Pu_{ij}\big).
+    \end{equs}
+    Listing these matrix coefficients and their complex conjugates as
+    $u_1,\ldots,u_J$, over all crossing plaquettes, gives
+    \begin{equs}
+        S_\times=\beta\sum_{j=1}^J\overline{u_j}\,\Theta_Pu_j.
+    \end{equs}
+    For $\mathbf n=(n_1,\ldots,n_J)\in\mathbb N_0^J$, put
+    \begin{equs}
+        h_{\mathbf n}:=\prod_{j=1}^Ju_j^{n_j},\qquad
+        c_{\mathbf n}:=\frac{\beta^{n_1+\cdots+n_J}}{n_1!\cdots n_J!}.
+    \end{equs}
+    Expanding the exponential yields
+    \begin{equs}\label{eq:RP-positive-expansion}
+        e^{S_\times}
+        =\sum_{\mathbf n\in\mathbb N_0^J}
+          c_{\mathbf n}\overline{h_{\mathbf n}}\,
+          \Theta_Ph_{\mathbf n}.
+    \end{equs}
+    This series converges absolutely and uniformly: $|u_j|\leq1$ and
+    $\sum_{\mathbf n}c_{\mathbf n}=e^{\beta J}<\infty$. Hence Fubini's
+    theorem and termwise integration in
+    \eqref{eq:bond-RP-gauge-fixing} give
+    \begin{equs}\label{eq:bond-RP-Gram}
+        Z_\Lambda\langle A_{rs}\rangle_\Lambda
+        &=\sum_{\mathbf n}c_{\mathbf n}
+          \langle I_{r,\mathbf n},I_{s,\mathbf n}\rangle_{\mathcal K},\\
+        I_{r,\mathbf n}
+        &:=\int f_r(Q_+)h_{\mathbf n}(Q_+)e^{S_+(Q_+)}\,dQ_+.
+    \end{equs}
+    Thus $(\langle A_{rs}\rangle_\Lambda)_{r,s}$ is a sum of Gram
+    matrices with nonnegative coefficients. This proves the claim and
+    \eqref{eq:bond-RP-CS}.
+
+    To pass to infinite volume, first take $a=0$ and
+    $\Lambda=\Lambda_L^k$. For fixed local data, the finite-volume
+    hypotheses hold once the box contains their supports and reflected
+    supports: a configuration in the crossing-bond gauge can be extended
+    by the identity outside the box to check the gluing identity. Every $\langle A_{rs}\rangle_\Lambda$ then converges by
+    Assumption \ref{as:infinite-vol}. Consequently, the limiting matrix
+    is positive semidefinite and satisfies \eqref{eq:bond-RP-CS} with
+    infinite-volume expectations. We pass to the limit only in these
+    local observables; no infinite-volume gauge fixing is used.
+    Translation invariance of $\mu$ now gives every $a\in\Z$.
+\end{proof}
+
+\begin{proof}
+    First work in the finite box $\Lambda$. Along a lattice edge,
+    $x_k-sx_l-a$ changes by at most one. Thus no edge joins the two
+    strict half spaces, and we may split $Q=(Q_-,Q_0,Q_+)$ as in the
+    site reflection proof. A plaquette not contained in either closed
+    half space necessarily lies in the $(k,l)$ coordinate plane and
+    has two opposite vertices in $P$, one vertex in each strict half
+    space. Its two length-two paths between the vertices in $P$ are
+    $\gamma$ and $\Theta_P\gamma$, with $\gamma$ in $H_+$.
+    Its holonomy, up to cyclic permutation and reversal, is therefore
+    \begin{equs}
+        Q_\gamma Q_{\Theta_P\gamma}^{-1}.
+    \end{equs}
+    Consequently,
+    \begin{equs}
+        S_\Lambda=S_0+S_++\Theta_PS_++S_\times,
+    \end{equs}
+    and every crossing plaquette contributes
+    \eqref{eq:RP-crossing-plaquette}, now with
+    $u_{ij}=\sigma(Q_\gamma)_{ij}$. No gauge fixing is required.
+    The same absolutely and uniformly convergent expansion
+    \eqref{eq:RP-positive-expansion} applies. Keeping the shared
+    variables $Q_0$ in the outer integral gives
+    \begin{equs}\label{eq:diagonal-RP-Gram}
+        Z_\Lambda B_{P,\Lambda}(f,g)
+        &=\sum_{\mathbf n}c_{\mathbf n}
+          \int e^{S_0(Q_0)}
+          \langle I_{f,\mathbf n}(Q_0),
+                  I_{g,\mathbf n}(Q_0)\rangle_{\mathcal K}\,dQ_0,\\
+        I_{f,\mathbf n}(Q_0)
+        &:=\int f(Q_0,Q_+)h_{\mathbf n}(Q_0,Q_+)
+                  e^{S_+(Q_0,Q_+)}\,dQ_+.
+    \end{equs}
+    This is again a Gram representation with nonnegative weights,
+    proving the finite-volume assertions.
+
+    For $a=0$, choose $r\notin\{k,l\}$ and take
+    $\Lambda=\Lambda_L^r$. Such an $r$ exists since $d\geq3$, and these
+    boxes are invariant under either choice of the diagonal reflection.
+    Assumption \ref{as:infinite-vol} therefore allows the inequalities
+    for fixed continuous local observables to pass to the limit along
+    this specified exhaustion. Translation by $ae_k$, and translation
+    invariance of $\mu$, then give the assertion for arbitrary $a$.
+\end{proof}
