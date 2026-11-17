@@ -36,6 +36,19 @@ jobs:
           lake build GluelumpPerimeterLaw
           lake build GluelumpPerimeterLawTests
 
+      - name: Record full module and axiom verification
+        env:
+          LEAN_NUM_THREADS: "2"
+        run: python3 scripts/verify.py --output "$RUNNER_TEMP/gluelump-verification"
+
+      - name: Upload verification record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-and-axiom-audit
+          path: ${{ runner.temp }}/gluelump-verification
+          if-no-files-found: warn
+
       - name: Check repository boundary
         run: |
           test "$(find GluelumpPerimeterLaw/Upstream -name '*.lean' | wc -l | tr -d ' ')" = 30

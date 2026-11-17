@@ -187,7 +187,50 @@ headline's proof path.
 
 ## Validation
 
-The following builds completed successfully with Lean 4.30.0 and the locked
+The [complete recorded verification](../docs/validation/2026-11-17/README.md)
+freshly rebuilt **all 157 tracked Lean modules**, including modules outside
+the public root's import closure. The regression suite passed, and Lean's
+`leanchecker` accepted all 157 compiled modules. A compiled audit of all
+**2,673 project declarations** found no project axiom declarations or unsafe
+declarations, and no dependencies beyond `propext`, `Classical.choice`, and
+`Quot.sound`. The source scan also found no `sorry`, `admit`, `sorryAx`, or
+`native_decide`. The report includes full logs, source and artifact hashes,
+toolchain versions, and dependency revisions.
+
+The successful Lake build logs contain five Lean 4.30 native-code-generation
+`PANIC` diagnostics for the auxiliary `conjSpanTraceToDual` definition. The
+proof objects were produced and passed kernel replay; this does not certify
+execution of that definition's generated native code. The diagnostics are
+retained in the report.
+
+### Headline Comparator check
+
+The official Lean Comparator at its toolchain-matched `v4.30.0` revision
+accepted the actual public theorem
+`YangMills.Gluelump.InfiniteVolume.centerNeutralInfiniteVolumePerimeterLaw`
+and the separately proved `headlineStatement_iff_contract`. The
+[contract](../lean/verification/comparator/Spec.lean.in) expands the local-limit
+and translation hypotheses and normalized Wilson integral, and proves both
+directions of equivalence with the headline proposition. This checks the
+quantifier order and the definitions used in the correspondence above.
+
+The challenge proves the expected public declaration using the existing
+quantitative assembly. The solution imports the real public declaration;
+it does not substitute a wrapper theorem. Both fixtures have complete proofs
+and introduce no additional axioms. Comparator checks matching statements
+and their dependencies, enforces the three-standard-axiom allowlist, and
+replays the solution in a fresh Lean kernel environment. A negative control
+that assumes the desired conclusion was rejected for a statement mismatch.
+
+See the [record and logs](../docs/validation/2026-11-17/README.md#headline-comparator-check)
+and [reproduction procedure](../lean/verification/comparator/README.md).
+This is a formal statement/dependency check using Lean's kernel; it does not
+mechanically interpret the manuscript or provide an independent mathematical
+proof or independently implemented kernel check.
+
+### Earlier focused builds
+
+The following focused builds completed successfully with Lean 4.30.0 and the locked
 upstream dependency, using source-built dependencies. Run these commands from
 the repository’s `lean/` folder:
 

@@ -1,0 +1,68 @@
+import Lean.Elab.Command
+import Lean.Util.CollectAxioms
+
+open Lean Elab Command
+
+set_option autoImplicit false
+set_option maxHeartbeats 0
+
+private def declarationKind : ConstantInfo → String
+  | .axiomInfo _ => "axiom"
+  | .defnInfo _ => "definition"
+  | .thmInfo _ => "theorem"
+  | .opaqueInfo _ => "opaque"
+  | .quotInfo _ => "quotient"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "constructor"
+  | .recInfo _ => "recursor"
+
+run_cmd do
+  let env ← getEnv
+  let allowed : NameSet := NameSet.ofList
+    [``propext, ``Classical.choice, ``Quot.sound]
+  let owned ← env.constants.foldM (init := #[]) fun entries name info => do
+    let some idx := env.getModuleIdxFor? name | return entries
+    let some mod := env.header.moduleNames[idx.toNat]? | return entries
+    unless mod.toString.startsWith "GluelumpPerimeterLaw" do return entries
+    return entries.push (name, info, mod)
+  let owned := owned.qsort fun a b => Name.lt a.1 b.1
+  let mut records : Array Json := #[]
+  let mut allAxioms : NameSet := {}
+  for (name, info, mod) in owned do
+    if let .axiomInfo _ := info then
+      throwError "Project declaration {name} is an axiom"
+    if info.isUnsafe then
+      throwError "Project declaration {name} is unsafe"
+    let axioms ← Lean.collectAxioms name
+    for axiomName in axioms do
+      unless allowed.contains axiomName do
+        throwError "{name} depends on nonstandard axiom {axiomName}"
+      allAxioms := allAxioms.insert axiomName
+    records := records.push <| Json.mkObj [
+      ("name", toJson name.toString),
+      ("module", toJson mod.toString),
+      ("kind", toJson (declarationKind info)),
+      ("axioms", toJson (axioms.map Name.toString))]
+  let headlines := #[
+    ``YangMills.Gluelump.InfiniteVolume.centerNeutralInfiniteVolumePerimeterLaw,
+    ``YangMills.Gluelump.InfiniteVolume.centerNeutralUniformCouplingPerimeterLaw,
+    ``YangMills.Gluelump.InfiniteVolume.centeredInfiniteVolume_centerNeutralPerimeterLaw,
+    ``YangMills.Gluelump.Propagation.conjSpanPerimeterLaw_of_positiveOneLink]
+  let mut headlineRecords : Array Json := #[]
+  for name in headlines do
+    let axioms ← Lean.collectAxioms name
+    headlineRecords := headlineRecords.push <| Json.mkObj [
+      ("name", toJson name.toString),
+      ("axioms", toJson (axioms.map Name.toString))]
+  let summary := Json.mkObj [
+    ("status", toJson "passed"),
+    ("declarations_checked", toJson owned.size),
+    ("project_axiom_declarations", toJson (0 : Nat)),
+    ("unsafe_project_declarations", toJson (0 : Nat)),
+    ("axiom_union", toJson ((allAxioms.toArray.qsort Name.lt).map Name.toString)),
+    ("headlines", toJson headlineRecords),
+    ("declarations", toJson records)]
+  let some output ← liftIO <| IO.getEnv "GLUELUMP_AUDIT_JSON"
+    | throwError "Set GLUELUMP_AUDIT_JSON to the audit output file"
+  liftIO <| IO.FS.writeFile output summary.pretty
+  logInfo m!"Checked {owned.size} project declarations: no project axioms, no unsafe declarations, and only standard axiom dependencies."

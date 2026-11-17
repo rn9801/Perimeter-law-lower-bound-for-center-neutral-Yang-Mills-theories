@@ -1,0 +1,5 @@
+import Spec
+import GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw
+
+/- The target is the existing public theorem imported above. No replacement
+or wrapper theorem is substituted for the implementation. -/

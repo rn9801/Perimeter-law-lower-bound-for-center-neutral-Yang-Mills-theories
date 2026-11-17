@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "source_commit": "35c788d1dd433c403d1f34073efcb26ce70bf15c",
+  "started_at": "2026-11-17T16:01:35.317706-05:00",
+  "runs": [
+    {
+      "name": "comparator-fixture-build",
+      "command": [
+        "lake",
+        "--no-cache",
+        "--no-ansi",
+        "build",
+        "Spec",
+        "Challenge",
+        "Solution",
+        "Mismatch"
+      ],
+      "exit_code": 0,
+      "seconds": 11.768,
+      "log": "comparator-fixture-build.log",
+      "log_sha256": "89807ac9408daa4a5e733dae9beefde6a0f345371c3994c6ed85904a092889c0"
+    },
+    {
+      "name": "headline-comparator",
+      "command": [
+        "lake",
+        "env",
+        "python3",
+        "/workspace/Central-neutral-perimeter-law-lower-bound/lean/scripts/no_unix_sockets.py",
+        "/tmp/gluelump-comparator/.lake/build/bin/comparator",
+        "config.json"
+      ],
+      "exit_code": 0,
+      "seconds": 106.387,
+      "log": "headline-comparator.log",
+      "log_sha256": "b283eca129b2870a9f90a61b772c9a7b0a17ed81aa62afe421be123a60307ab9"
+    },
+    {
+      "name": "comparator-negative-control",
+      "command": [
+        "lake",
+        "env",
+        "python3",
+        "/workspace/Central-neutral-perimeter-law-lower-bound/lean/scripts/no_unix_sockets.py",
+        "/tmp/gluelump-comparator/.lake/build/bin/comparator",
+        "mismatch.json"
+      ],
+      "exit_code": 1,
+      "seconds": 46.026,
+      "log": "comparator-negative-control.log",
+      "log_sha256": "621a7e3b557ec3c180cbe7c4e1e7921e0815153fb66ee4c62619dfb95234e2a4"
+    }
+  ],
+  "tools": {
+    "comparator_revision": "1cfc5d8ad183bf65efe7accd0efc175b6b8f25b6",
+    "lean4export_revision": "a3e35a584f59b390667db7269cd37fca8575e4bf",
+    "comparator_sha256": "c9e9997b146b847a93bd2b0e7b5a6d89439104292ad0b279ae961b54c71723e4",
+    "lean4export_sha256": "8e763913b03762488571a93ced6ec1a4e04f7d8eebbe40bd1215ba41a6bd4449",
+    "landrun_sha256": "a7939c103555f6ae4ea9ddf52774140d4548be5477edfad1bda21aef442d30fd",
+    "landrun_revision": "ec104f6edc1e14d7fec6d31146f1ec6f9c192c5a",
+    "lean4checker_revision": "b7398199245524275543dec6113229c9bb4902e5",
+    "landrun_build_go": "go1.27.4 linux/amd64"
+  },
+  "inputs": {
+    "Challenge.lean.in": "db8089bcee6759c99366dfe71a6011c2e36a0bf7c10e1d6fe87c73aea6549ff3",
+    "Mismatch.lean.in": "392e49fc358cc188b311ecf199eb4549815211fd234d9c628eb7791fcdb01ccf",
+    "Solution.lean.in": "6b0cbb92925b3ef625600316d1e6826b5365ceda97caa6cc1fcae439ddc9a78d",
+    "Spec.lean.in": "59c710e761d87436e77261b9be770b0541a12cef06a921625f3153c25c794f2a",
+    "config.json": "012b06967455481bbfc07f8452976ae11bd15b3619c26d7e9267e883029a76cb"
+  },
+  "configuration": {
+    "challenge_module": "Challenge",
+    "solution_module": "Solution",
+    "theorem_names": [
+      "YangMills.Gluelump.InfiniteVolume.centerNeutralInfiniteVolumePerimeterLaw",
+      "YangMills.Gluelump.Validation.headlineStatement_iff_contract"
+    ],
+    "permitted_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "enable_nanoda": false
+  },
+  "unix_socket_restriction": "seccomp denies AF_UNIX socket/socketpair in parent and children",
+  "landrun_cli_adapter_sha256": "21375b884799c68cc9aa655f4742ff67d76db0fdee3bb65fdd8f35a556799f43",
+  "negative_control": "changed statement rejected as expected",
+  "finished_at": "2026-11-17T16:04:21.432828-05:00",
+  "seccomp_launcher_sha256": "1ab07e766602d537cc60762fe2a9a55b08105a4be4fb5807c2d914a19db491cd"
+}

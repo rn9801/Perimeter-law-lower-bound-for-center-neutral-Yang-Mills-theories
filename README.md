@@ -13,4 +13,4 @@ verifies the main theorem and its proof steps.
 | Paper | [Compiled PDF](paper/main.pdf) · [LaTeX source](paper/main.tex), with references and figures in [paper/](paper/) |
 | Lean formalization | [lean/](lean/), including the theorem statements, proofs, tests, and build instructions |
 | Paper–Lean comparison | [comparison/PAPER_LEAN_COMPARISON.md](comparison/PAPER_LEAN_COMPARISON.md) |
-| Project notes | [docs/](docs/), with assumptions, development history, and validation records |
+| Project notes | [docs/](docs/), including the [recorded build and axiom audit](docs/validation/2026-11-17/README.md) |

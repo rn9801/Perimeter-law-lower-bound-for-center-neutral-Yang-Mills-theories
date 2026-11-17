@@ -1,0 +1,1323 @@
+{
+  "status": "passed",
+  "started_at": "2026-11-17T15:50:58-05:00",
+  "source_commit": "35c788d1dd433c403d1f34073efcb26ce70bf15c",
+  "lean_version": "Lean (version 4.30.0, x86_64-unknown-linux-gnu, commit d024af099ca4bf2c86f649261ebf59565dc8c622, Release)",
+  "lake_version": "Lake version 5.0.0-src+d024af0 (Lean version 4.30.0)",
+  "toolchain": "leanprover/lean4:v4.30.0",
+  "phases": [
+    {
+      "name": "narrow-build",
+      "working_directory": "lean",
+      "command": [
+        "lake",
+        "--no-cache",
+        "--no-ansi",
+        "build",
+        "GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw"
+      ],
+      "exit_code": 0,
+      "seconds": 1.837,
+      "log": "narrow-build.log",
+      "log_sha256": "837035084c458e8ec67cb965eff6405644c85cd98b7ac780648b3a77630baefb",
+      "warning_diagnostics": 341,
+      "panic_diagnostics": 5
+    },
+    {
+      "name": "all-modules-build",
+      "working_directory": "lean",
+      "command": [
+        "lake",
+        "--no-cache",
+        "--no-ansi",
+        "build",
+        "GluelumpPerimeterLaw",
+        "GluelumpPerimeterLaw.Endpoint.ArmPath",
+        "GluelumpPerimeterLaw.Endpoint.AxialField",
+        "GluelumpPerimeterLaw.Endpoint.CombLoops",
+        "GluelumpPerimeterLaw.Endpoint.ConjugationSpanField",
+        "GluelumpPerimeterLaw.Endpoint.ConjugationSpanScreenedWilsonLine",
+        "GluelumpPerimeterLaw.Endpoint.Construction",
+        "GluelumpPerimeterLaw.Endpoint.Covariance",
+        "GluelumpPerimeterLaw.Endpoint.Field",
+        "GluelumpPerimeterLaw.Endpoint.Geometry",
+        "GluelumpPerimeterLaw.Endpoint.LocalField",
+        "GluelumpPerimeterLaw.Endpoint.LoopFamily",
+        "GluelumpPerimeterLaw.Endpoint.Normalization",
+        "GluelumpPerimeterLaw.Endpoint.Observable",
+        "GluelumpPerimeterLaw.Endpoint.RankOne",
+        "GluelumpPerimeterLaw.Endpoint.Reflection",
+        "GluelumpPerimeterLaw.Endpoint.ReflectionSupport",
+        "GluelumpPerimeterLaw.Endpoint.ScreeningForm",
+        "GluelumpPerimeterLaw.Endpoint.TransverseConstruction",
+        "GluelumpPerimeterLaw.Endpoint.TransverseLoops",
+        "GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw",
+        "GluelumpPerimeterLaw.InfiniteVolumePerimeterLawStatement",
+        "GluelumpPerimeterLaw.InfiniteVolumeQuantitative",
+        "GluelumpPerimeterLaw.Lie.AxialMap",
+        "GluelumpPerimeterLaw.Lie.GeneralizedAxialMap",
+        "GluelumpPerimeterLaw.OneLink.BoundarySplit",
+        "GluelumpPerimeterLaw.OneLink.CenterNeutralLowerBound",
+        "GluelumpPerimeterLaw.OneLink.ConcreteCombBoundaryMode",
+        "GluelumpPerimeterLaw.OneLink.ConcreteFiniteEnergy",
+        "GluelumpPerimeterLaw.OneLink.ConcreteGaugeFixedFactorization",
+        "GluelumpPerimeterLaw.OneLink.ConcreteLocalKernelBound",
+        "GluelumpPerimeterLaw.OneLink.ConcreteOneLinkLowerBound",
+        "GluelumpPerimeterLaw.OneLink.ConcretePartitionFunction",
+        "GluelumpPerimeterLaw.OneLink.ConcretePartitionReordering",
+        "GluelumpPerimeterLaw.OneLink.ConjugationSpanBoundaryMode",
+        "GluelumpPerimeterLaw.OneLink.ConjugationSpanEndpointMode",
+        "GluelumpPerimeterLaw.OneLink.ConjugationSpanOneLinkFactorization",
+        "GluelumpPerimeterLaw.OneLink.ConjugationSpanOneLinkObservableCore",
+        "GluelumpPerimeterLaw.OneLink.CouplingLowerBound",
+        "GluelumpPerimeterLaw.OneLink.CrossFeatureSplit",
+        "GluelumpPerimeterLaw.OneLink.EndpointCombMode",
+        "GluelumpPerimeterLaw.OneLink.EndpointPolynomial",
+        "GluelumpPerimeterLaw.OneLink.ExhaustionStrictPositivity",
+        "GluelumpPerimeterLaw.OneLink.ExpKernel",
+        "GluelumpPerimeterLaw.OneLink.FiniteEnergy",
+        "GluelumpPerimeterLaw.OneLink.FiniteVolumePositivity",
+        "GluelumpPerimeterLaw.OneLink.FixedVolumePower",
+        "GluelumpPerimeterLaw.OneLink.FreeBoundaryLimitLowerBound",
+        "GluelumpPerimeterLaw.OneLink.GaugeFixedFactorization",
+        "GluelumpPerimeterLaw.OneLink.LocalIncidence",
+        "GluelumpPerimeterLaw.OneLink.ModeExtraction",
+        "GluelumpPerimeterLaw.OneLink.PowerLowerBound",
+        "GluelumpPerimeterLaw.OneLink.ReflectedEndpointObservableCore",
+        "GluelumpPerimeterLaw.OneLink.SplitGramExpansion",
+        "GluelumpPerimeterLaw.OneLink.StrictPositivity",
+        "GluelumpPerimeterLaw.OneLink.TransversePrism",
+        "GluelumpPerimeterLaw.OneLink.UniformPositivity",
+        "GluelumpPerimeterLaw.OneLink.WordDetection",
+        "GluelumpPerimeterLaw.Propagation.AntiDiagonalClosing",
+        "GluelumpPerimeterLaw.Propagation.AntiDiagonalClosingCore",
+        "GluelumpPerimeterLaw.Propagation.AntiDiagonalFamily",
+        "GluelumpPerimeterLaw.Propagation.AxisTransport",
+        "GluelumpPerimeterLaw.Propagation.CanonicalCofinalPerimeterLaw",
+        "GluelumpPerimeterLaw.Propagation.CanonicalCofinalRectangle",
+        "GluelumpPerimeterLaw.Propagation.CanonicalGeometryBase",
+        "GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectation",
+        "GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectationLimit",
+        "GluelumpPerimeterLaw.Propagation.CanonicalRectanglePerimeter",
+        "GluelumpPerimeterLaw.Propagation.CanonicalRectangleTransport",
+        "GluelumpPerimeterLaw.Propagation.CofinalRectangleCertificate",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanCornerEndpoints",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanCornerExpectation",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanCornerGeometry",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanPerimeterLaw",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraight",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightCrossing",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightExpectation",
+        "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightLimit",
+        "GluelumpPerimeterLaw.Propagation.CornerReflectionState",
+        "GluelumpPerimeterLaw.Propagation.CouplingRate",
+        "GluelumpPerimeterLaw.Propagation.DiagonalBendingCore",
+        "GluelumpPerimeterLaw.Propagation.PaperCorner",
+        "GluelumpPerimeterLaw.Propagation.PaperCornerEndpoints",
+        "GluelumpPerimeterLaw.Propagation.Perimeter",
+        "GluelumpPerimeterLaw.Propagation.RectangleGeometryCore",
+        "GluelumpPerimeterLaw.Propagation.RectangleReflection",
+        "GluelumpPerimeterLaw.Propagation.RectangleReflectionCore",
+        "GluelumpPerimeterLaw.Propagation.Rectangles",
+        "GluelumpPerimeterLaw.Propagation.ReflectedLine",
+        "GluelumpPerimeterLaw.Propagation.ReflectedLineCore",
+        "GluelumpPerimeterLaw.Propagation.ReflectedLineMixed",
+        "GluelumpPerimeterLaw.Propagation.ReflectedLineMixedCore",
+        "GluelumpPerimeterLaw.Propagation.ScreenedPathCertificate",
+        "GluelumpPerimeterLaw.Propagation.SiteReflectedLine",
+        "GluelumpPerimeterLaw.Propagation.SiteReflectionFamily",
+        "GluelumpPerimeterLaw.Propagation.StraightGeometry",
+        "GluelumpPerimeterLaw.Propagation.StraightGeometryCore",
+        "GluelumpPerimeterLaw.Propagation.StraightLine",
+        "GluelumpPerimeterLaw.RepresentationTheory.Center",
+        "GluelumpPerimeterLaw.RepresentationTheory.CenterNeutral",
+        "GluelumpPerimeterLaw.RepresentationTheory.CenterQuotientUnitary",
+        "GluelumpPerimeterLaw.RepresentationTheory.CenterScreening",
+        "GluelumpPerimeterLaw.RepresentationTheory.ConjugationSpan",
+        "GluelumpPerimeterLaw.RepresentationTheory.CoordinateUnitary",
+        "GluelumpPerimeterLaw.RepresentationTheory.DualIrreducible",
+        "GluelumpPerimeterLaw.RepresentationTheory.DualUnitary",
+        "GluelumpPerimeterLaw.RepresentationTheory.FaithfulMatrixCoefficients",
+        "GluelumpPerimeterLaw.RepresentationTheory.HaarAverage",
+        "GluelumpPerimeterLaw.RepresentationTheory.HilbertConjugationSpan",
+        "GluelumpPerimeterLaw.RepresentationTheory.Occurrence",
+        "GluelumpPerimeterLaw.RepresentationTheory.Quotient",
+        "GluelumpPerimeterLaw.RepresentationTheory.Screening",
+        "GluelumpPerimeterLaw.RepresentationTheory.TensorGeneration",
+        "GluelumpPerimeterLaw.RepresentationTheory.TensorPower",
+        "GluelumpPerimeterLaw.RepresentationTheory.UnitaryMatrix",
+        "GluelumpPerimeterLaw.StrongCouplingPerimeterLaw",
+        "GluelumpPerimeterLaw.Upstream.Gauge.AntiDiagonalReflection",
+        "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflection",
+        "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflectionBridge",
+        "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.Gauge.FiniteVolume",
+        "GluelumpPerimeterLaw.Upstream.Gauge.Holonomy",
+        "GluelumpPerimeterLaw.Upstream.Gauge.InfiniteReflection",
+        "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionBridge",
+        "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossing",
+        "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossingFamily",
+        "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionStrictPositivity",
+        "GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState",
+        "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflection",
+        "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflectionBridge",
+        "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.Lattice.Path",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.CenteredBoundaryExpansion",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.CenteredGibbsTower",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteAntiDiagonalReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteDiagonalReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteLinkReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteSiteReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryBoxes",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositiveState",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeDiagonalReflectionPositivity",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeLinkCrossing",
+        "GluelumpPerimeterLaw.Upstream.StrongCoupling.PaperFreeBoundary",
+        "GluelumpPerimeterLaw.Upstream.Wilson.Loop",
+        "GluelumpPerimeterLaw.Upstream.Wilson.Representation",
+        "GluelumpPerimeterLawTests",
+        "GluelumpPerimeterLawTests.CanonicalRectangle",
+        "GluelumpPerimeterLawTests.InfiniteVolumePerimeterLaw",
+        "GluelumpPerimeterLawTests.InfiniteVolumeStatement",
+        "GluelumpPerimeterLawTests.NeutralCriticalPath",
+        "GluelumpPerimeterLawTests.OneLinkFreeBoundaryLimit",
+        "GluelumpPerimeterLawTests.PartitionNormalization",
+        "GluelumpPerimeterLawTests.PhysicalStraight",
+        "GluelumpPerimeterLawTests.ReflectionPositiveState",
+        "GluelumpPerimeterLawTests.RepresentationMilestones",
+        "GluelumpPerimeterLawTests.StrongCouplingPerimeterLaw"
+      ],
+      "exit_code": 0,
+      "seconds": 213.14,
+      "log": "all-modules-build.log",
+      "log_sha256": "f4ef4ac0eec82555d2df39bffb8a9d49e9f327d086dc7a1a77d76897c596c604",
+      "warning_diagnostics": 341,
+      "panic_diagnostics": 5
+    },
+    {
+      "name": "regression-build",
+      "working_directory": "lean",
+      "command": [
+        "lake",
+        "--no-cache",
+        "--no-ansi",
+        "build",
+        "GluelumpPerimeterLawTests"
+      ],
+      "exit_code": 0,
+      "seconds": 1.59,
+      "log": "regression-build.log",
+      "log_sha256": "690a60ed61f480c3899e7f0aeaa48f50dd4af9fb9430af751e3ed81b9ca988d6",
+      "warning_diagnostics": 341,
+      "panic_diagnostics": 5
+    },
+    {
+      "name": "compiled-axiom-audit",
+      "working_directory": "lean",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/tmp/gluelump-axiom-audit-_4t4bxx0/Audit.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 86.654,
+      "log": "compiled-axiom-audit.log",
+      "log_sha256": "38e9f7cddbec7215dbd45ef730390be60b2b5468a798c72b9f190ac5897bb2e0",
+      "warning_diagnostics": 0,
+      "panic_diagnostics": 0
+    },
+    {
+      "name": "kernel-replay",
+      "working_directory": "lean",
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--verbose",
+        "GluelumpPerimeterLaw",
+        "GluelumpPerimeterLawTests"
+      ],
+      "exit_code": 0,
+      "seconds": 219.925,
+      "log": "kernel-replay.log",
+      "log_sha256": "64d2f12decc819a9b40a27c6ba4103de2fe2b64d5870eb6d821194f6b35711a8",
+      "warning_diagnostics": 0,
+      "panic_diagnostics": 0
+    }
+  ],
+  "source_scan": {
+    "files_checked": 157,
+    "findings": []
+  },
+  "modules": [
+    {
+      "file": "lean/GluelumpPerimeterLaw.lean",
+      "module": "GluelumpPerimeterLaw",
+      "source_sha256": "f27ecc4e36a6fc36e1a8b74807ac6a44d7c4673217abdd797b4fe551d546404f",
+      "olean_sha256": "b71f8fab4c2bd1bf3e6f605ce49239cb04dad7085549840b7753e651a2c74880"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/ArmPath.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.ArmPath",
+      "source_sha256": "b7acf55ebaebf1ca383ce7c5a00861f08a962d935e67ebbce78545e3baa324d1",
+      "olean_sha256": "29aa83f2fc613e4b6dc0b2e96f45311b053c68b1467b1bcbcb257f8ad7f8e002"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/AxialField.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.AxialField",
+      "source_sha256": "63f8998cef8606e79e6ba849b84e2ee408c95c00a42be22adcaf8765ff8796fc",
+      "olean_sha256": "01d1ac8d779c9007078bac968913f6dddc7ea369b2d06310d82350f5b54b5654"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/CombLoops.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.CombLoops",
+      "source_sha256": "7cfe9f4debe9242a0d224f83c3bc3dd480aded149fd87cd715276eab1ae63d8d",
+      "olean_sha256": "687aa8c2d196853ef0b64a63488b8de258747d97075ee15bf95f3b3b2fda55b8"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/ConjugationSpanField.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.ConjugationSpanField",
+      "source_sha256": "be3c2256824d357865206fb38beb71b9cdb16ba130f1b27170afb84ec0ef7e0e",
+      "olean_sha256": "b43f04b1c4bc0667e0bc10b5837f6be227ccb4d424b2c93dd5d716c5a1778b27"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/ConjugationSpanScreenedWilsonLine.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.ConjugationSpanScreenedWilsonLine",
+      "source_sha256": "99ac5189dbc5eef4623ad125f904a1a91292874badd2d834086b3eefb15f9a93",
+      "olean_sha256": "cecfed131fcbdebef1badb8a72fa784643235b4a5b776516cd811a7c3fed1036"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Construction.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Construction",
+      "source_sha256": "0b378676a454ae0fda711591012273a4fa42a0e21ad30157aea32ae7f05c449e",
+      "olean_sha256": "cd0b70cf3fec734f8274466dead6e5a62e4606a63169983dfad73e148a132136"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Covariance.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Covariance",
+      "source_sha256": "f59a3060112469948d447b9052451a0f80d2a0be8f2cbd124380a6f248c61ead",
+      "olean_sha256": "18818aa18bc5f11ef4ee442ffd539820043eee76b1a66d487f48bb7f4b69f624"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Field.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Field",
+      "source_sha256": "d6ff14dd419653bbbe9dc283709d1ea19d24be3f98dad15ef4c030930e725408",
+      "olean_sha256": "f61071d019997a62f80b6a42c69154809dcacd3f9e82ba8f55ba6d8280a48ab8"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Geometry.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Geometry",
+      "source_sha256": "0f560e747511de83feec3deb4630cab63a44cd2f902f13ad37935af945c69fde",
+      "olean_sha256": "3968b16eecb27f0dba4ab9d5bd5a0adf7fc55f31868e30f49d290f94467f7ee5"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/LocalField.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.LocalField",
+      "source_sha256": "ab0072550219b6d5bc75b8ec24569b7c071bb8a0d758c042c114ee50c5794941",
+      "olean_sha256": "df74ed8cc5dfc46aab5522acac92f61aef3b4478dbf30c104be8aaa2230ab89b"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/LoopFamily.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.LoopFamily",
+      "source_sha256": "8c24f712d5dab4235887a25866946306d4eb298c29b872feac04387c94e178c9",
+      "olean_sha256": "cada7c88c999fdc1f0d29a53e03e3b423c8555a0bc7e32dad88bb7cbb982df94"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Normalization.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Normalization",
+      "source_sha256": "26de7d42e4e2cd184b849f38c9952a5991d45326f01f37963dfb7ceb132e48f6",
+      "olean_sha256": "298d0056052c39b06d775cf222cf2518eb46503a1dcc68c5e5f36b4d5afc7c90"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Observable.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Observable",
+      "source_sha256": "9e61b973bc9d4eea9c4627bda58e7c9704cf2cad408b8df4973efaa86d144610",
+      "olean_sha256": "f573c66fcf9ca6058eed4a570b244c0f6320b53f973dc42669a64d38222479f1"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/RankOne.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.RankOne",
+      "source_sha256": "43ed19c9e5169cc621ebc084e173cd3ff51191d0e323f7afa36bac9c5034ace3",
+      "olean_sha256": "ce0bccbcd46e5c04b862e174c44cf33600314579cf82c86beee8dcf53a49306c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/Reflection.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.Reflection",
+      "source_sha256": "7fd924f8e88b067bf45100614d4f756e87befab815fc4ff77d637d0bdccb7d25",
+      "olean_sha256": "3430c9decc8fe0f0da383a729cf9895b04f38612cfcb48565afc529a81e0e57d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/ReflectionSupport.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.ReflectionSupport",
+      "source_sha256": "4b721b0530ca61e8e0dd3275478458415b36e2b4fde60d12ed65c9d4e0111d33",
+      "olean_sha256": "62836e17293a62ec4c650966cd175e3cfdb287f7e88f3b3464900f42372a647d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/ScreeningForm.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.ScreeningForm",
+      "source_sha256": "eb32c577ea1838c407f704060629dbc47f9b061ffe27c9e48040b051eae338bd",
+      "olean_sha256": "95e9ad3f687b8e11dacaad6fbef741deb3431633f9450a7cb7f56bf09637bf57"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/TransverseConstruction.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.TransverseConstruction",
+      "source_sha256": "75524067e9d8acbb4cc542528612328760ae63aa51f3ba9c8c04f73507260322",
+      "olean_sha256": "621fdca2bf7eadc27af873ffc3ba5f22fe5a21ec9bbbcaa36b62d79a13d63cba"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Endpoint/TransverseLoops.lean",
+      "module": "GluelumpPerimeterLaw.Endpoint.TransverseLoops",
+      "source_sha256": "1de1a986e2b9a5711fa6a935e0669ddb3f99eb5519a6ff6d6cb29da9a6bda64c",
+      "olean_sha256": "8177e02da1664895969a6b06d139f0c7c9ebc5b46c99f18fa1c92626635f6072"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/InfiniteVolumePerimeterLaw.lean",
+      "module": "GluelumpPerimeterLaw.InfiniteVolumePerimeterLaw",
+      "source_sha256": "2586710c4ef34fb39c4d47de01dd725b7a184e22798f897f851c102ec8d16be8",
+      "olean_sha256": "7dadb780eb381f6616eaf0f400c34114faaf421dad0ec3b9af675c596c267f14"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/InfiniteVolumePerimeterLawStatement.lean",
+      "module": "GluelumpPerimeterLaw.InfiniteVolumePerimeterLawStatement",
+      "source_sha256": "99dd8c13e0dfc70366b7348c893038cd35e954648cacf8c205d67475e6169351",
+      "olean_sha256": "d8bd3a07d61a61f7edb8e5c6bd747aa45dbba32345183aa8d7b8facb28b83d68"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/InfiniteVolumeQuantitative.lean",
+      "module": "GluelumpPerimeterLaw.InfiniteVolumeQuantitative",
+      "source_sha256": "c7f2dad54362a9c28041414362868acb06b8caf3947ee7e2aacb71a29b1d9b1f",
+      "olean_sha256": "104e064285c26e6589ec248cdf8239a8bf6dbc1517094fb0e2d5b3e023c9934a"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Lie/AxialMap.lean",
+      "module": "GluelumpPerimeterLaw.Lie.AxialMap",
+      "source_sha256": "78fad10da411c10aed168fce351ce141d2c60499b63fc27c6c77d3c99b586467",
+      "olean_sha256": "4924d92a0f8f1a1eef5a7dd547e88213af6e9e325ebf343b8ad635aeb5610d97"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Lie/GeneralizedAxialMap.lean",
+      "module": "GluelumpPerimeterLaw.Lie.GeneralizedAxialMap",
+      "source_sha256": "091214a7a7a5a532f49f063c7aca9f0a76b64c0e18b889d30047dd5fe204c24f",
+      "olean_sha256": "69223656fafd2bce4bcb49e8d212409340263c14b114358acce26b3f39ce5f60"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/BoundarySplit.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.BoundarySplit",
+      "source_sha256": "e89d866f7528223f74da3a39269f1f816a313fd6f31df12c2852ee0bf7df2f47",
+      "olean_sha256": "a8f3a75585954ab6257da1def2c5dd7b8c057d63ff451bbc76952492d06c0d64"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/CenterNeutralLowerBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.CenterNeutralLowerBound",
+      "source_sha256": "1d465602aa8e690744979e88be4e93b244258f9dec575f8cfb09fa397cdbebfc",
+      "olean_sha256": "ee011780d8eecc50200117f514a1dc312d840acd6180839801541bcf2274f826"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcreteCombBoundaryMode.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcreteCombBoundaryMode",
+      "source_sha256": "f96fe34f94c92fd3274c3d52b4e95141a59ce315c0829c1ac86607e6e894b94c",
+      "olean_sha256": "fa4d3e0ae7e4bfa9cd640610784918c917002ffa7a114c8cc3f71c281ad1c6b4"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcreteFiniteEnergy.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcreteFiniteEnergy",
+      "source_sha256": "c3bb5b99d5f39a043963fcd441cd9137d9f7f4c8c243b6410e82be53843cf0c8",
+      "olean_sha256": "fce931fcf7512e6b9f64c16c9bca165de68dfd195150021609f618bf8fd7405e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcreteGaugeFixedFactorization.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcreteGaugeFixedFactorization",
+      "source_sha256": "e78b3ce6673b614e5f402409074fb8cadafc5f673671ab491bbb3850628960ed",
+      "olean_sha256": "f11f6302177951642e638bc4f89ae55bf9346611256e174c3c8562f7f59e7825"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcreteLocalKernelBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcreteLocalKernelBound",
+      "source_sha256": "7fd5c9f60a64fc28b69eaffc1b2c6cb2168c865e94aacd12a7cb9d6aaa6037d3",
+      "olean_sha256": "17d0dc005a2c38f23cc98ff7d1cda6bcdaa5094b8168cff13c83f05b14692552"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcreteOneLinkLowerBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcreteOneLinkLowerBound",
+      "source_sha256": "4ec3c64737ee6e7dfa74ff17ded85003f838f513dea74d6f9189f1b4b7fb767e",
+      "olean_sha256": "a17ae36d8028da3c5a1df99d3281bc1ec9b3c3efb96944afd9b25fffa4a2624c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcretePartitionFunction.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcretePartitionFunction",
+      "source_sha256": "cfebda4d1840fc2d78534eda946dd8ac56cc80cd00d3ef5f3204549867b4ea66",
+      "olean_sha256": "33d4b7381ab9da084576952eb2c1689a1d76c29982d35798659a584979455058"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConcretePartitionReordering.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConcretePartitionReordering",
+      "source_sha256": "e72fd38c52f578f870a45e4b70ef3ea6ba828758db91ab7471b22afc289361c0",
+      "olean_sha256": "d61387c5b03a99c33674442383903dc4d7db9962d5271c383f980ee5125c8431"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConjugationSpanBoundaryMode.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConjugationSpanBoundaryMode",
+      "source_sha256": "6b2f837a362e747066ec2cea846aad313f643cb59aa67204b76974a851c2daff",
+      "olean_sha256": "47933544ce82636489997587009f6653de57eb9e49eaeb36053dea6f9f9f52f4"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConjugationSpanEndpointMode.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConjugationSpanEndpointMode",
+      "source_sha256": "e51025a1d874eb77ed330bea4b35a10e2ec4da2d70e42125b5bdf87c31db9440",
+      "olean_sha256": "7ad401e0f176cef5a93f1c7dd6dda9b7943a5f8f0fbf169744e32a6d752091e7"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConjugationSpanOneLinkFactorization.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConjugationSpanOneLinkFactorization",
+      "source_sha256": "598a5242272cda48b58a516258c822616b62578f336791235cb7ece4cdde54c9",
+      "olean_sha256": "5fde880cb96208ac2f9181617d9e1644eabcea87a3f3b91095de5356878058c5"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ConjugationSpanOneLinkObservableCore.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ConjugationSpanOneLinkObservableCore",
+      "source_sha256": "b4a95627b51397323c405c1fd7a05cbce05dddda2133dbc88aab8d36e13f2c6f",
+      "olean_sha256": "29749636ad768e03b1d37ba922dcaaaf59174178346bb9a34a14f16437cfa6d1"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/CouplingLowerBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.CouplingLowerBound",
+      "source_sha256": "3d7b2276be79d3b859224ca84d49b958e1c5f4839a9d701cecc846dcf672478f",
+      "olean_sha256": "0e588659dc4f8b78de18a08f558fc5c450b76867ff027cfa148e57c77a858dda"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/CrossFeatureSplit.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.CrossFeatureSplit",
+      "source_sha256": "37612116b574d59fd21736a8703ae89963579a5bda7ce58565a030280e549c02",
+      "olean_sha256": "c925a2772a613e4bbe766c2986122a1e4d364bcde90a5fbab966a55214fdabdc"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/EndpointCombMode.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.EndpointCombMode",
+      "source_sha256": "53cd436800ac7ae7b5990d45d8893658d635029ba45aa216a1099eeec25f359a",
+      "olean_sha256": "5c5b83912abe1a5bb7fb941b2f18567eee1601eb3c0eac93d1b1cb5868ca0c93"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/EndpointPolynomial.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.EndpointPolynomial",
+      "source_sha256": "367bdbb883d63b9a5f039a4fda252816934eb7f689ec63529f6907367445f510",
+      "olean_sha256": "49889f73f8e5e81446dfba09ed283fa7781924b0569cd9dc2e58d8fbdd35b4c0"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ExhaustionStrictPositivity.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ExhaustionStrictPositivity",
+      "source_sha256": "2be6b2177c9679a90ee3d6dc80d5ea11de03447c41519098a475ed2bf44514e1",
+      "olean_sha256": "0e79e846533207e5503b67f476b1b330aefb602cc56ca6068371c6f2e467cfa5"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ExpKernel.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ExpKernel",
+      "source_sha256": "c7c1605a371bb997491db32d15efe51893d1bbc86fa1577041609fd3606864b8",
+      "olean_sha256": "54300a8003e5f4653ae443db154c369e317c975b04f8225ea34e5b9951567f7d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/FiniteEnergy.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.FiniteEnergy",
+      "source_sha256": "b42ac92477727e8674c3e72d84493423197e87d19650692412d9e842f78e5a83",
+      "olean_sha256": "0c66a18bba344a6b4c172d451e9e4b0dfc4c93fc9af1ab496f950ca6cd2d1749"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/FiniteVolumePositivity.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.FiniteVolumePositivity",
+      "source_sha256": "20e71c07c02b4a57b16cb78aee5f7c37fc9d60c9672214927c3fd2b879c6957c",
+      "olean_sha256": "33b05e10049376a9fe2420ac970a8d86111b71dbcd4f2c331f733931cb4fd3c9"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/FixedVolumePower.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.FixedVolumePower",
+      "source_sha256": "ed83f0370b4ac755d04fdaf86439715122e07adfbaf461d0b585602ddc31ccc7",
+      "olean_sha256": "cc85ec5ae24f3ee5acf57ff71c053f771c3a3e8aab1bfe3148a88872fbe9a073"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/FreeBoundaryLimitLowerBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.FreeBoundaryLimitLowerBound",
+      "source_sha256": "f7bb5cb84d7f97e79631825eab105203d67e6c9b0be51ee6003699af845c053b",
+      "olean_sha256": "bf0e197c002c67650bd4f312180f5f44d322a23649ff73399c0078e64ca9c927"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/GaugeFixedFactorization.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.GaugeFixedFactorization",
+      "source_sha256": "2705826db82bfd9f21fc091aa16b81ea02711b8344a98f7979f3368e0353026d",
+      "olean_sha256": "e14ba827dfd94c912e3e12e2a1ed415733b420ce195d5a9838dc4caf47700089"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/LocalIncidence.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.LocalIncidence",
+      "source_sha256": "fa6d86809bab36c2136cd599a9635d0eabe8c0b359f1963dfbfce34ef65d60f2",
+      "olean_sha256": "a62e7ae35b47bd2874e9790c30a2927bdccf7b99508b923b54a0a5ea7865dc90"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ModeExtraction.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ModeExtraction",
+      "source_sha256": "f33b49d75449c45bf089efefd6561bd6de80f688ff12858c41acd7667c82ab56",
+      "olean_sha256": "915410a9be971ccab7cdf2b347f9b986bfb6a5de0ba494269dca2952f20d375e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/PowerLowerBound.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.PowerLowerBound",
+      "source_sha256": "6a60db5cdbc44933d74b3d6fd7cb9ffd5a3663b172c1143170065df130d8e337",
+      "olean_sha256": "b06131da422a40ef436ae2037de9e1b4789842d5017ed16a3d7bf5d644bf2025"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/ReflectedEndpointObservableCore.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.ReflectedEndpointObservableCore",
+      "source_sha256": "27cbead119f72b937deb22d6fe7e31fb8e03d85c1932b5b7e02fbdcdb21d5363",
+      "olean_sha256": "b7e44ee0824cf100436e697fd40330e301921159d743a92c03b8b2bcb32de624"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/SplitGramExpansion.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.SplitGramExpansion",
+      "source_sha256": "8301f58b6dba56d1d85cefff83023e81713457c1c95ae868a297b412032c5802",
+      "olean_sha256": "318cc5737990ab718bfa76a5da584fc79f23015a1f3c35ba6ace06654ed6e385"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/StrictPositivity.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.StrictPositivity",
+      "source_sha256": "4b041a39a4974110207afe46cf35415ed8c533e33d3d408fe6e9d0afea9ab681",
+      "olean_sha256": "ffe8b256ee6ebeff3c070d84887e04f5b5bc04c374e3fb8c1892825448911b24"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/TransversePrism.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.TransversePrism",
+      "source_sha256": "9abc581920c316d9175900522140c555af34be7836afdcaf5bca18bb5793d3a0",
+      "olean_sha256": "f48012d16ed744fe32a372d4bb2d211c11a8575a01cff3ba81160df34f4c0ae6"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/UniformPositivity.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.UniformPositivity",
+      "source_sha256": "e1376cfa0157d75ab80e8ebc40a67f036b54dd9c78c3828e765fe7bb4c921957",
+      "olean_sha256": "42f4c1d3ebd538a01c9a5f9ce9713200fd5d4d981543e213fa900ced527eaa8a"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/OneLink/WordDetection.lean",
+      "module": "GluelumpPerimeterLaw.OneLink.WordDetection",
+      "source_sha256": "406ae889f2ac7d01e9d91af32c7535578df5ac68323793a345042178353c963e",
+      "olean_sha256": "c4e659ed40a7a2182feffd64a12fae1b03b29300d1aeec78bb03b57d9cc5292c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/AntiDiagonalClosing.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.AntiDiagonalClosing",
+      "source_sha256": "53a8266f193f0ac1eec92b607b3ea34d1b23e33d702f06fa812c2225b36ce1d3",
+      "olean_sha256": "a8293a63abf73fd377e4b0a72608eb6225ea86270bc807b903e29ade0f4cffec"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/AntiDiagonalClosingCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.AntiDiagonalClosingCore",
+      "source_sha256": "82495712d1e1797b4123a7dec69c3484439f2e8e84fb3316a3aadbc2cc43214a",
+      "olean_sha256": "7b82aaad6500ad06347a346f0b06787e83ef329e036dcdcb859de0eb41b40c4e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/AntiDiagonalFamily.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.AntiDiagonalFamily",
+      "source_sha256": "aaa881dead30f105fa06df7fbf5d6636b5b3013ae92303962fcc0230c1866303",
+      "olean_sha256": "1e92dcb64df0fe1651a91027d3a57f594352b3691a30c8f94943b41a4e096947"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/AxisTransport.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.AxisTransport",
+      "source_sha256": "773a871c5dfd1fad291db3929ebbc5e66d4d3238f3a044e8576824088f1957ee",
+      "olean_sha256": "0922d16fe1eb1895ae1de8396b17bb0671882b2271b98783c39f0836ee4e2b54"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalCofinalPerimeterLaw.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalCofinalPerimeterLaw",
+      "source_sha256": "498d2b788716da6b239725c5ad81cfcc8c463e64ea9c07088f1ff8178348d5a5",
+      "olean_sha256": "a47ec5dfea3a086a3684155c1a4e58db42c2e88962a1aa4a4b53e1cb6fafc6d9"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalCofinalRectangle.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalCofinalRectangle",
+      "source_sha256": "67bd7b10146ccab103c722932a37b0a3dc4f8d1182229a01506a8e085aa4a098",
+      "olean_sha256": "b32a4efbd775584e3b307fd7c7849170307f02f5a15ad2b60490c365040242df"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalGeometryBase.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalGeometryBase",
+      "source_sha256": "1a347c2587dc733bf8ccca4d33831344e26181ed288575459c4fcd3ac7e29a92",
+      "olean_sha256": "ec35ab38a1df593911ac6761437ffed422687a3264fb8c61a439123ae6e74425"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalRectangleExpectation.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectation",
+      "source_sha256": "3faf2486d681996b6433191a32c32d92d1d798851172b93152bca9e61d1f7cfc",
+      "olean_sha256": "04ec0fcb9e07186ada3340d4d17fe06980a9315fd60f1fbf134d2ed756dc1725"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalRectangleExpectationLimit.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalRectangleExpectationLimit",
+      "source_sha256": "409be63873e37d3bd425d8382821f03e3d0889b5a2c1bec4145172f3b9ab26b1",
+      "olean_sha256": "b415ab22d0d5b0d70fa13012113cc6c6aed213e90cc2977db8133203c63ac65d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalRectanglePerimeter.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalRectanglePerimeter",
+      "source_sha256": "63992a3e6fe1bb646a1ff7f32008e3e7665a15bc32ef3e6de4ae42d435660137",
+      "olean_sha256": "3581df0263a1ffdbe96e082ee2df1990a5e71b08729529217b933c8d82aee5bb"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CanonicalRectangleTransport.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CanonicalRectangleTransport",
+      "source_sha256": "211ec7db6fecd266b8ef761eb8d2a291a8481e019601f41c787785f8905508d8",
+      "olean_sha256": "38f748ecea28665fc4e0e6c4846bc2bb90cf8ce939a2ea1780d91ed91c170cad"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CofinalRectangleCertificate.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CofinalRectangleCertificate",
+      "source_sha256": "963ee0a76b43d50f989570ca83ff41034ba7cf2fb17c7eea59ee2e5e58293ee2",
+      "olean_sha256": "0ec74a19a1b779d229354f3e9294881a6fdecc08b4a7d86f32b7de73304c19e8"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanCornerEndpoints.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanCornerEndpoints",
+      "source_sha256": "a2b1651b0f89cf502cfb00f31232eb9c0e792be102d9091380d7e7595247d506",
+      "olean_sha256": "f6d94e82de1e959d8e13bd32cc088d221ea34c4d1d93b01146d6e678d0f1f468"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanCornerExpectation.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanCornerExpectation",
+      "source_sha256": "beb26d29a810d8f2a01da04f9ab44398899c42911207e15dcaf17b5142154550",
+      "olean_sha256": "75a7cf1770d4ebebd2b8d5daaf7a2f07ad970a0ef417ec2166c4ae05a2442212"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanCornerGeometry.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanCornerGeometry",
+      "source_sha256": "66d4a42c99c08ef2b4fd25908cb475ea7c17b8d72daef1e93370e35f8cbb41a4",
+      "olean_sha256": "b91bf68b18a0319cb6b29bd30324c8ff5fa3c42efc7eb747d6250032bff17301"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanPerimeterLaw.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanPerimeterLaw",
+      "source_sha256": "dae0e767f6e7c35d46e625f78243aa5be26ca5c373699facc37b44f89a9fc6f2",
+      "olean_sha256": "ebec131e13e7e6e3b878831ba2707cc5cd5f9f66698bb2f51b825013e15c439d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraight.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraight",
+      "source_sha256": "1a280887c9a40c7190ceb6f358eef6e25c4c54d1a13b5361f0b7a4d045d776f0",
+      "olean_sha256": "963a381aa0db6b2731a7ba237d12d071852348bb9abc0f4c0653347e11f7fdee"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightCrossing.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightCrossing",
+      "source_sha256": "ac1e05b8e437f6e1da6c63c90c66baaa53de272dff4dff5cc5e504b63fde16a5",
+      "olean_sha256": "138187621fd7b7d74494f463a4e3400180539eb0a973aac99caf11c4bf65de07"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightExpectation.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightExpectation",
+      "source_sha256": "e48c24375095c63a36dc8c45bd9d2d7b398263557f45cd2510ca2104a1d5c8fc",
+      "olean_sha256": "0b327384694abe4f26fa9474c278eff49f3de7de9a1de70af66fb36dfef9a74c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ConjSpanPhysicalStraightLimit.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ConjSpanPhysicalStraightLimit",
+      "source_sha256": "b37c1823d9f5f5b7d18d10d623d52562101e098c8e66ebb968064818dbc7688a",
+      "olean_sha256": "d2300f3b450cc7e603861d56b1d65fa6e21ccfa99959ea3c979e05136cac927c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CornerReflectionState.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CornerReflectionState",
+      "source_sha256": "b0ccfc37612d49fd08dfd48f23c32403752de51b299f2e948c81098ff687e4d7",
+      "olean_sha256": "e9facf8b22a6336173ef574eaa3f845ac6ba7fc45c63043aaaa6d9f79677384b"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/CouplingRate.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.CouplingRate",
+      "source_sha256": "3cb85accbdf1c268228cef6c46994381a6f10f3c3dbb0d4d05e21d4a64363307",
+      "olean_sha256": "7a65c2637c3cd4aed17780ed7df59f3e9786deab7a7a9bb6d734a5925c9207fb"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/DiagonalBendingCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.DiagonalBendingCore",
+      "source_sha256": "a49edda94f823c80972a0b03cbc5a0bb4a804cb3587b4e07b5e5733fb6ba8609",
+      "olean_sha256": "e917bcf120ab7b7e0fc55cf61510d283608445755fa4448a5ac16641ef2a044e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/PaperCorner.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.PaperCorner",
+      "source_sha256": "38c0473920ce7029ef118ec1a01ed8166a9af188379e0f667ae708340b275642",
+      "olean_sha256": "c27f03d9f8ef5e8d4e7e274e0390fb51a173c136e4f794f5615a4aeecee9bcc2"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/PaperCornerEndpoints.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.PaperCornerEndpoints",
+      "source_sha256": "7138c81584eba6efbb8d83bcf54d74021e147ddd565106b8370640fd7730de8d",
+      "olean_sha256": "70e532d213aa08de3c50a42025ad856518a641d3031d7dbd46251aa7ac368771"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/Perimeter.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.Perimeter",
+      "source_sha256": "66e666e3ab78f77f7a0f55c930a17fe1d9aedb1fcb5237c6c893acfefbb3cd8d",
+      "olean_sha256": "f8d0378c5d490ae5cf85343d121fc2afb0db8989c62124caa6314fc8b4b1e883"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/RectangleGeometryCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.RectangleGeometryCore",
+      "source_sha256": "6bd10d476f269a412ef3ab0bf97049e004d1e699b771e4a87194fe149ae5fb83",
+      "olean_sha256": "bee1d260fd79f8402bc190ea01398d73b1c0fb7814046d2b2f115e627962d865"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/RectangleReflection.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.RectangleReflection",
+      "source_sha256": "38c66d29196e04ad1d085b305c011ecdd0954a588dd294279df9e3e3569f1939",
+      "olean_sha256": "3c7aa48c31ff94b4f61a2c550a3f753e90fd97f9c50b75166d3bfbca23147736"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/RectangleReflectionCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.RectangleReflectionCore",
+      "source_sha256": "f9652d46b5bc13946a5432fd55f32f37494030ad25da7facd227be0acc82cb3b",
+      "olean_sha256": "28115b2833e94114e8c556199462d9678875c5768ae13839427cbf0afbb2a6ce"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/Rectangles.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.Rectangles",
+      "source_sha256": "53ebe116fe33c9f5bb26b5a22c8a4849d21721cfb2a5c11244b356ec71d37843",
+      "olean_sha256": "7248196ae2044152354b31de613b1cb0025e7e3928b125cc9ae75eb12da0467b"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ReflectedLine.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ReflectedLine",
+      "source_sha256": "daa9d3f5b4722566e9a8b6e130ef3366f6a32239454a3c8d7dd918142dcbfa05",
+      "olean_sha256": "b658e9e485bdb8b5edf17cce0c59afa6bea284eb6de6899ed2271bcb0b08b964"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ReflectedLineCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ReflectedLineCore",
+      "source_sha256": "55646897bc6dc4e72a0d26d1fae2e4f3420e63943ce0522723a4ac32048e7fe5",
+      "olean_sha256": "18c3e930065463d4db3e4f48a412138d412bc54430886727345b58586649bd99"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ReflectedLineMixed.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ReflectedLineMixed",
+      "source_sha256": "fa91a65e9dda5ee78a16a9359c0a6f951141f7f8189de15b84cb543d4f6c6255",
+      "olean_sha256": "5958999333add87c192cf10677f1756c971cefc27c913e174f80c3ff173baad7"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ReflectedLineMixedCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ReflectedLineMixedCore",
+      "source_sha256": "ceb54f20aaf0613c0fe1776501103e70bc6b741e3cf12529a3079f4f84067097",
+      "olean_sha256": "f72b8b41f5f24feafce69ccfe33512caccfb9409bb1e7db73ed9f8f44628cde9"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/ScreenedPathCertificate.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.ScreenedPathCertificate",
+      "source_sha256": "c0747ad9ecd89fe4128a5bcd502ccb99140faae06b7130d5787ad19e95ba2203",
+      "olean_sha256": "a89a62b2a72f2ffa2f44170348974e0d53f6bd3e8234dce4a55a4a7adb0ee152"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/SiteReflectedLine.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.SiteReflectedLine",
+      "source_sha256": "984253d9f4427fb23e165fb323aebd510bd3dadf89a47f61193e576913b15a24",
+      "olean_sha256": "ca89559de3e76c2d1a7fc5bbe312a0cc5f6eb31614ea53a4803c911d1415d644"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/SiteReflectionFamily.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.SiteReflectionFamily",
+      "source_sha256": "2d84c931eae87fe091f05c8e18fdceb34ad14126b1ec8e8c42fecc00df2c99d6",
+      "olean_sha256": "067bf8aa9f77c3cb401c9617391ab4d359f0df1a57789b6f5797fea4b9159472"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/StraightGeometry.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.StraightGeometry",
+      "source_sha256": "590ef6cd860e9efd436d4856275b19298b053c99b892ba0a90865c7453a5753b",
+      "olean_sha256": "81f6735331ed30b2ad32f73e9d4c451e34a71118238eb7fb53640cdc98f6f195"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/StraightGeometryCore.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.StraightGeometryCore",
+      "source_sha256": "83028de7c7ade1f441c7630d0e386e8785861f5dc41ff718596df4e144c2077d",
+      "olean_sha256": "8635fb65a8a10e848f46a6baae620da4ca48678a515d8294a7a21bf154f74b00"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Propagation/StraightLine.lean",
+      "module": "GluelumpPerimeterLaw.Propagation.StraightLine",
+      "source_sha256": "3a20c4a4bf66aca0d7310fefbad79fadb807810502c75f0fc05f76ca64b3cc34",
+      "olean_sha256": "9fe44fffcaa385d68ba85f5c62d8b0c95b128ecc67abad6649fe8a83b62a32ae"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/Center.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.Center",
+      "source_sha256": "a91b95e571b376f8dfdd8226374b1a7fc5855d682e6df7357ef4f7313754455f",
+      "olean_sha256": "73531e5667a381ffbab5994b86e3e37b41e22b7bdd46118c21cd90521486a31c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/CenterNeutral.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.CenterNeutral",
+      "source_sha256": "83e79f0f35d18417bd3ba5d6e9071551988dc3f7b66335fc473ac460bb2a526c",
+      "olean_sha256": "759f2c808129efddeebf61df22c7de87db780328b1191c12a64717fe8a494d6e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/CenterQuotientUnitary.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.CenterQuotientUnitary",
+      "source_sha256": "145d16cec092ae315351a818c6d71bea0176782ef42355ca80c1e1765e6b22da",
+      "olean_sha256": "4a94eaf9276e3741febfd05ed29fc856074798bf87f75124f7d73c928ab9ffa2"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/CenterScreening.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.CenterScreening",
+      "source_sha256": "2abc6d22195531abf2e26fa3ddafe7ae9058e855b43a300b597c0f2ac4f513e9",
+      "olean_sha256": "523aa6461778c143f6e5485672ce4f884fe3ec9cfab29cc50509fbf08d076b28"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/ConjugationSpan.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.ConjugationSpan",
+      "source_sha256": "1c68afe2a1d8f81f9bb5a8044eda39e3b27059c4f4e95219ef98b08920c36024",
+      "olean_sha256": "09e447cf55047122056e91c1d8b2f51606dceeb4ff6395f87805d9959eafa997"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/CoordinateUnitary.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.CoordinateUnitary",
+      "source_sha256": "0b83c6cd9db08bd113f982b4ac3563b1a1556374130ebb4c2503b206ce25b2d1",
+      "olean_sha256": "1e9a50aeeb66ecb2ddbc1ffa45e389e1927592b825fe6c0029f3c7170178a40e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/DualIrreducible.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.DualIrreducible",
+      "source_sha256": "8659734ad0d109b392a6178460e93c8b82df9b05abbd4dbb9bf858829263e9bc",
+      "olean_sha256": "b3af61d1504dae4757ad3da3c73b85528578ad737747bf46f11983ec75ea8acf"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/DualUnitary.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.DualUnitary",
+      "source_sha256": "c397c2a3d874461ffc209acb632933b43dbad3ac07af4e5d9e15e763e6adc30e",
+      "olean_sha256": "da033fa1b1eafa23cb8a45adbb4da58fb48e0400a1301d89f56710add9148373"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/FaithfulMatrixCoefficients.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.FaithfulMatrixCoefficients",
+      "source_sha256": "4b12adf24ecc5442f2e35a20de45b9bae4bc302de5a0993a5cb75b83874d5e43",
+      "olean_sha256": "a302c0b9938b7b1b501c14279708111ae07c398dc02fc4e0af0db4452e2e29d4"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/HaarAverage.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.HaarAverage",
+      "source_sha256": "d9b3a0307ce23be9bade70c98d59ebe651170a100fad1e85f1a2c94de486300e",
+      "olean_sha256": "ef9452af9fe4a078436dcbae20e7b7ec901c28effe82995621171d91fd5463ea"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/HilbertConjugationSpan.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.HilbertConjugationSpan",
+      "source_sha256": "a13cf4ee6c04e585e58b3e0e787eb18cd3097ed294909134bddbea38327774ad",
+      "olean_sha256": "c80747cfe8024ce25a5bf4e9b13e68a3482da82fea56012fac445fe06b13480c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/Occurrence.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.Occurrence",
+      "source_sha256": "a51260cb71c3e3331ae1211fcd18e7fc9b6e63c91e26e93f24d447de05000a45",
+      "olean_sha256": "acb1d4f1e3241a017e12b4f5a0f0921ff6cfed64c2a54a6756d75c9f8a450f30"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/Quotient.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.Quotient",
+      "source_sha256": "97be51a13cbe9b9fab2eb44ef87b82c883a96cded4508262824aeac7c26557a3",
+      "olean_sha256": "ddbc25693f37c270860f6e6bc5a5a6af48246fa1e4fd7076b90f144d852de6bc"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/Screening.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.Screening",
+      "source_sha256": "c238245b76baf76bd810367d1eedf1d5153f1032c138c87f9f9489537ff7cc5c",
+      "olean_sha256": "578e1946eddbb5916354a692bc9c84ed1dcd8331774909fe1555cb25835b20e7"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/TensorGeneration.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.TensorGeneration",
+      "source_sha256": "042ff464f43747d3a457964654d6ab95737d532d4c143aac8d039b7feafcd68e",
+      "olean_sha256": "f66f219461e8d3a463e042811a567ccd7e7ae2e6614c53503e84ef4647103708"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/TensorPower.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.TensorPower",
+      "source_sha256": "8019d92a8c653dd2dd9445b5371acbf01c8f9a412e8f98a953d45c8fca8388d9",
+      "olean_sha256": "1d6622c35dce263d654cd25f9ff61d35d262e970adbfcd9f342c71b5fcac4972"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/RepresentationTheory/UnitaryMatrix.lean",
+      "module": "GluelumpPerimeterLaw.RepresentationTheory.UnitaryMatrix",
+      "source_sha256": "7d1c646cac8f39e1e995a12abf242b3bec765a5f1d344ab68ce3ea40f89f1411",
+      "olean_sha256": "4063907411dfefc45b6ebb5e4d6c7742ab22922ac99b0b45e02848cb0eec7232"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/StrongCouplingPerimeterLaw.lean",
+      "module": "GluelumpPerimeterLaw.StrongCouplingPerimeterLaw",
+      "source_sha256": "3c3c7a4ac110b5dcc93804107d2785b1dd574a3d4c4236a14b0a383b88a61c52",
+      "olean_sha256": "6b2be58dd7ef0bdee6bfb469f44c02a083bf57c13f64ddf1a5552d4c1023262c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/AntiDiagonalReflection.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.AntiDiagonalReflection",
+      "source_sha256": "c89734e414ef82de1dcb44e310bfcf0d3daa9e97a69b1e68baeb9cf0edb8e27c",
+      "olean_sha256": "a4538d3bce2512b3df16959b01eacefd3d9b6c335306db008df48b38365dfbb4"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/DiagonalReflection.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflection",
+      "source_sha256": "b158d13a0ce5915a51b1dbb33404454989261b6ad259d317bc7804ced3a7abff",
+      "olean_sha256": "bea5ab6a3740fcd803e37a1c84f62ff69146324da47693be8c89b65570ef5ad5"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/DiagonalReflectionBridge.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflectionBridge",
+      "source_sha256": "a37a5930ecb7c8b991df7dd65584dc300687165ba77e6daaa3a8a3bf4976ccd3",
+      "olean_sha256": "3a3790706e3d365cb7faf2c741bc960fab399df7b20aff843601923b74e5bd98"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/DiagonalReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.DiagonalReflectionPositivity",
+      "source_sha256": "15d9e5543611267c0f14d6f3732163767318d3bab3b51d00ac8fe826df14147c",
+      "olean_sha256": "876722fd1f8f0b1ebce3d2ee0f0a8424a0a4a6556d6d4a9872cc99a221b9b00f"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/FiniteVolume.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.FiniteVolume",
+      "source_sha256": "203b746ae778d13adcab59984f94cc270478ae8df625f6c6f07725ea3ec8765a",
+      "olean_sha256": "44a31996c087f63fcfdd470e72245ec60f69c72d6c714522c7f355c2932157ac"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/Holonomy.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.Holonomy",
+      "source_sha256": "c782dbbd38c8b17344b6008565a3d14f0d5bb24918cb9e4104035a5870bc7847",
+      "olean_sha256": "ed14060410f647875e29534256c30e19579a3e72120ec483cf42dc77ce141b97"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/InfiniteReflection.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.InfiniteReflection",
+      "source_sha256": "deaf995e2beebfa13fc1b8571f333f18d8f20567273f1d254b73314fd3d94fe5",
+      "olean_sha256": "0516c8fa805bd3042e1ec5720217296b966a07c2b2addd37d472e6c0c878f03b"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/LinkReflectionBridge.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionBridge",
+      "source_sha256": "de2992c390e20faebabe35c22d2ee46cd568cdc2abb044286044b43dd98f7cfe",
+      "olean_sha256": "a1368a922f5166a37f0e9366d2dcd45d7458462060af0f1f788b366686a240f2"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/LinkReflectionCrossing.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossing",
+      "source_sha256": "75c70ba2174d95514f9de9696f31131346ce416d23f0138d3a1ad52bae9aea91",
+      "olean_sha256": "bd3aefd2c6ce43e72e34de0178e6c89c414475d5e6d8cf8b23bfab77b5f99540"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/LinkReflectionCrossingFamily.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionCrossingFamily",
+      "source_sha256": "ed3f10b89de6d5c75c555b53f5ea9bbed44ff809bbb692e1f7cfd332f8820270",
+      "olean_sha256": "1c57310feb2ab54b062380294325e6add3dd9748dde373bcde85cca7fd69a3e3"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/LinkReflectionStrictPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.LinkReflectionStrictPositivity",
+      "source_sha256": "caf6381cb5529bbac7b3846b36ab917eb3208a23bea8fe480bf712f1e7c7010a",
+      "olean_sha256": "ec0465dc81e3b23af79e6e27685fd6285d78377be38bb6345f346fa382e46456"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/ReflectionPositiveState.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.ReflectionPositiveState",
+      "source_sha256": "b70fe225a52dba1da03e12887e1456d1bb5624bd922b9f1813a91d296501a5f1",
+      "olean_sha256": "19ce1567f0d4612959df7f560db30e38d4c550f521e13b53c7dddd308f03983d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/SiteReflection.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflection",
+      "source_sha256": "e40339bbfd3f4c47b357478e5db1111e12b5f3ecaa57e98635d48cba45942ceb",
+      "olean_sha256": "abe6d5ac17b55afe036d9c2a8e7ea2a601dabc8b4f1cc1c480e2973d286d38a8"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/SiteReflectionBridge.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflectionBridge",
+      "source_sha256": "4e7585b34c69eca75e5afc90bd01c5347c1648303880026e3395be0a478bd936",
+      "olean_sha256": "e1ac66ccf719d96fdd8ee87f51c882ea0897dd2d8245f2ced8e29e6e28c0e413"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Gauge/SiteReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Gauge.SiteReflectionPositivity",
+      "source_sha256": "1c720c038bfb7846cd5ae8efc5174a78583b3a63c348abe4c4ed6e4429f00c5d",
+      "olean_sha256": "f5730f8ae3b06b191230617d068290631688806578fb90269e84dbf63acac58d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Lattice/Path.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Lattice.Path",
+      "source_sha256": "38f3b49b10518965ca04586cce0c98c75293136fe63a5bbd03d466f85135bc00",
+      "olean_sha256": "4fbba20efe3bf41a8db96c6cea8dc6e06dd6db6e5ac290ccef2f074cd7f06842"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/CenteredBoundaryExpansion.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.CenteredBoundaryExpansion",
+      "source_sha256": "7a5292516a079bc3bdb26f86c4aafd84776f4d5c890c8da292d8259d8c86132e",
+      "olean_sha256": "6e939c7f055614eb128f9809a7b5e4c56cd14fd45a70e4a5f09765bfd8e22678"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/CenteredGibbsTower.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.CenteredGibbsTower",
+      "source_sha256": "541a95eadae10e8e92f613bea7918758fa42147f5635da18f118378604e2e6e7",
+      "olean_sha256": "a8e13ef988bc64cc6db069678e06073b6f9e315d60b16ae86fb8d082d448f466"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/ConcreteAntiDiagonalReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteAntiDiagonalReflectionPositivity",
+      "source_sha256": "f7ffb7c8321ade80a45850161f837696a373bc7bbb8e8ed500da463aa09a7044",
+      "olean_sha256": "3d0c9af735637d5c05423d160a2a0567c0e75bb9b5658d33c5e546cb2d2c7f1c"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/ConcreteDiagonalReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteDiagonalReflectionPositivity",
+      "source_sha256": "9fceced0e78ee68f64fbb39b7e6d2b4328cdc742c9a7167d30b9f5f3daedcddb",
+      "olean_sha256": "563cef466f2253b9c39c0347495675776bfa2c2712f0f3c16fa124ebfa2ca2e3"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/ConcreteLinkReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteLinkReflectionPositivity",
+      "source_sha256": "770706e0765b1c1ef06dd0ae5052a8020b1dfb52e11ef1fd31f8ef69250a9c39",
+      "olean_sha256": "ae72d73c75ec71e7a008cc181710bbf66c2855c72f38fd4a05bbcca4a0fef2f7"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/ConcreteSiteReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.ConcreteSiteReflectionPositivity",
+      "source_sha256": "bae76e58af178d58a831ba84ce78077201efebc99baecd43e5507f02db77b8b7",
+      "olean_sha256": "72fa35feff7f7b8e13154a77a068a7b03fe21056920857fe80ad8c414632ee6d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryBoxes.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryBoxes",
+      "source_sha256": "a3accb321e2372a09635d4dee7bf8f0cbc0b1338f2659c3b2f6c6d9314d472e8",
+      "olean_sha256": "7d638e937819d90e0b1b3230e3ffe7a9844b9be9d10d0ee5f256ad3a169897d0"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryInfiniteVolume.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryInfiniteVolume",
+      "source_sha256": "839ca09896660673b830f76cfa86b06e2936db9e1c8b590815c71fdfa1e9a755",
+      "olean_sha256": "4f811e7ba0709494987deac05091bfd41c626c0c81efc0ae64925cffdfb2eca2"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/FreeBoundaryReflectionPositiveState.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.FreeBoundaryReflectionPositiveState",
+      "source_sha256": "dd85b10d94948fcbec67b53071a828266710628576af300609200658648f35d5",
+      "olean_sha256": "695805c3a697b25efe947591385949dabd178420bfdc030ff7e3d5cfa0c79689"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/InfiniteVolumeDiagonalReflectionPositivity.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeDiagonalReflectionPositivity",
+      "source_sha256": "e3a3d54f82f4f92246b95f0cc77323a77dfb47305acea22f2ae45448db05e478",
+      "olean_sha256": "478434f2e672cfc8b23ca16010fab43cbf04bda9801cb112930b8348b59b78a9"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/InfiniteVolumeLinkCrossing.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.InfiniteVolumeLinkCrossing",
+      "source_sha256": "06178cb11c3088677811673fae390ea95e5e878871fde45acd352f08747ebc26",
+      "olean_sha256": "58f9cfd7794a50b5d7dfe2367b1770f789b4afe60cffe7abac478a9b6bce3831"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/StrongCoupling/PaperFreeBoundary.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.StrongCoupling.PaperFreeBoundary",
+      "source_sha256": "030806268f41b632185851f2801e6b6b1a0c3d2d8d110a998b9e086f6ce05d39",
+      "olean_sha256": "715cf0f2da3f784b05e2904aebc11e21ce03eedb82378fa033d7f327a5029182"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Wilson/Loop.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Wilson.Loop",
+      "source_sha256": "dafb12970c0fccedfd8db4d7ba5b720758c6068f83ca02a4dbc2691fa3f7696b",
+      "olean_sha256": "36d549cb83a192f2c12e3928409804deacd14ba74cf8f149e7e88b273b052d1f"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLaw/Upstream/Wilson/Representation.lean",
+      "module": "GluelumpPerimeterLaw.Upstream.Wilson.Representation",
+      "source_sha256": "57f76b8a9d6c6fb42fa75c1ec56a25822d2103cdd0f0156e0cec5b9554153ae9",
+      "olean_sha256": "02fc8d2cd439b83a9ad65f786d16437e723e178e1f3743f5be5e93f6d2ecfc82"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests.lean",
+      "module": "GluelumpPerimeterLawTests",
+      "source_sha256": "f47df143e80d6ae454255eda4518e83412e82eac0d9764353be1da9b54b555ad",
+      "olean_sha256": "e892eb5e69296d19d49b7f5f9c787cfe863b2a6dbbf194f39ed05948c2c0bf39"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/CanonicalRectangle.lean",
+      "module": "GluelumpPerimeterLawTests.CanonicalRectangle",
+      "source_sha256": "0154def62ad994cfca1807dad555d01f631d3018bb296d2fa62e62c1e27f4533",
+      "olean_sha256": "f85730a928c529724426e306f16d99e93d5cbed64263a63abacdb78be24677a1"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/InfiniteVolumePerimeterLaw.lean",
+      "module": "GluelumpPerimeterLawTests.InfiniteVolumePerimeterLaw",
+      "source_sha256": "a1eacba50f6e63c3ce84fd248c3c384cc875b7a406bdea8f279f41e4520732ff",
+      "olean_sha256": "0c63b70500a93a31a24c97ec1307028e588bb1b0211df5fb734ef866be2def0e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/InfiniteVolumeStatement.lean",
+      "module": "GluelumpPerimeterLawTests.InfiniteVolumeStatement",
+      "source_sha256": "039c2cd4849f17af24d84e6dcde770aa5731e632585bc2e654761d998b1ad79f",
+      "olean_sha256": "ddb2f6ed3aebb504b4e9bfd4a1b67ac9e5c51c68adc590f517ed3bb283fcec2d"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/NeutralCriticalPath.lean",
+      "module": "GluelumpPerimeterLawTests.NeutralCriticalPath",
+      "source_sha256": "13a22ec8516061792365f0c73000fab2d5e4f9058ccbcc5afb89450ef7b1e03e",
+      "olean_sha256": "f255642ef2885d50a36c97df58361ca583624c1a3bc3b740736ca2c63ba63423"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/OneLinkFreeBoundaryLimit.lean",
+      "module": "GluelumpPerimeterLawTests.OneLinkFreeBoundaryLimit",
+      "source_sha256": "0ac48c1ae02902537453e70c841126a4dc75bf337d8b6d8f4be6dff96ddeec35",
+      "olean_sha256": "40359b35b42a852eff5e5692e3f30aa5446e7d200ed7bf9dee784a22a31fc305"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/PartitionNormalization.lean",
+      "module": "GluelumpPerimeterLawTests.PartitionNormalization",
+      "source_sha256": "88809d6e226af0ec3502ed19b0c3d3357c1f29886475bed396669bc170661ac5",
+      "olean_sha256": "7f19665a35cc278e4bd3b868fe7daa376b96c81cbb6e86a49e2a265aa85bd2f1"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/PhysicalStraight.lean",
+      "module": "GluelumpPerimeterLawTests.PhysicalStraight",
+      "source_sha256": "c3ab9a714ad5a9656ad622de3bfa70b6de5f26df5d3bbc09972b00b9c5d66c68",
+      "olean_sha256": "f2edf418fc5160d1cd335dd8f60993324d6fe0505ee875ff87daaa1ed7e7928e"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/ReflectionPositiveState.lean",
+      "module": "GluelumpPerimeterLawTests.ReflectionPositiveState",
+      "source_sha256": "09ba9f5ce2d59cf80ba9d63c9e4ec1cc2c34704ad196043eb34548221326a1b5",
+      "olean_sha256": "86bc9e4677071e9acc3ede606416d4b7a6a3b939f2ca73cf7bdc2b357ca84430"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/RepresentationMilestones.lean",
+      "module": "GluelumpPerimeterLawTests.RepresentationMilestones",
+      "source_sha256": "61f1408308400a5b4ccfe6586249e4b87c245151bc74e3d0bbff44efcdc79ddd",
+      "olean_sha256": "28f1ad59ac160c4abe7b86c7c9a448f18f58dc73ed02a3588dfc86ea1b26bffc"
+    },
+    {
+      "file": "lean/GluelumpPerimeterLawTests/StrongCouplingPerimeterLaw.lean",
+      "module": "GluelumpPerimeterLawTests.StrongCouplingPerimeterLaw",
+      "source_sha256": "aa7558209ae9f223546dd316641980b26467125228de3db5a4b2247a4bc0d81f",
+      "olean_sha256": "6d4b64f003eccaebbd8a51bea157387f27b9c214440328f85a9f0148697460cb"
+    }
+  ],
+  "manifest_sha256": "df23ef9a64495765748814c1feba5bf0f60a93f417a6b7e68268359233e4aaf7",
+  "dependency_revisions": [
+    {
+      "name": "\u00abstrong-coupling-lattice-yang-mills\u00bb",
+      "revision": "bc7383d023f0c58a16312764a32422248aa42ebe"
+    },
+    {
+      "name": "LGT",
+      "revision": "b8793ccf6a51e00e9e2b1685ba191b8626e37137"
+    },
+    {
+      "name": "mathlib",
+      "revision": "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    },
+    {
+      "name": "MarkovSemigroups",
+      "revision": "acf649108ea2222f4a8544a2782f448cb502492a"
+    },
+    {
+      "name": "GaussianField",
+      "revision": "dc2b3b8378b2b7e33eaa8b61d6e943de11ff3f33"
+    },
+    {
+      "name": "SpectralPositivity",
+      "revision": "073f4af0d797e9f5d578369b2af5006fac47b103"
+    },
+    {
+      "name": "HilleYosida",
+      "revision": "493143c2951c8bf0c4ac3bc207e842a31b097a17"
+    },
+    {
+      "name": "BochnerMinlos",
+      "revision": "34222bb74af2531917c32554ce44c6575696ca47"
+    },
+    {
+      "name": "kolmogorov_extension4",
+      "revision": "2761d4edb1a221a3ca6afe5354dd71ece1aa164c"
+    },
+    {
+      "name": "plausible",
+      "revision": "a456461b368b71d2accd95234832cd9c174b5437"
+    },
+    {
+      "name": "LeanSearchClient",
+      "revision": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843"
+    },
+    {
+      "name": "importGraph",
+      "revision": "515cf9d0c00ece5e661f6de4326a53dedc1e8ea1"
+    },
+    {
+      "name": "proofwidgets",
+      "revision": "a84b3e2475d5c5ab979567b1ad8aea21b764bcf8"
+    },
+    {
+      "name": "aesop",
+      "revision": "558915ae105bfd8074e22d597613d1961822adc2"
+    },
+    {
+      "name": "Qq",
+      "revision": "a6e6c34c4ef182f83b219a3a5a385f51f44bdc4c"
+    },
+    {
+      "name": "batteries",
+      "revision": "32dc18cde3684679f3c003de608743b57498c56f"
+    },
+    {
+      "name": "Cli",
+      "revision": "6b907cf12b2e445ccb7c24bc208ef04a1f39e84c"
+    }
+  ],
+  "project_traces_invalidated": 157,
+  "axiom_audit": {
+    "unsafe_project_declarations": 0,
+    "status": "passed",
+    "project_axiom_declarations": 0,
+    "headlines": [
+      {
+        "name": "YangMills.Gluelump.InfiniteVolume.centerNeutralInfiniteVolumePerimeterLaw",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "name": "YangMills.Gluelump.InfiniteVolume.centerNeutralUniformCouplingPerimeterLaw",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "name": "YangMills.Gluelump.InfiniteVolume.centeredInfiniteVolume_centerNeutralPerimeterLaw",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "name": "YangMills.Gluelump.Propagation.conjSpanPerimeterLaw_of_positiveOneLink",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    ],
+    "declarations_checked": 2673,
+    "axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay_performed": true,
+  "finished_at": "2026-11-17T15:59:42-05:00",
+  "reproduction_scripts": {
+    "lean/scripts/verify.py": "a575015375fd71a86dcc9f51925e986c97e33cc4d92515db92ac4ab265f11af1",
+    "lean/scripts/axiom_audit.lean.in": "b67812c9ca4f0015c39f352544c84923dc4f7525985822795d1892aba336c731"
+  },
+  "record_annotations": "Warning and native compiler panic counts were derived from the retained complete logs after the verification run."
+}

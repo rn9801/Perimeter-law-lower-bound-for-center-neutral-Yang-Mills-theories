@@ -1,0 +1,69 @@
+import GluelumpPerimeterLaw.InfiniteVolumePerimeterLawStatement
+
+open Filter MeasureTheory
+open YangMills.Gauge YangMills.Lattice.Cubic YangMills.Wilson
+open YangMills.StrongCoupling YangMills.Gluelump.RepresentationTheory
+open YangMills.Gluelump.InfiniteVolume
+
+namespace YangMills.Gluelump.Validation
+
+noncomputable section
+universe u
+
+variable {d n r : ℕ} {G : Type u}
+  [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
+  [T2Space G] [MeasurableSpace G] [BorelSpace G]
+  [SecondCountableTopology G] [GaugeHaarProbability G]
+
+/-- A separately written paper contract. It spells out the local-limit and
+translation hypotheses and Wilson integral, without the headline proposition
+or rectangle-expectation abbreviations. -/
+def PaperHeadlineContract (sigma : ContinuousUnitaryRepData G n)
+    (rho : ContinuousUnitaryRepData G r) : Prop :=
+  3 ≤ d → Function.Injective sigma.ρ → CenterNeutral (asRepresentation rho) →
+    ∃ C : ℝ, 0 < C ∧ ∀ beta : ℝ, 0 < beta →
+      ∀ mu : ProbabilityMeasure (Configuration d G),
+        (∀ (tau : Fin d) (F : LocalObservable d G),
+          Tendsto (fun radius => localExpectation
+            (freeBoundaryGibbsSequence sigma.wilsonPotential ((n : ℝ) * beta)
+              tau radius) F) atTop (nhds (localExpectation mu F))) →
+        (∀ v : Site d, Measure.map
+          (LocalObservable.translateConfiguration (G := G) v)
+          (mu : Measure (Configuration d G)) = (mu : Measure (Configuration d G))) →
+        ∀ (x : Site d) (a b : Fin d) (R S : ℕ), a ≠ b → 0 < R → 0 < S →
+          (∫ A, rho.normalizedCharacter (holonomy A (Path.rectangleBoundary x a b R S))
+            ∂(mu : Measure (Configuration d G))) =
+            ((∫ A, rho.normalizedCharacter (holonomy A (Path.rectangleBoundary x a b R S))
+              ∂(mu : Measure (Configuration d G))).re : ℂ) ∧
+          Real.exp (-C * (1 + beta + |Real.log beta|) * (2 * (R + S) : ℕ)) ≤
+            (∫ A, rho.normalizedCharacter (holonomy A (Path.rectangleBoundary x a b R S))
+              ∂(mu : Measure (Configuration d G))).re
+
+/-- Both directions are checked: the independent paper contract is logically
+equivalent to the public headline statement, including the order of choices. -/
+theorem headlineStatement_iff_contract (sigma : ContinuousUnitaryRepData G n)
+    (rho : ContinuousUnitaryRepData G r) :
+    CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho ↔
+      PaperHeadlineContract (d := d) sigma rho := by
+  constructor
+  · intro h hd hsigma hcenter
+    obtain ⟨C, hC, hbound⟩ := h hd hsigma hcenter
+    refine ⟨C, hC, ?_⟩
+    intro beta hbeta mu hlocal htranslation x a b R S hab hR hS
+    have hmu : IsTranslationInvariantPaperFreeBoundaryLimit sigma beta mu :=
+      ⟨hlocal, htranslation⟩
+    simpa only [complexRectangleWilsonExpectation, rectangleWilsonExpectation,
+      rectangleWilsonObservable, localExpectation,
+      ContinuousUnitaryRepData.wilsonLoop_apply] using
+      hbound beta hbeta mu hmu x a b R S hab hR hS
+  · intro h hd hsigma hcenter
+    obtain ⟨C, hC, hbound⟩ := h hd hsigma hcenter
+    refine ⟨C, hC, ?_⟩
+    intro beta hbeta mu hmu x a b R S hab hR hS
+    simpa only [complexRectangleWilsonExpectation, rectangleWilsonExpectation,
+      rectangleWilsonObservable, localExpectation,
+      ContinuousUnitaryRepData.wilsonLoop_apply] using
+      hbound beta hbeta mu hmu.localLimit hmu.translationInvariant x a b R S hab hR hS
+
+end
+end YangMills.Gluelump.Validation

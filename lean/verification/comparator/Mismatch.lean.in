@@ -1,0 +1,24 @@
+import Spec
+
+open YangMills.Gauge
+
+namespace YangMills.Gluelump.InfiniteVolume
+
+noncomputable section
+universe u
+
+variable {d n r : ℕ} {G : Type u}
+  [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
+  [T2Space G] [MeasurableSpace G] [BorelSpace G]
+  [SecondCountableTopology G] [GaugeHaarProbability G]
+
+/-- Negative control: assuming the desired result is a different theorem.
+The proof is valid, but Comparator must reject its altered statement. -/
+theorem centerNeutralInfiniteVolumePerimeterLaw
+    (sigma : YangMills.Wilson.ContinuousUnitaryRepData G n)
+    (rho : YangMills.Wilson.ContinuousUnitaryRepData G r) :
+    CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho →
+      CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho := fun h => h
+
+end
+end YangMills.Gluelump.InfiniteVolume

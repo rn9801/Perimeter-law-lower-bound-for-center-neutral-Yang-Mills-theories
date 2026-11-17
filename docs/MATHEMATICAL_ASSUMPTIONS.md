@@ -161,14 +161,29 @@ declared theorem.
 
 ## 8. Placeholder and axiom audit
 
-The shipped production and regression modules contain no proof placeholders,
-custom assumptions declared with Lean's `axiom` command, or unsafe
-declarations. Focused regression files use `#print axioms` on the headline
-theorems and report only Lean's standard
+The [recorded full build and audit](validation/2026-11-17/README.md) covers all
+157 tracked production and regression modules. It found no `sorry`, `admit`,
+`sorryAx`, `native_decide`, project axiom/constant declarations, or unsafe
+code. All 2,673 compiled project declarations were checked for transitive
+axiom dependencies, including definitions and opaque bodies. There were
+zero project-defined axioms and zero unsafe declarations. The only axiom
+dependencies were Lean's standard
 
 - `propext`;
 - `Classical.choice`; and
 - `Quot.sound`.
+
+Each audited headline theorem has exactly this three-axiom footprint.
+Thus “no axioms introduced” means no additional project axioms; it does not
+mean that classical choice, propositional extensionality, and quotient
+soundness have been eliminated. Explicit theorem hypotheses such as
+faithfulness, center neutrality, and existence of the common limit remain
+hypotheses, not global axioms.
+
+Every project module was freshly rebuilt and accepted by kernel replay.
+The record retains the build logs, including the native-code-generation
+diagnostics described there, and the successful official Comparator check
+of the headline and its expanded paper contract.
 
 The standalone source contains 30 additive compatibility modules and 10
 regression modules, in addition to the gluelump theorem modules. The package is configured

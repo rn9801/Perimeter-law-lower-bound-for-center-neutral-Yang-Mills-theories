@@ -1,0 +1,25 @@
+import Spec
+import GluelumpPerimeterLaw.InfiniteVolumeQuantitative
+
+open YangMills.Gauge
+
+namespace YangMills.Gluelump.InfiniteVolume
+
+noncomputable section
+universe u
+
+variable {d n r : ℕ} {G : Type u}
+  [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
+  [T2Space G] [MeasurableSpace G] [BorelSpace G]
+  [SecondCountableTopology G] [GaugeHaarProbability G]
+
+/-- The trusted target has an ordinary proof, so the comparison fixture
+introduces neither proof holes nor extra postulates. -/
+theorem centerNeutralInfiniteVolumePerimeterLaw
+    (sigma : YangMills.Wilson.ContinuousUnitaryRepData G n)
+    (rho : YangMills.Wilson.ContinuousUnitaryRepData G r) :
+    CenterNeutralInfiniteVolumePerimeterLaw (d := d) sigma rho :=
+  centerNeutralUniformCouplingPerimeterLaw sigma rho
+
+end
+end YangMills.Gluelump.InfiniteVolume

@@ -2,6 +2,40 @@
 
 Updated: 2026-11-17
 
+## Complete build, axiom audit, and Comparator record
+
+The [verification record](validation/2026-11-17/README.md) now documents a
+fresh rebuild of all 157 tracked Lean modules, the regression suite, and
+successful kernel replay of all 157 modules. The inventory includes the
+standalone `DualIrreducible` and `CenteredGibbsTower` modules that were not
+covered by the earlier public-root builds. Mathematical sources, the
+toolchain, and the pinned dependency manifest are unchanged.
+
+The source scan found no `sorry`, `admit`, `sorryAx`, `native_decide`, custom
+axiom/constant declarations, or unsafe code. The compiled audit checked all
+2,673 project declarations: zero project axiom declarations, zero unsafe
+declarations, and only `propext`, `Classical.choice`, and `Quot.sound` in
+their transitive axiom dependencies. Each of the four audited headline
+declarations has exactly these three standard dependencies.
+
+Official Lean Comparator v4.30.0 accepted the actual public headline and a
+proved equivalence with a separately written expanded paper contract. A
+changed-statement control adding an assumption was rejected as expected.
+The paper–Lean comparison links to the fixtures, reproduction procedure,
+and complete logs. These are Lean-kernel checks, not an independent kernel
+or a second mathematical proof.
+
+The successful build logs retain five Lean 4.30 native-code-generation
+`PANIC` diagnostics associated with `conjSpanTraceToDual`. All proof objects
+were produced and passed kernel replay; execution of that auxiliary
+definition's generated native code is not certified by this record.
+
+Reproduction scripts live in `lean/scripts/`. CI now records the full
+module inventory, axiom audit, and kernel replay and uploads the logs and
+JSON as an artifact. The committed record is from the local run; a remote
+CI result is a separate check. No environment configuration or publication
+was changed for this milestone.
+
 ## Repository presentation and organization
 
 The root README now gives a short natural-language theorem description and
