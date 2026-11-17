@@ -1,7 +1,8 @@
 # Perimeter law manuscript
 
-`main.tex` is the supplied manuscript; `main.pdf` is its compiled version
-with all four figures. The text and captions are unchanged.
+`main.tex` is the manuscript source; `main.pdf` is its compiled version
+with all four figures. The source has been proofread for grammar and
+typography; the mathematical statements and figure captions are unchanged.
 
 The illustrations are vector PDFs in `figures/`, accompanied by PNG
 previews and a reproducible Python generator. See [figure notes](figures/README.md)

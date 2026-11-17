@@ -30,4 +30,5 @@ loop supports, not a new path orientation.
   `r=n=4, s=2`, so `n=max(r,s)` exactly; it illustrates monotonicity,
   not an additional reflection.
 
-The captions and mathematical text of the supplied manuscript are unchanged.
+The illustrations preserve the supplied manuscript's captions and mathematical
+statements.

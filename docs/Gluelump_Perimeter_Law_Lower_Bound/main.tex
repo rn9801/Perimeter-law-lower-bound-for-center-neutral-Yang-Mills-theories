@@ -48,7 +48,7 @@
 \begin{document}
 
 \begin{abstract}
-    We show that for pure lattice Yang--Mills theories in dimension $d\geq 3$ any Wilson loop observable associated with a coordinate rectangle and a center-neutral representation satisfies a perimeter law lower bound. This result holds at weak coupling, which is most relevant to the continuum theory, under the assumption that the model has a translation invariant infinite volume limit.
+    We show that for pure lattice Yang--Mills theories in dimension $d\geq 3$, any Wilson loop observable associated with a coordinate rectangle and a center-neutral representation satisfies a perimeter law lower bound. This result holds at weak coupling, which is most relevant to the continuum theory, under the assumption that the model has a translation-invariant infinite-volume limit.
 \end{abstract}
 
 \maketitle
@@ -70,11 +70,11 @@ In the other direction, in \cite{GlimmJaffeNonConfinement,seiler1982gauge} the a
 
 In a recent article \cite{nissim2026deconfinementmathrmso3latticeyangmills}, the author was able to turn the cluster expansion argument into a rigorous proof that Wilson's criterion is not satisfied for $G =\mrm{SO}(3)$ with the defining Wilson representation in a strong coupling regime. This argument required additional inputs from complex analysis and reflection positivity and the analysis of the cluster expansion is specific to $\mathrm{SO}(3)$. The precise statement does not guarantee a perimeter law lower bound and excludes a Lebesgue measure $0$ set of $\beta$ values in the strong coupling interval. 
 
-This work proves a perimeter law lower bound, applies to a much more general setting with any gauge group and Wilson representation satisfying a center neutrality assumption, and also holds at weak coupling under an assumption regarding the existence of a translation invariant infinite volume measure.
+This work proves a perimeter law lower bound, applies to a much more general setting with any gauge group and Wilson representation satisfying a center neutrality assumption, and also holds at weak coupling under an assumption regarding the existence of a translation-invariant infinite-volume measure.
 
-The approach is also quite different from that of \cite{nissim2026deconfinementmathrmso3latticeyangmills}, and does not directly involve any cluster expansion. Inspiration for this argument can be traced to two ideas from the physics literature. The first idea is that in cases when the gauge group and Wilson representation satisfy a center neutrality condition, it is possible to use the pure gauge field on edges to construct a vector valued field on vertices which transforms like a Higgs field under gauge transformations. Since the pure gauge field describes gluons, and this Higgs--like field behaves like a massive particle made from gluons, physicists refer to it as a `gluelump.' To the author's knowledge, the construction first appeared in \cite{Michael1985AdjointSources} for the case of gauge group $\mathrm{SU}(2)$ with adjoint Wilson representation, and has been extensively studied since, primarily in the numerical lattice gauge theory literature (a very incomplete list includes \cite{JoryszMichael1988FieldConfigurations,PhilipsenWittig1999AdjointStringBreaking,PepeWiese2009StringDecay}). In this work we generalize the construction to all groups with center neutral representations and highlight the general, but elementary, representation theory behind the construction.
+The approach is also quite different from that of \cite{nissim2026deconfinementmathrmso3latticeyangmills}, and does not directly involve any cluster expansion. Inspiration for this argument can be traced to two ideas from the physics literature. The first idea is that in cases when the gauge group and Wilson representation satisfy a center neutrality condition, it is possible to use the pure gauge field on edges to construct a vector-valued field on vertices which transforms like a Higgs field under gauge transformations. Since the pure gauge field describes gluons, and this Higgs-like field behaves like a massive particle made from gluons, physicists refer to it as a `gluelump.' To the author's knowledge, the construction first appeared in \cite{Michael1985AdjointSources} for the case of gauge group $\mathrm{SU}(2)$ with adjoint Wilson representation, and has been extensively studied since, primarily in the numerical lattice gauge theory literature (a very incomplete list includes \cite{JoryszMichael1988FieldConfigurations,PhilipsenWittig1999AdjointStringBreaking,PepeWiese2009StringDecay}). In this work we generalize the construction to all groups with center-neutral representations and highlight the general, but elementary, representation theory behind the construction.
 
-The second idea is that through iterated reflection positivity Cauchy--Schwarz applied to gauge invariant Wilson line observables, a perimeter law lower bound can be shown for the lattice Yang--Mills--Higgs model \cite{EvertzEtAl1987Perimeter}. Feeding in the Higgs--like gluelump field into this argument completes the proof. One key place where our proof diverges from the treatment of \cite{EvertzEtAl1987Perimeter} is the additional argument to ensure the one edge `Wilson line' is bounded below in the infinite volume setting, even at weak coupling in Lemma \ref{lm:one-edge-positivity}.
+The second idea is that through iterated reflection positivity Cauchy--Schwarz applied to gauge-invariant Wilson line observables, a perimeter law lower bound can be shown for the lattice Yang--Mills--Higgs model \cite{EvertzEtAl1987Perimeter}. Feeding the Higgs-like gluelump field into this argument completes the proof. One key place where our proof diverges from the treatment of \cite{EvertzEtAl1987Perimeter} is the additional argument to ensure the one-edge `Wilson line' is bounded below in the infinite volume setting, even at weak coupling in Lemma \ref{lm:one-edge-positivity}.
 
 
 We now state the precise main result along with the definitions underlying the model.
@@ -88,7 +88,7 @@ A lattice gauge configuration $Q$ is a function $Q : E_\Lambda^+ \ra G$. We alwa
 \end{definition}
 
 \begin{remark}
-    We can, and usually will, equivalently identify the set of gauge configurations by $G^{E_{\Lambda}^+}$.
+    We can, and usually will, equivalently identify the set of gauge configurations with $G^{E_{\Lambda}^+}$.
 \end{remark}
 
 \begin{definition}[Plaquette variable]
@@ -98,19 +98,19 @@ Q_p := Q_{e_1} Q_{e_2} Q_{e_3} Q_{e_4}.
 \end{equs}
 \end{definition}
 
-Next, we define the lattice Yang--Mills measure. In order to do so we specify a faithful continuous unitary representation $\sigma: G \to \mrm{U}(V)$ where $V$ is a nonzero finite dimensional complex Hilbert space and $\mrm{U}(V)$ denotes the set of unitary operators on $V$. Recall faithful just means that $\sigma$ is injective as a function.
+Next, we define the lattice Yang--Mills measure. In order to do so we specify a faithful continuous unitary representation $\sigma: G \to \mrm{U}(V)$ where $V$ is a nonzero finite-dimensional complex Hilbert space and $\mrm{U}(V)$ denotes the set of unitary operators on $V$. Recall that faithful just means that $\sigma$ is injective as a function.
 
 \begin{definition}[Lattice Yang--Mills]\label{def:lattice-ym}
-The \textit{lattice Yang-Mills measure} with Wilson action specified by the faithful continuous (finite dimensional) unitary representation $\sigma$, and gauge group $G$ and inverse coupling $\beta>0$ on a finite subgraph $\Lambda \subset \Z^d$ is the measure on $G^{E_{\Lambda}^+}$ with density
+The \textit{lattice Yang--Mills measure} with Wilson action specified by the faithful continuous (finite-dimensional) unitary representation $\sigma$, gauge group $G$, and inverse coupling $\beta>0$ on a finite subgraph $\Lambda \subset \Z^d$ is the measure on $G^{E_{\Lambda}^+}$ with density
 \begin{equs}
     d\mu_{G,\sigma,\Lambda, \beta}(Q) \, \, \propto \, \, \exp(S_{G,\sigma,\Lambda, \beta}(Q)) dQ,
 \end{equs}
 where the action is given by
 \begin{equs}
     S_{G,\sigma,\Lambda, \beta}(Q):=\beta\sum_{p \in \mc{P}_{\Lambda}} \chi_{\sigma}(Q_p)
-    =2\beta\sum_{p\in\mc{P}_{\Lambda}^+}\mrm{Re}\,\chi_\sigma(Q_p).
+    =2\beta\sum_{p\in\mc{P}_{\Lambda}^+}\mrm{Re}\,\chi_\sigma(Q_p),
 \end{equs}
-with $\chi_{\sigma}(Q)$ the character defined by $\chi_{\sigma}(Q):= \mrm{Tr} \sigma(Q)$, and $dQ = \prod_{e \in E_\Lambda^+} dQ_e$, and each $dQ_e$ is an independent copy of Haar measure on $G$ for each edge $e \in E_{\Lambda}^+$. Finally, the partition function,
+with $\chi_{\sigma}(Q)$ the character defined by $\chi_{\sigma}(Q):= \mrm{Tr} \sigma(Q)$ and $dQ = \prod_{e \in E_\Lambda^+} dQ_e$, where each $dQ_e$ is an independent copy of Haar measure on $G$. Finally, the partition function is
 \begin{equs}
 Z_{G,\sigma,\Lambda, \beta} :=\int_{G^{E_{\Lambda}^+}} \exp(S_{G,\sigma,\Lambda, \beta}(Q)) dQ.
 \end{equs}
@@ -120,7 +120,7 @@ Since $G,\sigma,\beta$ are fixed throughout the argument, we will often use the 
 Next we define the main observable of interest throughout the paper.
 
 \begin{definition}[Loops, Loop Variables, and Wilson Loop Observables]\label{def:loops-loop variables}
-We will represent loops $\ell$ in $\Lambda$ by the sequence of oriented edges $\ell = e_1 \cdots e_n$ that are traversed by $\ell$. We then denote the length of the loop by $|\ell| := n$. Let $Q : E_\Lambda^+ \ra G$ be a lattice gauge configuration. For  a loop $\ell=e_1e_2\dots e_n$, let $Q_{\ell}:=Q_{e_1}Q_{e_2}\dots Q_{e_n}$ denote the corresponding loop variable. For a continuous unitary representation $\tau: G \to \mrm{U}(S)$ ($S$ a nonzero finite dimensional complex Hilbert space) and a lattice loop $\ell$ in $\Lambda$, we define the corresponding \textit{Wilson loop observable} by
+We will represent loops $\ell$ in $\Lambda$ by the sequence of oriented edges $\ell = e_1 \cdots e_n$ that are traversed by $\ell$. We then denote the length of the loop by $|\ell| := n$. Let $Q : E_\Lambda^+ \ra G$ be a lattice gauge configuration. For  a loop $\ell=e_1e_2\dots e_n$, let $Q_{\ell}:=Q_{e_1}Q_{e_2}\dots Q_{e_n}$ denote the corresponding loop variable. For a continuous unitary representation $\tau: G \to \mrm{U}(S)$ ($S$ a nonzero finite-dimensional complex Hilbert space) and a lattice loop $\ell$ in $\Lambda$, we define the corresponding \textit{Wilson loop observable} by
 
 \begin{equs}\label{eq:Wilson-loop-observable}
 W_{\ell}^{\tau}(Q) := \frac{1}{\mrm{dim}\, \tau}\chi_{\tau}(Q_{\ell}).
@@ -149,18 +149,18 @@ Before stating the main result, we must introduce one assumption and one definit
     \begin{equs}\label{eq:perimeter-law}
         \langle W_{\ell}^{\tau} \rangle \geq \exp(-C_{G,\sigma,\tau,d} (1+\beta+|\log \beta|)|\ell|),
     \end{equs}
-    for some constant $C_{G,\sigma,\tau,d}>0$ independent of $\beta$ and $\ell$, where the expectation is taken with respect to the translation invariant infinite volume measure $\mu$ which is assumed to exist by Assumption \ref{as:infinite-vol}.
+    for some constant $C_{G,\sigma,\tau,d}>0$ independent of $\beta$ and $\ell$, where the expectation is taken with respect to the translation-invariant infinite-volume measure $\mu$ which is assumed to exist by Assumption \ref{as:infinite-vol}.
 \end{theorem}
 
 
 \begin{remark}[Weak coupling and relation to continuum limit]
-    Nontrivial continuum limits for pure lattice Yang--Mills in dimensions $3$ and $4$ are expected to arise under a specific tuning of $\beta$ with the lattice spacing, $\epsilon$,  for which $\beta_{\epsilon} \to \infty$. Theorem \ref{thm:Main-theorem} holds at arbitrarily large $\beta$, and so a perimeter law would hold along the trajectory to the continuum limit. However, in passing to the continuum limit macroscopic loops should have $|\ell_{\epsilon}| \to \infty$, thus the bound \eqref{eq:perimeter-law} would become trivial in the limit. The author suspects this is because the bound \eqref{eq:perimeter-law} is sub-optimal in $\beta$ dependence. In particular this sub-optimality can be tracked to Lemma \ref{lm:one-edge-positivity}.
+    Nontrivial continuum limits for pure lattice Yang--Mills in dimensions $3$ and $4$ are expected to arise under a specific tuning of $\beta$ with the lattice spacing, $\epsilon$, for which $\beta_{\epsilon} \to \infty$. Theorem \ref{thm:Main-theorem} holds at arbitrarily large $\beta$, and so a perimeter law would hold along the trajectory to the continuum limit. However, in passing to the continuum limit, macroscopic loops should have $|\ell_{\epsilon}| \to \infty$; thus the bound \eqref{eq:perimeter-law} would become trivial in the limit. The author suspects this is because the bound \eqref{eq:perimeter-law} is sub-optimal in $\beta$ dependence. In particular, this sub-optimality can be tracked to Lemma \ref{lm:one-edge-positivity}.
 \end{remark}
 
 \subsection{Organization and Proof Outline}
 
 \textit{Organization:} Section \ref{sec:field-construction} constructs a
-Higgs--like field from the gauge variables and uses it to define gauge
+Higgs-like field from the gauge variables and uses it to define gauge
 invariant observables on open paths. The construction is illustrated by
 several examples. Section \ref{sec:reflection-argument} proves a
 volume-uniform lower bound for a one-edge observable and then uses
@@ -173,7 +173,7 @@ gauge fixing, respectively.
 an analogue of a Higgs field using only the gauge variables. The product
 of gauge variables along an open path is not gauge invariant: a gauge
 transformation leaves an uncancelled factor at each endpoint. We cancel
-these factors by attaching a suitable vector valued field to each end.
+these factors by attaching a suitable vector-valued field to each end.
 To construct this field, we combine the variables of finitely many small
 loops based at the same vertex. These loop variables transform by
 simultaneous conjugation, which cannot detect elements of the center.
@@ -204,16 +204,16 @@ expansion.
 
 \noindent \textbf{Funding Acknowledgment:} The author was supported by the NSF under Grant No. GRFP-2141064.
 
-\noindent \textbf{AI Acknowledgment:} The author used LLMs to assist with the proof of the main theorem, however, the proof was obtained through an extensive back and forth discussion with input from the author, and the author takes full responsibility for the correctness of the results. The paper was written by the author, only including minor edits suggested by LLMs.
+\noindent \textbf{AI Acknowledgment:} The author used LLMs to assist with the proof of the main theorem; however, the proof was obtained through an extensive back-and-forth discussion with input from the author, and the author takes full responsibility for the correctness of the results. The paper was written by the author, with only minor edits suggested by LLMs.
 
 \section{Proof of Theorem \ref{thm:Main-theorem}}\label{Section:Proof-of-main-thm}
 
-\subsection{Higgs--like field construction}\label{sec:field-construction}
+\subsection{Higgs-like field construction}\label{sec:field-construction}
 
  Let us recall a certain class of symmetries known as gauge transformations which leave the Yang--Mills measure invariant.
 
 \begin{definition}[Gauge Transformations and Invariance]
-    A \textit{gauge transformation} $\mc{G}$ is a function from
+    A \textit{gauge transformation} $\mc{G}$ is a function
     \begin{equs}
         \mc{G}:G^{E_{\Lambda}^+} \to G^{E_{\Lambda}^+}
     \end{equs}
@@ -221,9 +221,9 @@ expansion.
     \begin{equs}
         \mc{G}:(Q_e)_{e \in E_{\Lambda}^+} \to (\phi_x Q_e \phi_y^{-1})_{e=(x,y) \in E_{\Lambda}^+}.
     \end{equs}
-    We say that a local observable $f$ is \textit{gauge invariant}, if $f = f \circ \mc{G}$ for any gauge transformation $\mc{G}$.
+    We say that a local observable $f$ is \textit{gauge invariant} if $f = f \circ \mc{G}$ for any gauge transformation $\mc{G}$.
 \end{definition}
-The goal of this section is to construct a nontrivial gauge invariant observable assigned to open lattice paths in $\Z^d$ which will be inspired by the Wilson line observables in the Yang--Mills--Higgs model. Recall, if $\ell$ is an open path in $\Z^d$ starting at $x$ and ending at $y$, and $(Q_e)_{e \in E_{\Z^d}^+} \in G^{E_{\Z^d}^+}$ is the initial gauge field, while $(g_x)_{x \in \Z^d} \in G^{\Z^d}$ is a field defining a gauge transformation $Q \to g \cdot Q$, then 
+The goal of this section is to construct a nontrivial gauge-invariant observable assigned to open lattice paths in $\Z^d$ which will be inspired by the Wilson line observables in the Yang--Mills--Higgs model. Recall that if $\ell$ is an open path in $\Z^d$ starting at $x$ and ending at $y$, and $(Q_e)_{e \in E_{\Z^d}^+} \in G^{E_{\Z^d}^+}$ is the initial gauge field, while $(g_x)_{x \in \Z^d} \in G^{\Z^d}$ is a field defining a gauge transformation $Q \to g \cdot Q$, then
 \begin{equs}
     \tau(Q_{\ell}) \to \tau(g_x) \tau(Q_{\ell})\tau(g_y^{-1})
 \end{equs}
@@ -231,7 +231,7 @@ under the gauge transformations. Now suppose there existed a field $(\Phi_x)_{x 
 \begin{equs}\label{eq:Higgs-field-transform}
     \Phi_x \to \tau(g_x)\Phi_x
 \end{equs}
-under gauge transformations. In the Yang--Mills--Higgs model the Higgs field satisfies exactly this transformation  property. Supposing the existence of a Higgs-like field \eqref{eq:Higgs-field-transform}, then the observable
+under gauge transformations. In the Yang--Mills--Higgs model the Higgs field satisfies exactly this transformation property. If a Higgs-like field satisfies \eqref{eq:Higgs-field-transform}, then the observable
 \begin{equs}
     O_{\ell}:= \Phi_x^* \tau(Q_{\ell}) \Phi_y
 \end{equs}
@@ -246,7 +246,7 @@ We first set some notation.
 \begin{equs}
     \mc{W}_{\sigma}:=\mrm{Span}(\{\sigma(Q):Q \in G\}),
 \end{equs}
-where we recall that $V$ is the vector space of the representation $\sigma$, and the span is taken within the vector space $\mrm{End}_{\C}(V)$ of linear maps from $V \to V$ over the complex numbers.
+where we recall that $V$ is the vector space of the representation $\sigma$, and the span is taken within the vector space $\mrm{End}_{\C}(V)$ of linear maps $V \to V$ over the complex numbers.
 \end{definition}
  Before proceeding we give an example.
 
@@ -255,7 +255,7 @@ where we recall that $V$ is the vector space of the representation $\sigma$, and
     \begin{equs}
         \mc{W}_{\sigma}=\mrm{End}_{\C}(\C^n).
     \end{equs}
-    To see this, it suffices to show that every elementary matrix $E_{ij}$ belongs to $\mc{W}_{\sigma}$, where $E_{ij}$ has a $1$ in entry $(i,j)$ and zeros elsewhere. For $n\geq3$, if $R_{ij}$ is rotation by angle $\pi$ in the $(i,j)$ coordinate plane, then for distinct $i,j,k$,
+    To see this, it suffices to show that every elementary matrix $E_{ij}$ belongs to $\mc{W}_{\sigma}$, where $E_{ij}$ has a $1$ in entry $(i,j)$ and zeros elsewhere. For $n\geq3$, if $R_{ij}$ is a rotation by angle $\pi$ in the $(i,j)$ coordinate plane, then for distinct $i,j,k$,
     \begin{equs}
         E_{ii}=\frac14(I-R_{ij}-R_{ik}+R_{jk}).
     \end{equs}
@@ -278,28 +278,28 @@ We will now need an elementary property of $\mathrm{Ad}_{\sigma}$ which almost f
     \begin{equs}
         \mrm{Ker}\mathrm{Ad}_{\sigma} = Z(G).
     \end{equs}
-    As a consequence $\mathrm{Ad}_{\sigma}$ descends to a faithful representation $\widetilde{\mathrm{Ad}}_{\sigma}$ on $\tilde{G}:=G/Z(G)$.
+    As a consequence, $\mathrm{Ad}_{\sigma}$ descends to a faithful representation $\widetilde{\mathrm{Ad}}_{\sigma}$ on $\tilde{G}:=G/Z(G)$.
 \end{lemma}
 
 \begin{proof}
-    Suppose $Q \in Z(G)$, then expressing any $X \in \mc{W}_{\sigma}$ as $X=\sum_{i=1}^{n} a_i \sigma(Q_i)$,
+    Suppose $Q \in Z(G)$. Expressing any $X \in \mc{W}_{\sigma}$ as $X=\sum_{i=1}^{n} a_i \sigma(Q_i)$, we have
     \begin{equs}
         \mathrm{Ad}_{\sigma}(Q)(X)&=\sum_{i=1}^{n} a_i \sigma(Q)\sigma(Q_i)\sigma(Q^{-1})\\
         &=\sum_{i=1}^{n} a_i \sigma(QQ_iQ^{-1})\\
         &=\sum_{i=1}^{n} a_i \sigma(Q_i)=X,
     \end{equs}
-    because $Q$ commutes with each $Q_i$, thus $Q \in \mrm{Ker}\mathrm{Ad}_{\sigma}$.
+    because $Q$ commutes with each $Q_i$. Thus $Q \in \mrm{Ker}\mathrm{Ad}_{\sigma}$.
 
-    Conversely if $Q \in \mrm{Ker}\mathrm{Ad}_{\sigma}$, then for any $Q' \in G$, $\sigma(Q') \in \mc{W}_{\sigma}$, so 
+    Conversely, if $Q \in \mrm{Ker}\mathrm{Ad}_{\sigma}$, then for any $Q' \in G$, $\sigma(Q') \in \mc{W}_{\sigma}$, so
     \begin{equs}
         \sigma(Q')=\mrm{Ad}_{\sigma}(Q)\sigma(Q') = \sigma(Q)\sigma(Q')\sigma(Q^{-1})=\sigma(QQ'Q^{-1}),
     \end{equs}
-    and since $\sigma$ is faithful we must have $Q' = QQ'Q^{-1}$. As this holds for all $Q' \in G$ we necessarily have $Q \in Z(G)$.
+    and since $\sigma$ is faithful, we must have $Q' = QQ'Q^{-1}$. As this holds for all $Q' \in G$, we necessarily have $Q \in Z(G)$.
 
     The induced representation of $\tilde{G}=G/Z(G)$ is therefore faithful.
 \end{proof}
 
-The next lemma is the core of the Higgs--like field construction. Recall once again that $S$ is the vector space defining the representation $\tau$.
+The next lemma is the core of the Higgs-like field construction. Recall once again that $S$ is the vector space defining the representation $\tau$.
 
 \begin{lemma}\label{lm:Intertwiner-construct}
     Suppose $V,S\neq\{0\}$ and $\tau$ is center neutral. Then there exists a positive integer $m$ along with a linear map
@@ -312,11 +312,11 @@ The next lemma is the core of the Higgs--like field construction. Recall once ag
         \qquad \text{for every }Q\in G,
     \end{equs}
     and such that $T \neq 0$.
-    In representation theoretic terms, $T$ is an intertwiner.
+    In representation-theoretic terms, $T$ is an intertwiner.
 \end{lemma}
 
 This lemma can be proven as a rather simple corollary of the tensor-generation theorem
-\cite[Chapter~III, Theorem~4.4]{Brocker2013}, however, in order to provide more clarity along with an explicit form of the map $T$, we provide the details for the proof of Lemma \ref{lm:Intertwiner-construct}.
+\cite[Chapter~III, Theorem~4.4]{Brocker2013}; however, in order to provide more clarity along with an explicit form of the map $T$, we provide the details for the proof of Lemma \ref{lm:Intertwiner-construct}.
 
 %\begin{proof}
 %By Lemma \ref{lm:faithful}, $\mathrm{Ad}_{\sigma}$ descends
@@ -373,7 +373,7 @@ This lemma can be proven as a rather simple corollary of the tensor-generation t
 \begin{proof}[Proof of Lemma \ref{lm:Intertwiner-construct}]
     By Lemma \ref{lm:faithful}, $\mrm{Ad}_{\sigma}$ descends to a faithful representation, $\widetilde{\mrm{Ad}}_{\sigma}$, on $\tilde{G}=G/Z(G)$, and since $\tau|_{Z(G)}=\mbf{1}$ by center neutrality, $\tau$ also descends to a continuous unitary representation of $\tilde{G}$, which we will simply denote by $\tau$ as well.
 
-    Let $\mc{A}_{\sigma}$ be the space of continuous functions from $\tilde{G} \to \C$ given as finite linear combinations of the matrix coefficients
+    Let $\mc{A}_{\sigma}$ be the space of continuous functions $\tilde{G} \to \C$ given as finite linear combinations of the matrix coefficients
     \begin{equs}\label{eq:matrix-coeffs}
         Q \mapsto \langle X,\widetilde{\mrm{Ad}}_{\sigma}(Q)^{\otimes k}Y\rangle_{\mc{W}_{\sigma}^{\otimes k}},
         \qquad k\geq 1,
@@ -422,7 +422,7 @@ This lemma can be proven as a rather simple corollary of the tensor-generation t
         \leq\|g-f\|_{L^2(\tilde{G})}\|f\|_{L^2(\tilde{G})}
         <\frac12\|f\|_{L^2(\tilde{G})}^2,
     \end{equs}
-    so $\langle g,f\rangle_{L^2(\tilde{G})}\neq 0$. As $g$ is a finite linear combination of matrix coefficients of the form \eqref{eq:matrix-coeffs}, there exists a positive integer $m$ and $X,Y\in\mc{W}_{\sigma}^{\otimes m}$ such that
+    so $\langle g,f\rangle_{L^2(\tilde{G})}\neq 0$. As $g$ is a finite linear combination of matrix coefficients of the form \eqref{eq:matrix-coeffs}, there exist a positive integer $m$ and vectors $X,Y\in\mc{W}_{\sigma}^{\otimes m}$ such that
     \begin{equs}\label{eq:non-zero-inner-prod}
         \big\langle\langle X,\widetilde{\mrm{Ad}}_{\sigma}(\cdot)^{\otimes m}Y\rangle_{\mc{W}_{\sigma}^{\otimes m}},f\big\rangle_{L^2(\tilde{G})}\neq 0.
     \end{equs}
@@ -433,7 +433,7 @@ This lemma can be proven as a rather simple corollary of the tensor-generation t
         \overline{\langle M,\widetilde{\mrm{Ad}}_{\sigma}(R)^{\otimes m}Y\rangle_{\mc{W}_{\sigma}^{\otimes m}}}\,
         \tau(R)v\,dR.
     \end{equs}
-    The integral is well-defined since its integrand is continuous on the compact group $\tilde{G}$, $S$ is finite dimensional, and $\tau$ is well-defined on $\tilde{G}$ by center neutrality. The map $T$ is obviously complex-linear.
+    The integral is well-defined since its integrand is continuous on the compact group $\tilde{G}$, $S$ is finite-dimensional, and $\tau$ is well-defined on $\tilde{G}$ by center neutrality. The map $T$ is obviously complex-linear.
 
     Now for any fixed $Q\in G$, let $\tilde{Q}\in\tilde{G}$ be its coset. By unitarity and then left invariance of Haar measure, with $R=\tilde{Q}U$,
     \begin{equs}
@@ -503,7 +503,7 @@ We will need the following elementary Haar integral lemma with proof deferred to
     In particular, $T(E_{12})=e_3/6\neq0$.
 \qed
 \end{example}   
-    We next generalize the previous example to $\mrm{SO(2N+1)}$ for all $N \geq 1$. 
+    We next generalize the previous example to $\mrm{SO}(2N+1)$ for all $N \geq 1$.
 
 \begin{example}[Intertwiner map for $G=\mrm{SO}(2N+1)$]
    Let $N\geq1$ be an integer with both $\sigma$ and $\tau$ the defining representation on $\mrm{SO}(2N+1)$, so that $V=S=\C^{2N+1}$. Take
@@ -658,7 +658,7 @@ We will need the following elementary Haar integral lemma with proof deferred to
     \label{fig:comb}
 \end{figure}
 
-\begin{definition}[Higgs like field Construction]\label{def:higgs-like-field}
+\begin{definition}[Higgs-like field construction]\label{def:higgs-like-field}
     Fix $m$ and a nonzero intertwiner $T$ as in Lemma \ref{lm:Intertwiner-construct}. Given a gauge configuration $(Q_e)_{e\in E_{\Z^d}^+}$, define the field $(\Phi_x^{ij})_{x\in\Z^d}$ by setting
     \begin{equs}
         \Phi_x^{ij}(Q):=T\big(\sigma(Q_{\ell_1})\otimes\cdots\otimes\sigma(Q_{\ell_m})\big)\in S,
@@ -687,7 +687,7 @@ We will need the following elementary Haar integral lemma with proof deferred to
 
 We now illustrate Definition \ref{def:higgs-like-field} using the intertwiner map example for $\mrm{SO}(3)$. Once again the reader only concerned with the proof of Theorem \ref{thm:Main-theorem} may skip the example.
 
-\begin{example}[Higgs like field for $\mrm{SO}(3)$]
+\begin{example}[Higgs-like field for $\mrm{SO}(3)$]
     Suppose $G=\mrm{SO}(3)$, with both $\sigma$ and $\tau$ the defining representation on $\C^3$. Taking $m=1$ and $T$ from \eqref{eq:intertwiner-SO3-explicit}, the comb consists of the single plaquette $\ell_1$ based at $x$. Explicitly
     \begin{equs}
         Q_{\ell_1}=Q_{(x,x+e_i)}Q_{(x+e_i,x+e_i+e_j)}
@@ -847,7 +847,7 @@ We now illustrate Definition \ref{def:higgs-like-field} using the intertwiner ma
 In the last section we constructed a nonzero field assigned to vertices which transforms like a Higgs field under gauge transformations.
 In this section we use arguments based on reflection positivity which first appeared in the Yang--Mills--Higgs case \cite{EvertzEtAl1987Perimeter} to complete the proof of Theorem \ref{thm:Main-theorem}.
 
-The first and most technical step is simply to show that the Wilson line observable associated to a single edge open path $O_e^{ij}$ has expectation bounded from below uniformly in the volume of the lattice. In order to prove this result, we first recall a standard gauge fixing procedure.
+The first and most technical step is simply to show that the Wilson line observable associated to a single-edge open path $O_e^{ij}$ has expectation bounded from below uniformly in the volume of the lattice. In order to prove this result, we first recall a standard gauge fixing procedure.
 
 \begin{lemma}[Gauge fixing to identity on a forest]
 \label{lm:gauge-fix-to-identity}
@@ -882,13 +882,12 @@ Borel gauge-invariant observable $f$ satisfies
         e^{S(R^F)}\,dR}.
 \end{equs}
 \end{lemma}
-\qed
 
 We defer the proof to Appendix \ref{sec:Gauge-fix} as the lemma is well known. 
 
 We are now ready to state and prove the lower bound on $O_e^{ij}$.
 \begin{lemma}[One-edge positivity]\label{lm:one-edge-positivity}
-    For $d \geq 3$, any $\beta>0$, there exists a constant $c=c(d,\beta,G,\sigma,\tau)>0$ such that if $e \in E_{\Z^d}$ and $i,j$ are distinct coordinate directions perpendicular to $e$,
+    For $d \geq 3$ and any $\beta>0$, there exists a constant $c=c(d,\beta,G,\sigma,\tau)>0$ such that if $e \in E_{\Z^d}$ and $i,j$ are distinct coordinate directions perpendicular to $e$,
     \begin{equs}
         \langle O_e^{ij}\rangle>c.
     \end{equs}
@@ -964,7 +963,7 @@ For every $\nu$, weighted Cauchy--Schwarz gives
  &=\left|\sum_{|\alpha|=D}v_\alpha^*
        \int\Phi\,\overline{p_\alpha f_\nu}\,dQ\right|^2\\
  &\leq C_\Phi\sum_{|\alpha|=D}\frac1{\alpha!}
-       \left\|\int\Phi\,\overline{p_\alpha f_\nu}\,dQ\right\|^2.
+       \left\|\int\Phi\,\overline{p_\alpha f_\nu}\,dQ\right\|^2,
 \end{equs}
 where $C_\Phi:=\sum_{|\alpha|=D}\alpha!\|v_\alpha\|^2>0$ since $\Phi$ is nonzero.
 
@@ -999,7 +998,7 @@ $e^{2\beta n|J|}\iint w\,dQ\,dQ'$. Consequently,
 This bound is independent of $L$. Pass to the limit by
 Assumption \ref{as:infinite-vol}, since $O_e^{ij}$ is bounded,
 continuous and local. Translation invariance and
-$O_{e^{-1}}^{ij}=\overline{O_e^{ij}}$ give every oriented edge.
+$O_{e^{-1}}^{ij}=\overline{O_e^{ij}}$ give the bound for every oriented edge.
 \end{proof}
 
 \begin{remark}[Dependence of the constant]
@@ -1032,7 +1031,7 @@ of vertices, and set
     (\Theta_Pf)(Q):=f(\Theta_PQ).
 \end{equs}
 We first work in a finite subgraph $\Lambda$ invariant under $\Theta_P$.
-All functions below are continuous and take values in a finite dimensional
+All functions below are continuous and take values in a finite-dimensional
 complex Hilbert space $\mathcal K$, with inner product conjugate-linear
 in the first argument. Support in a half space means that every edge
 on which the function depends has both endpoints in that half space;
@@ -1060,7 +1059,7 @@ $B_P(f,g)=\overline{B_P(g,f)}$, and
 Let $P=\{x:x_k=a+\tfrac12\}$, where $k\in\{1,\ldots,d\}$ and $a\in\Z$.
 Let $f,g$ be $\mathcal K$-valued functions supported in
 $\Lambda\cap\{x:x_k\geq a+1\}$. Suppose that, for
-$h,h'\in\{f,g\}$, there are continuous gauge invariant scalar observables
+$h,h'\in\{f,g\}$, there are continuous gauge-invariant scalar observables
 $A_{h,h'}$ satisfying
 \begin{equs}\label{eq:bond-RP-gluing}
     A_{h,h'}(Q)=\langle h(Q),\Theta_Ph'(Q)\rangle_{\mathcal K}

@@ -2,6 +2,16 @@
 
 Updated: 2026-11-17
 
+## Manuscript proofreading
+
+Completed a readthrough of the manuscript and the separate reflection-positivity
+proof draft. Corrected grammar, punctuation and typography, and removed a stray
+proof-ending symbol before a deferred proof. Mathematical statements and figures
+are unchanged. Stylistic suggestions were reported separately without rewriting
+the flagged wording. No Lean declarations changed.
+Rebuilt the illustrated PDF with `latexmk` and BibTeX: 19 pages, with all
+references and citations resolved.
+
 ## Manuscript illustrations
 
 The supplied LaTeX manuscript is stored under
